@@ -17,3 +17,6 @@ Justin MacMillin
 Alex McGourty
 
 Anna Goodman
+
+
+Video recap of first customer meeting: https://www.youtube.com/watch?v=2GRnG_LMAlI
