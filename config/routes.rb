@@ -1,4 +1,6 @@
 Ratemypup::Application.routes.draw do
+
+  resources :pups
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
