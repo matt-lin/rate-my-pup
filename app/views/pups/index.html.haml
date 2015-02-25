@@ -1,0 +1,13 @@
+%h1 All Pups:
+
+%table#pups
+  %thead
+    %tr
+      %th Puppy Name
+      %th Breeder Name
+
+  %tbody
+    - @pups.each do |pup|
+      %tr
+        %td= pup.pup_name
+        %td= pup.breeder
