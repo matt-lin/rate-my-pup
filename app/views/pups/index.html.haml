@@ -4,12 +4,33 @@
   %thead
     %tr
       %th Puppy Name
-      %th Breeder Name
+      %th Owner Name
+      / %th Breeder
+      %th Breed 1
+      %th Breed 2
+      %th Breeder Responsibility
+      %th Overall Health
+      %th Trainability
+      %th Social Behavior
+      %th Energy Level
+      %th Simpatico Rating
+      %th Comments
 
   %tbody
     - @pups.each do |pup|
       %tr
         %td= pup.pup_name
-        %td= pup.breeder
+        %td= pup.owner_name
+        / %td= pup.breeder
+        %td= pup.breed_1
+        %td= pup.breed_2
+        %td= pup.breeder_responsibility
+        %td= pup.overall_health
+        %td= pup.trainability
+        %td= pup.social_behavior
+        %td= pup.energy_level
+        %td= pup.simpatico_rating
+        %td= pup.comments
+
 
 = link_to 'Add new pup', new_pup_path

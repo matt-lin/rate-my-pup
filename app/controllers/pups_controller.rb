@@ -10,7 +10,7 @@ class PupsController < ApplicationController
 
   def create
     @pup = Pup.create!(params[:pup])
-    flash(:notice) = "#{@pup.pup_name} was successfully added"
+    flash[:notice] = "#{@pup.pup_name} was successfully added"
     redirect_to pups_path
   end
 

@@ -1,15 +1,15 @@
 %h1 Create New Pup
 
-= form_tag new_pup_path do
+= form_tag pups_path do
 
   = label :pup, :pup_name, 'Pup Name'
-  = text_field :pup, 'pup name'
+  = text_field :pup, 'pup_name'
 
   = label :pup, :owner_name, 'Owner Name'
-  = text_field :pup, 'owner name'
+  = text_field :pup, 'owner_name'
 
-  = label :pup, :breeder, 'Breeder'
-  = text_field :pup, 'breeder'
+  / = label :pup, :breeder, 'Breeder'
+  / = text_field :pup, 'breeder'
 
   = label :pup, :breed_1, 'Breed 1'
   = select :pup, :breed_1, ['A','B','C']
@@ -37,8 +37,5 @@
 
   = label :pup, :comments, 'Comments'
   = text_field :pup, 'comments'
-
-  = label :movie, :release_date, 'Released On'
-  = date_select :movie, :release_date
 
   = submit_tag 'Add Pup'
