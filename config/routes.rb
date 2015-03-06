@@ -2,6 +2,8 @@ Ratemypup::Application.routes.draw do
 
   resources :pups
   resources :breeders
+
+  get '/pups/breed' => 'pups#breed', :as => :breed
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

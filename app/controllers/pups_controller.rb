@@ -14,5 +14,4 @@ class PupsController < ApplicationController
     redirect_to pups_path
   end
 
-
 end
