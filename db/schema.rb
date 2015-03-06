@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150225001755) do
+ActiveRecord::Schema.define(:version => 20150306203921) do
+
+  create_table "breeders", :force => true do |t|
+    t.string "name"
+    t.string "location"
+    t.string "website"
+    t.string "kennel"
+  end
 
   create_table "pups", :force => true do |t|
     t.string  "pup_name"
@@ -26,8 +33,7 @@ ActiveRecord::Schema.define(:version => 20150225001755) do
     t.integer "energy_level"
     t.integer "simpatico_rating"
     t.text    "comments"
-    t.integer "breeders_id"
-    t.integer "kennels_id"
+    t.integer "breeder_id"
   end
 
 end
