@@ -23,9 +23,8 @@ ActiveRecord::Schema.define(:version => 20150306203921) do
   create_table "pups", :force => true do |t|
     t.string  "pup_name"
     t.string  "owner_name"
-    t.string  "breeder"
-    t.string  "breed1"
-    t.string  "breed2"
+    t.string  "breed_1"
+    t.string  "breed_2"
     t.integer "breeder_responsibility"
     t.integer "overall_health"
     t.integer "trainability"
