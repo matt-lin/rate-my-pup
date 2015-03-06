@@ -4,10 +4,9 @@ class CreatePups < ActiveRecord::Migration
 
       p.string 'pup_name'
       p.string 'owner_name'
-      p.string 'breeder'
 
-      p.string 'breed1'
-      p.string 'breed2'
+      p.string 'breed_1'
+      p.string 'breed_2'
 
       p.integer 'breeder_responsibility'
       p.integer 'overall_health'
@@ -18,8 +17,7 @@ class CreatePups < ActiveRecord::Migration
 
       p.text 'comments'
 
-      p.references :breeders
-      p.references :kennels
+      p.references :breeder
 
     end
   end

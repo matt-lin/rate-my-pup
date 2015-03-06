@@ -1,0 +1,44 @@
+%h1 Create New Pup
+
+= form_tag new_pup_path do
+
+  = label :pup, :pup_name, 'Pup Name'
+  = text_field :pup, 'pup name'
+
+  = label :pup, :owner_name, 'Owner Name'
+  = text_field :pup, 'owner name'
+
+  = label :pup, :breeder, 'Breeder'
+  = text_field :pup, 'breeder'
+
+  = label :pup, :breed_1, 'Breed 1'
+  = select :pup, :breed_1, ['A','B','C']
+
+  = label :pup, :breed_2, 'Breed 2'
+  = select :pup, :breed_2, ['D','E','F']
+
+  = label :pup, :breeder_responsibility, 'Breeder Responsibility'
+  = select :pup, :breeder_responsibility, [1,2,3,4,5]
+
+  = label :pup, :overall_health, 'Overall Health'
+  = select :pup, :overall_health, [1,2,3,4,5]
+
+  = label :pup, :trainability, 'Trainability'
+  = select :pup, :trainability, [1,2,3,4,5]
+
+  = label :pup, :social_behavior, 'Social Behavior'
+  = select :pup, :social_behavior, [1,2,3,4,5]
+
+  = label :pup, :energy_level, 'Energy Level'
+  = select :pup, :energy_level, [1,2,3,4,5]
+
+  = label :pup, :simpatico_rating, 'Simpatico Rating'
+  = select :pup, :simpatico_rating, [1,2,3,4,5]
+
+  = label :pup, :comments, 'Comments'
+  = text_field :pup, 'comments'
+
+  = label :movie, :release_date, 'Released On'
+  = date_select :movie, :release_date
+
+  = submit_tag 'Add Pup'

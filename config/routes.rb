@@ -1,6 +1,7 @@
 Ratemypup::Application.routes.draw do
 
   resources :pups
+  resources :breeders
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
