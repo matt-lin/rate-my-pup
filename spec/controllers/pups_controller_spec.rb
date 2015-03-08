@@ -16,5 +16,11 @@ describe PupsController do
       Pup.should_receive(:avg_ratings_by_breed).with('shiba inu').and_return(avg_ratings)
       get :breed, {:breed1 => 'shiba inu'}
     end
+    it "should find dogs with two breeds submitted" do
+
+    end
+    it "should find the same dogs no matter the order of the breed parameters" do
+
+    end
   end
 end
