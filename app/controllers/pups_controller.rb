@@ -14,6 +14,8 @@ class PupsController < ApplicationController
     redirect_to pups_path
   end
   def breed
+    @pups = Pup.find_by_breeds(params[:breed1], params[:breed2])
+    @avg_ratings = Pup.avg_ratings_by_breeds(params[:breed1], params[:breed2])
     render 'results'
   end
 end
