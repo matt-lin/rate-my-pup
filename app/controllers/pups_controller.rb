@@ -13,5 +13,7 @@ class PupsController < ApplicationController
     flash[:notice] = "#{@pup.pup_name} was successfully added"
     redirect_to pups_path
   end
-
+  def breed
+    render 'results'
+  end
 end

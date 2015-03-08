@@ -17,10 +17,18 @@ describe PupsController do
       get :breed, {:breed1 => 'shiba inu'}
     end
     it "should find dogs with two breeds submitted" do
-
-    end
-    it "should find the same dogs no matter the order of the breed parameters" do
-
+      fake_dogs = [double('pup1'), double('pup2'), double('pup3')]
+      Pup.should_receive(:find_by_breeds).with('shiba inu', 'poodle').and_return(fake_dogs)
+      avg_ratings = {
+          'breeder_responsibility'=> 1,
+          'overall_health' => 1,
+          'trainability' => 1,
+          'social_behavior' => 1,
+          'energy_level' => 1,
+          'simpatico_rating' => 1
+      }
+      Pup.should_receive(:avg_ratings_by_breed).with('shiba inu', 'poodle').and_return(avg_ratings)
+      get :breed, {:breed1 => 'shiba inu', :breed2 => 'poodle'}
     end
   end
 end
