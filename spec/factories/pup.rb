@@ -2,8 +2,8 @@ FactoryGirl.define do
   factory :pup do
     pup_name 'Doge'
     owner_name 'Curious George'
-    breeder 'Teddy Roosevelt'
-    breed_1 'Shiba Inu'
+    association :breeder, factory: :breeder
+    breed_1 'shiba inu'
     breeder_responsibility 4
     overall_health 5
     trainability 4
