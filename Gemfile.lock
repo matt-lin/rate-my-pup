@@ -217,7 +217,7 @@ DEPENDENCIES
   coffee-rails
   cucumber-rails
   database_cleaner
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   haml
   jquery-rails
   omniauth-facebook!
