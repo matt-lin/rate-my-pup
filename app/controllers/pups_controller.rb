@@ -18,8 +18,9 @@ class PupsController < ApplicationController
     redirect_to pups_path
   end
   def breed
-    @pups = Pup.find_by_breeds(params[:breed1], params[:breed2])
-    @avg_ratings = Pup.avg_ratings_by_breeds(params[:breed1], params[:breed2])
+    pup_breeds = params[:pup]
+    @pups = Pup.find_by_breeds(pup_breeds[:breed_1], pup_breeds[:breed_2])
+    @avg_ratings = Pup.avg_ratings_by_breeds(pup_breeds[:breed_1], pup_breeds[:breed_2])
   end
 
   def update

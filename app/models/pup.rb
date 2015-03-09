@@ -5,14 +5,14 @@ class Pup < ActiveRecord::Base
 	attr_accessible :pup_name, :owner_name, :breeder, :breed_1, :breed_2, :breeder_responsibility, :overall_health,
                   :trainability, :social_behavior, :energy_level, :simpatico_rating, :comments, :kennel
 
-  def Pup.find_by_breeds(breed1, breed2 = 'None')
-    Rails.logger.info breed1 + breed2 if breed2
-    breed2 = breed2 || 'None'
-    Pup.where(:breed_1 => breed1, :breed_2 => breed2) + Pup.where(:breed_1 => breed2, :breed_2 => breed1)
+  def Pup.find_by_breeds(breed_1, breed_2 = 'None')
+    Rails.logger.info breed_1 + breed_2 if breed_2
+    breed_2 = breed_2 || 'None'
+    Pup.where(:breed_1 => breed_1, :breed_2 => breed_2) + Pup.where(:breed_1 => breed_2, :breed_2 => breed_1)
   end
 
-  def Pup.avg_ratings_by_breeds(breed1, breed2 = 'None')
-    pups_by_breed = Pup.find_by_breeds(breed1, breed2)
+  def Pup.avg_ratings_by_breeds(breed_1, breed_2 = 'None')
+    pups_by_breed = Pup.find_by_breeds(breed_1, breed_2)
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0}
     pups_by_breed.each do |pup|

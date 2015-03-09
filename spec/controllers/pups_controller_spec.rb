@@ -15,7 +15,7 @@ describe PupsController do
           'simpatico_rating' => 1
         }
         Pup.should_receive(:avg_ratings_by_breeds).with('shiba inu', nil).and_return(avg_ratings)
-        get :breed, {:breed1 => 'shiba inu'}
+        get :breed, {:breed_1 => 'shiba inu'}
       end
       it "should find dogs with two breeds submitted" do
         fake_dogs = [double('pup1'), double('pup2'), double('pup3')]
@@ -29,7 +29,7 @@ describe PupsController do
             'simpatico_rating' => 1
         }
         Pup.should_receive(:avg_ratings_by_breeds).with('shiba inu', 'poodle').and_return(avg_ratings)
-        get :breed, {:breed1 => 'shiba inu', :breed2 => 'poodle'}
+        get :breed, {:breed_1 => 'shiba inu', :breed_2 => 'poodle'}
       end
     end
   end

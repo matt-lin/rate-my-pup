@@ -3,11 +3,12 @@
 = link_to 'Rate your Pup', new_pup_path, :method => :get
 %br
 %br
-= form_tag pups_path do
+= form_tag breed_path, :method => :get do
   = label :pup, :breed_1, 'Breed'
-  = select :pup, :breed_1, ['German Short Hair','Vizsla','Poodle','Shiba Inu','Cocker Spaniel']
-  = select :pup, :breed_2, ['German Short Hair','Vizsla','Poodle','Shiba Inu','Cocker Spaniel']
-  = link_to 'Find a Breed', pups_path, :method => :get
+  = select :pup, :breed_1, ['German Short Hair','Vizsla','Poodle','Shiba Inu','Cocker Spaniel', 'Affenpinscher']
+  = label :pup, :breed_2, 'Second Breed if a mixed breed'
+  = select :pup, :breed_2, ['None','German Short Hair','Vizsla','Poodle','Shiba Inu','Cocker Spaniel']
+  = submit_tag 'Find a Breed'
 %br
 %br
   = label :breeders, :name, 'Breeder'
