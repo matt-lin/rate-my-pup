@@ -7,7 +7,7 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
 end
 
 When(/^I select "(.*?)" from "(.*?)"$/) do |arg1, arg2|
-
+  page.select arg1, :from => arg2
 end
 
 When(/^I press "(.*?)"$/) do |arg1|
