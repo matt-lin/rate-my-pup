@@ -225,6 +225,7 @@ DEPENDENCIES
   omniauth-twitter!
   pg
   rails (= 3.2.16)
+  rake
   rspec-rails (~> 2.14.0)
   ruby-debug19
   sass-rails
