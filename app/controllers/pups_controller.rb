@@ -27,6 +27,11 @@ class PupsController < ApplicationController
   def breed
     pup_breeds = params[:pup]
     @pups = Pup.find_by_breeds(pup_breeds[:breed_1], pup_breeds[:breed_2])
+    if @pups.length == 0
+      flash[:message] = "Sorry, there are no dogs of the breed #{pup_breeds[:breed_1]}"
+      flash[:message] += " and #{pup_breeds[:breed_2]}" if pup_breeds[:breed_2] != 'None'
+      redirect_to root_path and return
+    end
     @avg_ratings = Pup.avg_ratings_by_breeds(pup_breeds[:breed_1], pup_breeds[:breed_2])
   end
 
