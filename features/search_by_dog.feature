@@ -23,7 +23,7 @@ Background: reviews have been added to the database
 
 Scenario: search for single breed of dog
     When I select "Shiba Inu" from "pup_breed_1"
-    And I press "Find a breed."
+    And I press "Find a Breed"
     Then I should see the following average ratings:
     | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating |
     | 3 					 | 4 			  | 4 			 | 5			   | 4			  | 2				 |
@@ -32,7 +32,7 @@ Scenario: search for single breed of dog
 Scenario: search for secondary breed of dog
     When I select "Poodle" from "pup_breed_1"
     When I select "Cocker Spaniel" from "pup_breed_2"
-    And I press "Find a breed"
+    And I press "Find a Bsreed"
     Then I should see the following average ratings:
     | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating |
     | 3 					 | 4 			  | 4 			 | 3.5			   | 5			  | 4.5 			 |

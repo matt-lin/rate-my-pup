@@ -1,6 +1,6 @@
 %h3=flash[:message] if flash[:message]
 
-= link_to 'Rate your Pup', new_pup_path, :method => :get
+= button_to 'Rate your Pup', new_pup_path, :method => :get, :id => 'Rate your Pup'
 %br
 %br
 = form_tag breed_path, :method => :get do
@@ -8,9 +8,9 @@
   = select :pup, :breed_1, @all_breeds
   = label :pup, :breed_2, 'Second Breed if a mixed breed'
   = select :pup, :breed_2, @all_breeds_none
-  = submit_tag 'Find a Breed'
+  = submit_tag 'Find a Breed', :id => 'Find a Breed'
 %br
 %br
   = label :breeders, :breeder_name, 'Breeder'
   = select :breeders, :breeder_name, ['George W. Bush', 'Richard Nixon', 'Barack Obama']
-  = link_to 'Find a Breeder', pups_path, :method => :get
+  = button_to 'Find a Breeder', pups_path, :method => :get, :id => 'Find a Breeder'

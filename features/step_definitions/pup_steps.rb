@@ -32,6 +32,7 @@ Given /the following ratings exist/ do |pups_table|
 end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
+	puts page_name
 	visit path_to(page_name)
 end
 
