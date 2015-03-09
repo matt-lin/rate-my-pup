@@ -1,11 +1,14 @@
 language: ruby
 rvm:
-  - 1.9.3
+- 1.9.3
 bundler_args: --without production
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rspec spec/
-  - bundle exec cucumber features/
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- CODECLIMATE_REPO_TOKEN=513863723819dbcb559790bb5c154b907e27a6b9fc327353ec13416b3547ec05
+  bundle exec rake
 addons:
   code_climate:
     repo_token: 513863723819dbcb559790bb5c154b907e27a6b9fc327353ec13416b3547ec05
+notifications:
+  slack:
+    secure: CLiMC4Qiu8sSaV4NxRm1Yjtqt//ql4izY9UV7qDlFc9KwK0sceeNAni36GGzgWtxM0i1PyXj3TON7qtaNYwjh1gCilyTCRxFmwr4tNW1u88h6QEr3dLmKpUG1w0LL/zK4LLDOeg9xTnwo1xfmSqR7RGkhdjYmE2CXBhV6l4tJ+8=
