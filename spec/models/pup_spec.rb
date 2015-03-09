@@ -30,4 +30,12 @@ describe Pup do
       assert(!results.member?(dog_5))
     end
   end
+  describe "should find the average ratings for a dog breed" do
+    it "should find the average ratings for a single breed dog" do
+
+    end
+    it "should find the average ratings for a mixed breed dog" do
+
+    end
+  end
 end
