@@ -1,15 +1,15 @@
 
-= button_to 'Rate your Pup', pups_path
 
+= button_to 'Rate your Pup', new_pup_path, :method => :get
 %br
 %br
 = form_tag pups_path do
   = label :pup, :breed_1, 'Breed'
   = select :pup, :breed_1, ['German Short Hair','Vizsla','Poodle','Shiba Inu','Cocker Spaniel']
   = select :pup, :breed_2, ['German Short Hair','Vizsla','Poodle','Shiba Inu','Cocker Spaniel']
-  = button_to 'Find a Breed', pups_path
+  = link_to 'Find a Breed', pups_path, :method => :get
 %br
 %br
   = label :breeders, :name, 'Breeder'
   = select :breeders, :name, ['George W. Bush', 'Richard Nixon', 'Barack Obama']
-  = button_to 'Find a Breeder', pups_path
+  = link_to 'Find a Breeder', pups_path, :method => :get
