@@ -23,7 +23,7 @@ class Pup < ActiveRecord::Base
         results_hash[rating] += pup.send(rating)
       end
     end
-    results_hash.each { |k,v| results_hash[k] = v/pups_by_breed.length } if pups_by_breed.length > 0
+    results_hash.each { |k,v| results_hash[k] = v/pups_by_breed.length.to_f } if pups_by_breed.length > 0
     results_hash
   end
 
