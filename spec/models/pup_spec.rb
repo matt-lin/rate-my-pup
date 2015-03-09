@@ -41,16 +41,17 @@ describe Pup do
         assert(value == 0)
       end
     end
-    it "should find the average ratings for a single breed dog" do
-      dog_1 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
+    it "should find the correct average ratings for a single breed dog" do
+      dog_1 = FactoryGirl.create(:pup, :breed_1 => 'boxer', :trainability => 3)
       dog_2 = FactoryGirl.create(:pup)
-      dog_3 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
+      dog_3 = FactoryGirl.create(:pup, :breed_1 => 'boxer', :overall_health => 4)
       dog_4 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
       dog_5 = FactoryGirl.create(:pup)
       ratings_hash = Pup.avg_ratings_by_breeds('boxer', nil)
-      ratings_hash.each do |rating, value|
-        assert(value == 1)
-      end
+      Rails.logger.info ratings_hash
+      correct_hash = {:overall_health => 2, :trainability => 2, :social_behavior => 1,
+                      :energy_level => 1, :simpatico_rating => 1}
+      assert(correct_hash == ratings_hash)
     end
     it "should find the average ratings for a mixed breed dog" do
       dog_1 = FactoryGirl.create(:pup, :breed_2 => 'poodle')
