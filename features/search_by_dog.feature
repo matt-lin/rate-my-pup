@@ -22,7 +22,7 @@ Background: reviews have been added to the database
 
 
 Scenario: search for single breed of dog
-    When I select "Shiba Inu" from "breed_1"
+    When I select "Shiba Inu" from "pup_breed_1"
     And I press "Find a breed."
     Then I should see the following average ratings:
     | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating |
@@ -30,8 +30,8 @@ Scenario: search for single breed of dog
     And I should see "Such review. Wow."
 
 Scenario: search for secondary breed of dog
-    When I select "Poodle" from "breed_1"
-    When I select "Cocker Spaniel" from "breed_2"
+    When I select "Poodle" from "pup_breed_1"
+    When I select "Cocker Spaniel" from "pup_breed_2"
     And I press "Find a breed"
     Then I should see the following average ratings:
     | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating |

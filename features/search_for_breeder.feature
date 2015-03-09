@@ -21,7 +21,7 @@ Background: reviews have been added to the database
     And I am on the "RateMyPup home" page
 
 Scenario: searching for a breeder
-    When I select "George W. Bush" from "breeder_name"
+    When I select "George W. Bush" from "breeders_breeder_name"
     And I press "Find a Breeder."
     Then I should see the following average ratings:
     | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating |
