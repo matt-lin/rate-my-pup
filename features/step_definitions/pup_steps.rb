@@ -41,9 +41,6 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end
 end
 
-Then(/^I should not see "(.*?)"$/) do |arg1|
-end
-
 Then(/^I should be on the "(.*?)" page$/) do |arg1|
 end
 
