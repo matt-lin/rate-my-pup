@@ -11,6 +11,6 @@
   = submit_tag 'Find a Breed'
 %br
 %br
-  = label :breeders, :name, 'Breeder'
-  = select :breeders, :name, ['George W. Bush', 'Richard Nixon', 'Barack Obama']
+  = label :breeders, :breeder_name, 'Breeder'
+  = select :breeders, :breeder_name, ['George W. Bush', 'Richard Nixon', 'Barack Obama']
   = link_to 'Find a Breeder', pups_path, :method => :get
