@@ -31,5 +31,5 @@
       %td= @pup.comments
 
 
-= link_to 'Delete pup', pup_path(@pup), :method => :delete
+= button_to 'Delete pup', pup_path(:id => @pup.id), :method => :delete
 = link_to 'All pups', pups_path
