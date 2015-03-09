@@ -21,14 +21,17 @@ Given /the following ratings exist/ do |pups_table|
   # flunk "Unimplemented"
 end
 
-Given(/^I am on the "(.*?)" page$/) do |arg1|
+Given /^(?:|I )am on (.+)$/ do |page_name|
+	visit path_to(page_name)
 end
 
 When(/^I select "(.*?)" from "(.*?)"$/) do |arg1, arg2|
   page.select arg1, :from => arg2
 end
 
-When(/^I press "(.*?)"$/) do |arg1|
+
+When /^I press "(.*)"/ do |button|
+	click_button(button)
 end
 
 Then(/^I should see the following average ratings:$/) do |table|

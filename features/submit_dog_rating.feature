@@ -18,7 +18,7 @@ Background: reviews have been added to the database
     | Poodle 			| Cocker Spaniel | 2 					  | 3 			   | 3 			  | 3 				| 5 		   | 4 				  | Incredibly high energy and strong.| 3  |
     | Shiba Inu 	  	|    			 | 3 					  | 4 			   | 4 			  | 5 				| 4 		   | 2 				  | Such review. Wow. 				  | 1   |
 
-    And I am on the "RateMyPup home" page
+    And I am on the RateMyPup home page
 
 Scenario: navigate to review page
     When I press "Rate your Pup"
