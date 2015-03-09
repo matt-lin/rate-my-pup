@@ -1,7 +1,3 @@
-Given /^(?:|I )am on (.+)$/ do |page_name|
-  visit path_to(page_name)
-end
-
 Given /the following ratings exist/ do |pups_table|
   pups_table.hashes.each do |rating|
     # each returned element will be a hash whose key is the table header.
