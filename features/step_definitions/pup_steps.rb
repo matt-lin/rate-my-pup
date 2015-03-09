@@ -2,8 +2,8 @@ Given(/^the following ratings have been added to the database$/) do |table|
 
 end
 
-Given(/^I am on the "(.*?)" page$/) do |arg1|
-
+Given /^(?:|I )am on (.+)$/ do |page_name|
+  visit path_to(page_name)
 end
 
 When(/^I select "(.*?)" from "(.*?)"$/) do |arg1, arg2|
