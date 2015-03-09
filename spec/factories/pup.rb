@@ -4,12 +4,12 @@ FactoryGirl.define do
     owner_name 'Curious George'
     association :breeder, factory: :breeder
     breed_1 'shiba inu'
-    breeder_responsibility 4
-    overall_health 5
-    trainability 4
-    social_behavior 5
+    breeder_responsibility 1
+    overall_health 1
+    trainability 1
+    social_behavior 1
     energy_level 1
-    simpatico_rating 5
+    simpatico_rating 1
     comments "Wow. Such doge. Very pup."
   end
 end

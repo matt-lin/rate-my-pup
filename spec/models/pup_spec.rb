@@ -22,7 +22,6 @@ describe Pup do
       dog_4 = FactoryGirl.create(:pup, :breed_2 => 'German Short Hair')
       dog_5 = FactoryGirl.create(:pup)
       results = Pup.find_by_breeds('shiba inu', 'poodle')
-      Rails.logger.info results
       assert(results.member? dog_1)
       assert(results.member? dog_3)
       assert(!results.member?(dog_2))
@@ -31,11 +30,38 @@ describe Pup do
     end
   end
   describe "should find the average ratings for a dog breed" do
+    it "should find the average ratings is 0 if there are no matching breeds in db" do
+      dog_1 = FactoryGirl.create(:pup, :breed_2 => 'poodle')
+      dog_2 = FactoryGirl.create(:pup)
+      dog_3 = FactoryGirl.create(:pup, :breed_2 => 'poodle')
+      dog_4 = FactoryGirl.create(:pup, :breed_2 => 'German Short Hair')
+      dog_5 = FactoryGirl.create(:pup)
+      ratings_hash = Pup.avg_ratings_by_breeds('poodle', nil)
+      ratings_hash.each do |rating, value|
+        assert(value == 0)
+      end
+    end
     it "should find the average ratings for a single breed dog" do
-
+      dog_1 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
+      dog_2 = FactoryGirl.create(:pup)
+      dog_3 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
+      dog_4 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
+      dog_5 = FactoryGirl.create(:pup)
+      ratings_hash = Pup.avg_ratings_by_breeds('boxer', nil)
+      ratings_hash.each do |rating, value|
+        assert(value == 1)
+      end
     end
     it "should find the average ratings for a mixed breed dog" do
-
+      dog_1 = FactoryGirl.create(:pup, :breed_2 => 'poodle')
+      dog_2 = FactoryGirl.create(:pup)
+      dog_3 = FactoryGirl.create(:pup, :breed_2 => 'poodle')
+      dog_4 = FactoryGirl.create(:pup, :breed_2 => 'German Short Hair')
+      dog_5 = FactoryGirl.create(:pup)
+      ratings_hash = Pup.avg_ratings_by_breeds('poodle', 'shiba inu')
+      ratings_hash.each do |rating, value|
+        assert(value == 1)
+      end
     end
   end
 end
