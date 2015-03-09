@@ -1,11 +1,17 @@
 class PupsController < ApplicationController
-
+  
   def index
     @pups = Pup.all
   end
 
   def new
+    @all_breeds = Pup.all_breeds
+    @all_breeds_none = Pup.all_breeds_none
+  end
 
+  def main
+    @all_breeds = Pup.all_breeds
+    @all_breeds_none = Pup.all_breeds_none
   end
 
   def show
