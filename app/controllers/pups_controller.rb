@@ -20,7 +20,6 @@ class PupsController < ApplicationController
   def breed
     @pups = Pup.find_by_breeds(params[:breed1], params[:breed2])
     @avg_ratings = Pup.avg_ratings_by_breeds(params[:breed1], params[:breed2])
-    render 'results'
   end
 
   def update

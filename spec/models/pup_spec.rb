@@ -36,7 +36,7 @@ describe Pup do
       dog_3 = FactoryGirl.create(:pup, :breed_2 => 'poodle')
       dog_4 = FactoryGirl.create(:pup, :breed_2 => 'German Short Hair')
       dog_5 = FactoryGirl.create(:pup)
-      ratings_hash = Pup.avg_ratings_by_breeds('poodle', nil)
+      ratings_hash = Pup.avg_ratings_by_breeds('poodle')
       ratings_hash.each do |rating, value|
         assert(value == 0)
       end
@@ -47,7 +47,7 @@ describe Pup do
       dog_3 = FactoryGirl.create(:pup, :breed_1 => 'boxer', :overall_health => 4)
       dog_4 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
       dog_5 = FactoryGirl.create(:pup)
-      ratings_hash = Pup.avg_ratings_by_breeds('boxer', nil)
+      ratings_hash = Pup.avg_ratings_by_breeds('boxer')
       correct_hash = {:overall_health => 2, :trainability => 5.0/3.0, :social_behavior => 1,
                       :energy_level => 1, :simpatico_rating => 1}
       assert(correct_hash == ratings_hash)

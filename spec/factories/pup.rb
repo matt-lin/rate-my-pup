@@ -4,6 +4,7 @@ FactoryGirl.define do
     owner_name 'Curious George'
     association :breeder, factory: :breeder
     breed_1 'shiba inu'
+    breed_2 'None'
     breeder_responsibility 1
     overall_health 1
     trainability 1

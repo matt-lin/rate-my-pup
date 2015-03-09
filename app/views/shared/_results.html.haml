@@ -1,0 +1,12 @@
+%div#pups_results
+  -@pups.each do |pup|
+    %div.pup_row
+      %div.ratings_column
+        %div.rating=pup.breeder_responsibility
+        %div.rating=pup.overall_health
+        %div.rating=pup.trainability
+        %div.rating=pup.social_behavior
+        %div.rating=pup.energy_level
+        %div.rating=pup.simpatico_rating
+      %div.comments_column=pup.comments
+
