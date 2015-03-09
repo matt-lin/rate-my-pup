@@ -15,6 +15,7 @@
       %th Energy Level
       %th Simpatico Rating
       %th Comments
+      %th More
 
   %tbody
     - @pups.each do |pup|
@@ -31,6 +32,7 @@
         %td= pup.energy_level
         %td= pup.simpatico_rating
         %td= pup.comments
+        %td= link_to "More", pup_path(pup)
 
 
 = link_to 'Add new pup', new_pup_path
