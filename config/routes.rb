@@ -4,6 +4,8 @@ Ratemypup::Application.routes.draw do
   resources :breeders
 
   get '/breed' => 'pups#breed', :as => :breed
+
+  delete '/pup' => 'pups#destroy', :as => :delete
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root :to => 'pups#main'

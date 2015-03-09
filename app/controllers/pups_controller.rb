@@ -17,6 +17,7 @@ class PupsController < ApplicationController
     flash[:notice] = "#{@pup.pup_name} was successfully added"
     redirect_to pups_path
   end
+
   def breed
     pup_breeds = params[:pup]
     @pups = Pup.find_by_breeds(pup_breeds[:breed_1], pup_breeds[:breed_2])
@@ -28,6 +29,7 @@ class PupsController < ApplicationController
     @pup.update_attributes(params[:pup])
     redirect_to pups_path
   end
+
   def destroy
     @pup = Pup.find params[:id]
     @pup.destroy
