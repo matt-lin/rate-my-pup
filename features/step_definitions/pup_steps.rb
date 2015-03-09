@@ -18,11 +18,12 @@ Then(/^I should see the following average ratings:$/) do |table|
 
 end
 
-Then(/^I should see "(.*?)"$/) do |arg1|
-
-end
-
-Then(/^I should not see "(.*?)"$/) do |arg1|
+Then /^I should( not)? see "(.*)"/ do |not_see, text|
+	if not_see
+		assert page.has_no_content?(text)
+	else
+		assert page.has_content?(text)
+	end
 
 end
 
