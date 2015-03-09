@@ -28,15 +28,14 @@ Given /the following ratings exist/ do |pups_table|
     	comments: rating['comments'],
     	breeder_id: rating['breeder_id'])
   end
-  # flunk "Unimplemented"
 end
 
-Given /^(?:|I )am on (.+)$/ do |page_name|
+Given /^(?:|I )am on (.+)/ do |page_name|
 	puts page_name
 	visit path_to(page_name)
 end
 
-When(/^I select "(.*?)" from "(.*?)"$/) do |arg1, arg2|
+When /^I select "(.*?)" from "(.*?)"/ do |arg1, arg2|
   page.select arg1, :from => arg2
 end
 
@@ -45,22 +44,24 @@ When /^I press "(.*)"/ do |button|
 	click_button(button)
 end
 
-Then(/^I should see the following average ratings:$/) do |table|
+Then /^I should see the following average ratings:$/ do |table|
 end
 
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
-	if not_see
+	if not_see != nil
 		assert page.has_no_content?(text)
 	else
 		assert page.has_content?(text)
 	end
+    	
+		
 end
 
-Then(/^I should be on the "(.*?)" page$/) do |arg1|
+Then /^I should be on the "(.*?)" page/ do |arg1|
 end
 
-Given(/^I submit the following rating:$/) do |table|
+Given /^I submit the following rating:$/ do |table|
 end
 
-Then(/^the database should include the following rating: \| Pug            \|                 \| (\d+)                      \| (\d+)              \| (\d+)            \| (\d+)               \| (\d+)            \| (\d+)                \| A little hard to train but lovable\| James K\. Polk  \|$/) do |arg1, arg2, arg3, arg4, arg5, arg6|
+Then /^the database should include the following rating: \| Pug            \|                 \| (\d+)                      \| (\d+)              \| (\d+)            \| (\d+)               \| (\d+)            \| (\d+)                \| A little hard to train but lovable\| James K\. Polk  \|$/ do |arg1, arg2, arg3, arg4, arg5, arg6|
 end
