@@ -8,7 +8,14 @@ describe PupsController do
       response.should render_template 'index'
     end
   end
-  describe "serving new pup page" do
+  describe "page for submitting new review" do
+    it "should get all of the breeds for the page" do
+      Pup.should_receive(:all_breeds).and_return([])
+      Pup.should_receive(:all_breeds_none).and_return([])
+      get :new
+    end
+  end
+  describe "serving main page" do
     it "should get all of the breeds for the page" do
       Pup.should_receive(:all_breeds).and_return([])
       Pup.should_receive(:all_breeds_none).and_return([])
