@@ -12,6 +12,7 @@ class PupsController < ApplicationController
   def main
     @all_breeds = Pup.all_breeds
     @all_breeds_none = Pup.all_breeds_none
+    @all_breeders = Breeder.all
   end
 
   def show
