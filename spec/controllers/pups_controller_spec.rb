@@ -35,7 +35,7 @@ describe PupsController do
       temp_pup = FactoryGirl.build(:pup)
       Pup.should_receive(:find).with('1').and_return(temp_pup)
       temp_pup.should_receive(:update_attributes).with({})
-      put :update, :pup => {}
+      put :update, {:id => 1, :pup => {}}
       response.should redirect_to pups_path
     end
   end
