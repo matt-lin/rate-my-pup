@@ -3,6 +3,7 @@
 %table#avg_ratings
   %thead
   %tr
+    %th="Breeder Responsibility" if @avg_ratings[:breeder_responsibility]
     %th Overall Health
     %th Trainability
     %th Social Behavior
@@ -10,6 +11,7 @@
     %th Simpatico Rating
   %tbody
     %tr
+      %td= @avg_ratings[:breeder_responsibility] if @avg_ratings[:breeder_responsibility]
       %td= @avg_ratings[:overall_health]
       %td= @avg_ratings[:trainability]
       %td= @avg_ratings[:social_behavior]
