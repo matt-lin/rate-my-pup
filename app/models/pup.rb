@@ -1,6 +1,26 @@
 class Pup < ActiveRecord::Base
 
   belongs_to :breeder
+
+  validates :pup_name, :presence => true
+  validates :owner_name, :presence => true
+  validates :breed_1, :presence => true
+  validates :breeder_responsibility, :presence => true
+  validates :overall_health, :presence => true
+  validates :trainability, :presence => true
+  validates :social_behavior, :presence => true
+  validates :energy_level, :presence => true
+  validates :simpatico_rating, :presence => true
+  validate :breeds_not_same
+  validate :comment_length
+
+  def breeds_not_same
+    errors.add(:breed_1, 'Primary and secondary breeds are listed as the same') if breed_1 == breed_2
+  end
+
+  def comment_length
+    errors.add(:comment, 'Limit comments to 140 characters') if comments && comments.length > 140
+  end
   
 	attr_accessible :pup_name, :owner_name, :breeder_id, :breed_1, :breed_2, :breeder_responsibility, :overall_health,
                   :trainability, :social_behavior, :energy_level, :simpatico_rating, :comments, :kennel
