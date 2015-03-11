@@ -84,7 +84,7 @@ end
 
 When /^I fill out the form with the following attributes:$/ do |pups_table|
   pups_table.hashes.each do |rating|
-    select(rating['breed_1'], :from => 'Primary Breed')
+    select rating['breed_1'], :from => 'Primary Breed'
     select rating['breed_2'], :from => 'Secondary Breed'
     select rating['breeder_responsibility'], :from => 'Breeder Responsibility'
     select rating['overall_health'], :from =>  'Overall Health'
