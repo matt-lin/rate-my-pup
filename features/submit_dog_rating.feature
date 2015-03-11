@@ -27,8 +27,8 @@ Scenario: navigate to review page
 Scenario: submit new review
     Given I am on the "Create New Pup" page
     When I fill out the form with the following attributes:
-    | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
-    | Pug                | None            | 2                      | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable| 4  |
+    | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
+    | Thor               | Anna            | Pug                | None            | 2                      | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable| 4                 |
     And I press "Add Pup"
     Then I should not see "Please make sure all fields are complete!"
     And I should be on the "Pups" page
@@ -38,8 +38,8 @@ Scenario: submit new review
 Scenario: make sure all fields are full
     Given I am on the "Create New Pup" page
     When I fill out the form with the following attributes:
-    | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
-    | Pug                | None            | 1                      | 5              | 3            | 4               | 4            | 4                || 4  |
+    | pup_name            | owner_name        | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
+    | Thor                |                   | Pug                | None            | 1                      | 5              | 3            | 4               | 4            | 4                || 4  |
     And I press "Add Pup"
     Then I should see "Please make sure all fields are complete!"
     And I should be on the "Create New Pup" page

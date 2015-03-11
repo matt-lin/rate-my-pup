@@ -93,8 +93,8 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
     select rating['energy_level'], :from => 'Energy Level'
     select rating['simpatico_rating'], :from => 'Simpatico Rating'
     fill_in 'Comments', :with => rating['comments']
-    fill_in 'Pup Name', :with => 'test'
-    fill_in 'Owner Name', :with => 'Anna'
+    fill_in 'Pup Name', :with => rating['pup_name']
+    fill_in 'Owner Name', :with => rating['owner_name']
   end
 end
 
