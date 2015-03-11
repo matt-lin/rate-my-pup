@@ -1,12 +1,40 @@
-%div#pups_results
-  -@pups.each do |pup|
-    %div.pup_row
-      %div.ratings_column
-        %div.rating=pup.breeder_responsibility
-        %div.rating=pup.overall_health
-        %div.rating=pup.trainability
-        %div.rating=pup.social_behavior
-        %div.rating=pup.energy_level
-        %div.rating=pup.simpatico_rating
-      %div.comments_column=pup.comments
+%h3 Average Ratings:
+
+%table#avg_ratings
+  %thead
+  %tr
+    %th Overall Health
+    %th Trainability
+    %th Social Behavior
+    %th Energy Level
+    %th Simpatico Rating
+  %tbody
+    %tr
+      %td= @avg_ratings[:overall_health]
+      %td= @avg_ratings[:trainability]
+      %td= @avg_ratings[:social_behavior]
+      %td= @avg_ratings[:energy_level]
+      %td= @avg_ratings[:simpatico_rating]
+
+%h3 Pups:
+%table#pup_results
+  %thead
+  %tr
+    %th Pup Name
+    %th Overall Health
+    %th Trainability
+    %th Social Behavior
+    %th Energy Level
+    %th Simpatico Rating
+    %th Comments
+  %tbody
+    - @pups.each do |pup|
+      %tr
+        %td= pup.pup_name
+        %td= pup.overall_health
+        %td= pup.trainability
+        %td= pup.social_behavior
+        %td= pup.energy_level
+        %td= pup.simpatico_rating
+        %td= pup.comments
 
