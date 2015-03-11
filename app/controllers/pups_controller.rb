@@ -20,8 +20,8 @@ class PupsController < ApplicationController
   end
 
   def create
-    unless params[:pup].values.any?(&:blank?)
-      @pup = Pup.create!(params[:pup])
+    @pup = Pup.new(params[:pup])
+    if @pup.save
       flash[:notice] = "#{@pup.pup_name} was successfully added"
       redirect_to pups_path
     else 
