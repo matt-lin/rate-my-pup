@@ -17,6 +17,8 @@ Given /the following ratings exist/ do |pups_table|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
     Pup.create(
+      pup_name: 'Thor',
+      owner_name: 'Betty',
     	breed_1: rating['breed_1'],
     	breed_2: rating['breed_2'],
     	breeder_responsibility: rating['breeder_responsibility'],
