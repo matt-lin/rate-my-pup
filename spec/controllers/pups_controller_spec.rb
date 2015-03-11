@@ -33,8 +33,8 @@ describe PupsController do
   describe "creating a pup review" do
     it "should create the pup and redirect to all pups" do
       temp_pup = FactoryGirl.build(:pup)
-      Pup.should_receive(:create!).with(nil).and_return(temp_pup)
-      post :create, {}
+      Pup.should_receive(:create!).with({}).and_return(temp_pup)
+      post :create, {:pup => {}}
     end
   end
   describe "updating a review" do
