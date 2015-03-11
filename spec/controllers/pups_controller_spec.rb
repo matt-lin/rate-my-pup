@@ -31,10 +31,29 @@ describe PupsController do
     end
   end
   describe "creating a pup review" do
-    it "should create the pup and redirect to all pups" do
+    it "should redirect to new pup page if fields are incomplete" do
+      post :create, {:pup => {:rating => ''}}
+      response.should redirect_to new_pup_path
+    end
+    it "should redirect to all pups page if correct fields are input" do
       temp_pup = FactoryGirl.build(:pup)
-      Pup.should_receive(:create!).with({}).and_return(temp_pup)
-      post :create, {:pup => {}}
+      pup_hash = {:pup => {
+          :breeder_responibility.to_s => 4.to_s,
+          :pup_name.to_s => "Doge",
+          :owner_name.to_s => "Curious George",
+          :breed_1.to_s => "Shiba Inu",
+          :breed_2.to_s => "None",
+          :overall_health.to_s => 1.to_s,
+          :trainability.to_s => 1.to_s,
+          :social_behavior.to_s => 1.to_s,
+          :energy_level.to_s => 5.to_s,
+          :simpatico_rating.to_s => 5.to_s,
+          :comments.to_s => "DOPE CITY"
+        }
+      }
+      Pup.should_receive(:create!).with(pup_hash[:pup]).and_return(temp_pup)
+      post :create, pup_hash
+      response.should redirect_to pups_path
     end
   end
   describe "updating a review" do
