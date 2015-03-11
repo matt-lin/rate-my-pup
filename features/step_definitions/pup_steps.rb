@@ -45,9 +45,6 @@ When /^I press "(.*)"/ do |button|
 	click_button(button)
 end
 
-Then /^I should see the following average ratings:$/ do |table|
-end
-
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	if not_see != nil
 		assert page.has_no_content?(text)
@@ -98,9 +95,4 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
     fill_in 'Pup Name', :with => rating['pup_name']
     fill_in 'Owner Name', :with => rating['owner_name']
   end
-end
-
-
-
-Then /^the database should include the following rating: \| Pug            \|                 \| (\d+)                      \| (\d+)              \| (\d+)            \| (\d+)               \| (\d+)            \| (\d+)                \| A little hard to train but lovable\| James K\. Polk  \|$/ do |arg1, arg2, arg3, arg4, arg5, arg6|
 end

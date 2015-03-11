@@ -23,9 +23,7 @@ Background: reviews have been added to the database
 Scenario: searching for a breeder
     When I select "George W. Bush" from "breeders_breeder_name"
     And I press "Find a Breeder"
-    Then I should see the following average ratings:
-    | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating |
-    | 4.33                   | 5              | 5            | 4               | 5            | 5                |
+    Then I should see "4.33"
     And I should see "The greatest dog I've ever owned"
     And I should see "Super chiller dog."
     And I should see "Another great dog."
