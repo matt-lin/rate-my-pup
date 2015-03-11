@@ -5,6 +5,12 @@ class Pup < ActiveRecord::Base
   validates :pup_name, :presence => true
   validates :owner_name, :presence => true
   validates :breed_1, :presence => true
+  validates :breeder_responsibility, :presence => true
+  validates :overall_health, :presence => true
+  validates :trainability, :presence => true
+  validates :social_behavior, :presence => true
+  validates :energy_level, :presence => true
+  validates :simpatico_rating, :presence => true
   validate :breeds_not_same
   validate :comment_length
 
