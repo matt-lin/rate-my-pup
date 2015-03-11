@@ -26,15 +26,20 @@ Scenario: navigate to review page
 
 Scenario: submit new review
     Given I am on the "Create New Pup" page
-    And I submit the following rating:
-    | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder        |
-    | Pug                |                 | 2                      | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable| James K. Polk  |
-    Then the database should include the following rating: | Pug            |                 | 2                      | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable| James K. Polk  |
+    When I fill out the form with the following attributes:
+    | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
+    | Pug                | None            | 2                      | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable| 4  |
+    And I press "Add Pup"
+    Then I should not see "Please make sure all fields are complete!"
+    And I should be on the "Pups" page
+    And I should see "A little hard to train but lovable"
+    And I should see "Pug"
 
 Scenario: make sure all fields are full
     Given I am on the "Create New Pup" page
-    And I submit the following rating:
-    | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder        |
-    | Pug                |                 |                        | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable| James K. Polk  |
+    When I fill out the form with the following attributes:
+    | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
+    | Pug                | None            | 1                      | 5              | 3            | 4               | 4            | 4                || 4  |
+    And I press "Add Pup"
     Then I should see "Please make sure all fields are complete!"
     And I should be on the "Create New Pup" page
