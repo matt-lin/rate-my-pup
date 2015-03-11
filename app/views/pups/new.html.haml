@@ -1,5 +1,8 @@
 %h1 Create New Pup
 
+- flash.each do |key, value|
+  %p= value
+
 = form_tag pups_path do
 
   = label :pup, :pup_name, 'Pup Name'

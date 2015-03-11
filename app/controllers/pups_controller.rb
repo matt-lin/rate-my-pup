@@ -20,9 +20,14 @@ class PupsController < ApplicationController
   end
 
   def create
-    @pup = Pup.create!(params[:pup])
-    flash[:notice] = "#{@pup.pup_name} was successfully added"
-    redirect_to pups_path
+    unless params[:pup].values.any?(&:blank?)
+      @pup = Pup.create!(params[:pup])
+      flash[:notice] = "#{@pup.pup_name} was successfully added"
+      redirect_to pups_path
+    else 
+      flash.keep[:notice] = "Please make sure all fields are complete!"
+      redirect_to new_pup_path
+    end
   end
 
   def breed
