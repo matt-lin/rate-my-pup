@@ -1,4 +1,4 @@
-Feature: display average rating of breed along with corresponding reviews
+Feature: display average rating of breeder along with corresponding reviews
 
     As a prospective dog owner
     So that I can quickly see what owners think of a specific breeder
