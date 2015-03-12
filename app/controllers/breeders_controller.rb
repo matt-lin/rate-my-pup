@@ -5,6 +5,7 @@ class BreedersController < ApplicationController
       flash[:message] = "Sorry there are not reviews for #{params[:breeders][:breeder_name]}"
       redirect_to root_path and return
     end
+    @avg_ratings = @breeder.avg_pup_rating
     @pups = @breeder.pups
   end
 end

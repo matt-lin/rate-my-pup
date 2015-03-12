@@ -11,7 +11,7 @@
   = submit_tag 'Find a Breed'
 %br
 %br
-  = form_tag breeder_search_path, :method => :get do
-    = label :breeders, :breeder_name, 'Breeder'
-    = select :breeders, :breeder_name, ['George W. Bush', 'Richard Nixon', 'Barack Obama']
-    = button_to 'Find a Breeder'
+= form_tag breeder_search_path, :method => :get do
+  = label :breeders, :breeder_name, 'Breeder'
+  = select :breeders, :breeder_name, ['George W. Bush', 'Richard Nixon', 'Barack Obama']
+  = submit_tag 'Find a Breeder'

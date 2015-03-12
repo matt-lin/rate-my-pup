@@ -11,12 +11,12 @@
     %th Simpatico Rating
   %tbody
     %tr
-      %td= @avg_ratings[:breeder_responsibility] if @avg_ratings[:breeder_responsibility]
-      %td= @avg_ratings[:overall_health]
-      %td= @avg_ratings[:trainability]
-      %td= @avg_ratings[:social_behavior]
-      %td= @avg_ratings[:energy_level]
-      %td= @avg_ratings[:simpatico_rating]
+      %td= @avg_ratings[:breeder_responsibility].round(2) if @avg_ratings[:breeder_responsibility]
+      %td= @avg_ratings[:overall_health].round(2)
+      %td= @avg_ratings[:trainability].round(2)
+      %td= @avg_ratings[:social_behavior].round(2)
+      %td= @avg_ratings[:energy_level].round(2)
+      %td= @avg_ratings[:simpatico_rating].round(2)
 
 %h3 Pups:
 %table#pup_results

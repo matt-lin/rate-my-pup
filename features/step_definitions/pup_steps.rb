@@ -13,10 +13,11 @@ World(WithinHelpers)
 
 
 Given /the following ratings exist/ do |pups_table|
+  breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    Pup.create(
+    Pup.create!(
       pup_name: 'Thor',
       owner_name: 'Betty',
     	breed_1: rating['breed_1'],
@@ -28,7 +29,7 @@ Given /the following ratings exist/ do |pups_table|
     	energy_level: rating['energy_level'],
     	simpatico_rating: rating['simpatico_rating'],
     	comments: rating['comments'],
-    	breeder_id: rating['breeder_id'])
+    	breeder_id: breeder.id)
   end
 end
 
@@ -48,7 +49,7 @@ end
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	if not_see != nil
 		assert page.has_no_content?(text)
-	else
+  else
 		assert page.has_content?(text)
 	end	
 end
