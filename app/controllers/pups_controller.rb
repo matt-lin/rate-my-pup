@@ -12,7 +12,7 @@ class PupsController < ApplicationController
   def main
     @all_breeds = Pup.all_breeds
     @all_breeds_none = Pup.all_breeds_none
-    @all_breeders = Breeder.all
+    @all_breeders = Breeder.all.map {|breeder| breeder.name}
   end
 
   def show
