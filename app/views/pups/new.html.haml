@@ -1,44 +1,63 @@
-%h1 Create New Pup
+%div{:class => "container"}
 
-- flash.each do |key, value|
-  %p= value
+  %h1 Create New Pup
 
-= form_tag pups_path do
+  - flash.each do |key, value|
+    %p= value
 
-  = label :pup, :pup_name, 'Pup Name'
-  = text_field :pup, 'pup_name'
-  %br
-  = label :pup, :owner_name, 'Owner Name'
-  = text_field :pup, 'owner_name'
-  %br
-  / = label :pup, :breeder, 'Breeder'
-  / = text_field :pup, 'breeder'
-  = label :pup, :breed_1, "Primary Breed"
-  = select :pup, :breed_1, @all_breeds
-  %br
-  = label :pup, :breed_2, "Secondary Breed"
-  = select :pup, :breed_2, @all_breeds_none
-  %br
-  = label :pup, :breeder_responsibility, 'Breeder Responsibility'
-  = select :pup, :breeder_responsibility, [1,2,3,4,5]
-  %br
-  = label :pup, :overall_health, 'Overall Health'
-  = select :pup, :overall_health, [1,2,3,4,5]
-  %br
-  = label :pup, :trainability, 'Trainability'
-  = select :pup, :trainability, [1,2,3,4,5]
-  %br
-  = label :pup, :social_behavior, 'Social Behavior'
-  = select :pup, :social_behavior, [1,2,3,4,5]
-  %br
-  = label :pup, :energy_level, 'Energy Level'
-  = select :pup, :energy_level, [1,2,3,4,5]
-  %br
-  = label :pup, :simpatico_rating, 'Simpatico Rating'
-  = select :pup, :simpatico_rating, [1,2,3,4,5]
-  %br
-  = label :pup, :comments, 'Comments'
-  = text_field :pup, 'comments'
-  %br
-  %br
-  = submit_tag 'Add Pup', :id => 'Add Pup'
+  = form_tag pups_path, :class => "form-horizontal" do
+    %div{:class => "form-group"}
+      = label :pup, :pup_name, 'Pup Name'
+      = text_field :pup, 'pup_name', :class => "form-control", :placeholder => "Enter Pup Name"
+    %div{:class => "form-group"}
+      = label :pup, :owner_name, 'Owner Name'
+      = text_field :pup, 'owner_name', :class => "form-control", :placeholder => "Enter Owner Name"
+      / = label :pup, :breeder, 'Breeder'
+      / = text_field :pup, 'breeder'
+    %div{:class => "form-group"}
+      %table{:class => "table table-striped"}
+        %tr
+          %td
+            = label :pup, :breed_1, "Primary Breed"
+          %td
+            = select :pup, :breed_1, @all_breeds, {:class => 'form-control'}
+        %tr
+          %td
+            = label :pup, :breed_2, "Secondary Breed"
+          %td
+            = select :pup, :breed_2, @all_breeds_none, :class => "form-control"
+        %tr
+          %td
+            = label :pup, :breeder_responsibility, 'Breeder Responsibility'
+          %td
+            = select :pup, :breeder_responsibility, [1,2,3,4,5]
+        %tr
+          %td
+            = label :pup, :overall_health, 'Overall Health'
+          %td
+            = select :pup, :overall_health, [1,2,3,4,5]
+        %tr
+          %td
+            = label :pup, :trainability, 'Trainability'
+          %td
+            = select :pup, :trainability, [1,2,3,4,5]
+        %tr
+          %td
+            = label :pup, :social_behavior, 'Social Behavior'
+          %td
+            = select :pup, :social_behavior, [1,2,3,4,5]
+        %tr
+          %td
+            = label :pup, :energy_level, 'Energy Level'
+          %td
+            = select :pup, :energy_level, [1,2,3,4,5]
+        %tr
+          %td
+            = label :pup, :simpatico_rating, 'Simpatico Rating'
+          %td
+            = select :pup, :simpatico_rating, [1,2,3,4,5]
+    %div{:class => "form-group"}
+      = label :pup, :comments, 'Comments'
+      = text_field :pup, 'comments', :class => "form-control"
+    %div{:class => "form-group"}
+      = submit_tag 'Add Pup', :id => 'Add Pup', :class => "form-control"

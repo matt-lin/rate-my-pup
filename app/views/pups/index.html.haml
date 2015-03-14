@@ -1,38 +1,40 @@
-%h1 All Pups:
+%div{:class => "container"}
 
-%table#pups
-  %thead
-    %tr
-      %th Puppy Name
-      %th Owner Name
-      / %th Breeder
-      %th Breed 1
-      %th Breed 2
-      %th Breeder Responsibility
-      %th Overall Health
-      %th Trainability
-      %th Social Behavior
-      %th Energy Level
-      %th Simpatico Rating
-      %th Comments
-      %th More
+  %h1 All Pups:
 
-  %tbody
-    - @pups.each do |pup|
+  %table#pups{:class => "table table-striped"}
+    %thead
       %tr
-        %td= pup.pup_name
-        %td= pup.owner_name
-        / %td= pup.breeder
-        %td= pup.breed_1
-        %td= pup.breed_2
-        %td= pup.breeder_responsibility
-        %td= pup.overall_health
-        %td= pup.trainability
-        %td= pup.social_behavior
-        %td= pup.energy_level
-        %td= pup.simpatico_rating
-        %td= pup.comments
-        %td= link_to "More", pup_path(pup)
+        %th Puppy Name
+        %th Owner Name
+        / %th Breeder
+        %th Breed 1
+        %th Breed 2
+        %th Breeder Responsibility
+        %th Overall Health
+        %th Trainability
+        %th Social Behavior
+        %th Energy Level
+        %th Simpatico Rating
+        %th Comments
+        %th More
+
+    %tbody
+      - @pups.each do |pup|
+        %tr
+          %td= pup.pup_name
+          %td= pup.owner_name
+          / %td= pup.breeder
+          %td= pup.breed_1
+          %td= pup.breed_2
+          %td= pup.breeder_responsibility
+          %td= pup.overall_health
+          %td= pup.trainability
+          %td= pup.social_behavior
+          %td= pup.energy_level
+          %td= pup.simpatico_rating
+          %td= pup.comments
+          %td= link_to "More", pup_path(pup)
 
 
-= link_to 'Add new pup', new_pup_path
+  = link_to 'Add new pup', new_pup_path
