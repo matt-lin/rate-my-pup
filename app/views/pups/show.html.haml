@@ -35,4 +35,4 @@
 
   = button_to 'Delete pup', pup_path(:id => @pup.id), :method => :delete
   %br
-  = button_to 'All pups', pups_path
+  = button_to 'All pups', pups_path, :method => :get
