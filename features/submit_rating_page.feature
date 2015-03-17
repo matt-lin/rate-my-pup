@@ -22,3 +22,11 @@ Scenario: see the rating descriptions
 
     And I should see "Some dogs just seem to have what it takes to be the ultimate companion to "their" human. These dogs have the desire to please, the ability to communicate, an attitude of attentiveness, and the capacity to forge a relationship based on mutual respect and affection. We call these dogs Simpatico Dogs. Please give your dog an overall Simpatico rating, based on the overall compatibility that your dog has and the depth of the relationship you share."
 
+    And I should see "#Easy to obedience train"
+
+    And I should see "#Hard to obedience train"
+
+    And I should see "#Easy to housetrain"
+
+    And I should see "#Hard to housetrain"
+
