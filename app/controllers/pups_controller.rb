@@ -31,14 +31,14 @@ class PupsController < ApplicationController
   end
 
   def breed
-    pup_breeds = params[:pup]
-    @pups = Pup.find_by_breeds(pup_breeds[:breed_1], pup_breeds[:breed_2])
+    breed_1, breed_2 = params[:pup][:breed_1], params[:pup][:breed_2]
+    @pups = Pup.find_by_breeds(breed_1, breed_2)
     if @pups.length == 0
-      flash[:message] = "Sorry, there are no dogs of the breed #{pup_breeds[:breed_1]}"
-      flash[:message] += " and #{pup_breeds[:breed_2]}" if pup_breeds[:breed_2] != 'None'
+      flash[:message] = "Sorry, there are no dogs of the breed #{breed_1}"
+      flash[:message] += " and #{breed_2}" if breed_2 != 'None'
       redirect_to root_path and return
     end
-    @avg_ratings = Pup.avg_ratings_by_breeds(pup_breeds[:breed_1], pup_breeds[:breed_2])
+    @avg_ratings = Pup.avg_ratings_by_breeds(breed_1, breed_2)
   end
 
   def update
