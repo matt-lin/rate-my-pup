@@ -1,8 +1,7 @@
 Feature: autofill breeder name into breeder forms
-
+  As a potential dog owner
   So that I can add a pup to or search by a breeder
-  I want to be able to see the breeder name autofill into the form
-  I should also have the option to add a new breeder if it isn't shown
+  I want to be able to see the breeder name autofill into the form or add a new breeder if it isn't shown
 
   Background: breeders have been added to the database
 
