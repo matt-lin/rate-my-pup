@@ -6,6 +6,9 @@ class BreedersController < ApplicationController
       @breeders = Breeder.all
     end
   end
+  def substring_match
+    render :json => Breeder.find_by_substring(params[:name], params[:limit].to_i)
+  end
   def search_name
     @breeder = Breeder.find_by_name(params[:breeders][:breeder_name])
     if !@breeder

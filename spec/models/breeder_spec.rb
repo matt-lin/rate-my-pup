@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Breeder do
   describe "getting average rating of a breeder" do
-    before do
+    before :each do
       @breeder = FactoryGirl.create(:breeder)
       pups = 10.times.collect  { |i| FactoryGirl.create(:pup, :breeder_id => @breeder.id)}
       @breeder.pups.should == pups
@@ -14,6 +14,27 @@ describe Breeder do
         results_hash.each{|k,v| pup.should_receive(k).and_return(1)}
       end
       @breeder.avg_pup_rating.should == results_hash
+    end
+  end
+  describe "find all matching breeders" do
+    before :each do
+      @breeders = (1..10).map { |i| FactoryGirl.create(:breeder) }
+      @other_breeders = (1..5).map { |i| FactoryGirl.create(:breeder, :name => "Tedus") }
+    end
+    it "should find all the breeders input into database" do
+      Breeder.find_by_substring("Ted").should == @breeders + @other_breeders
+    end
+    it "should only return 5 breeders input" do
+      breeders = Breeder.find_by_substring("Ted", 5)
+      breeders.each do |breeder|
+        assert(@breeders.include?(breeder) || @other_breeders.include?(breeder), "Breeder not in those created")
+      end
+      breeders.size.should == 5
+    end
+    it "should only find the 'Teddy' breeders" do
+      Breeder.find_by_substring("Teddy", 0).each do |breeder|
+        assert(@breeders.include?(breeder), "Breeder not in the 'Teddy' breeders array")
+      end
     end
   end
 end

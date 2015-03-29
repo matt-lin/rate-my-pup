@@ -12,4 +12,8 @@ class Breeder < ActiveRecord::Base
     Hash[results_hash.map { |k,v| [k, v.to_f/pups.length.to_f]}]
   end
 
+  def Breeder.find_by_substring(sub_string, limit=0)
+    results = Breeder.where("name LIKE ?", "#{sub_string}%")
+    limit == 0 ? results.all : results.limit(limit)
+  end
 end

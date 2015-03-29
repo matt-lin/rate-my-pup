@@ -28,6 +28,11 @@ describe BreedersController do
       xhr :get, :index
       response.body.should == @breeders.to_json
     end
+    it "should send a limited number of breeders starting with given string" do
+      Breeder.should_receive(:find_by_substring).with("Teddy", 0).and_return(@breeders)
+      xhr :get, :substring_match, {:name => "Teddy", :limit => 0}
+      response.body.should == @breeders.to_json
+    end
     it "should render an html page if request is not xhr" do
       Breeder.should_receive(:all).and_return(@breeders)
       get :index
