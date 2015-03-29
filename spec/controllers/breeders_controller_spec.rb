@@ -17,4 +17,21 @@ describe BreedersController do
       response.should redirect_to root_path
     end
   end
+  describe "sending json of all breeders" do
+    before :each do
+      @breeders = (1..10).map do |i|
+        FactoryGirl.build(:breeder)
+      end
+    end
+    it "should send all breeders in a json array" do
+      Breeder.should_receive(:all).and_return(@breeders)
+      xhr :get, :index
+      response.body.should == @breeders.to_json
+    end
+    it "should render an html page if request is not xhr" do
+      Breeder.should_receive(:all).and_return(@breeders)
+      get :index
+      response.should render_template 'index'
+    end
+  end
 end

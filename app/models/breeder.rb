@@ -11,4 +11,5 @@ class Breeder < ActiveRecord::Base
     end
     Hash[results_hash.map { |k,v| [k, v.to_f/pups.length.to_f]}]
   end
+
 end
