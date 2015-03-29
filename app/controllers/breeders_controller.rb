@@ -1,4 +1,6 @@
 class BreedersController < ApplicationController
+  skip_before_filter :delete_pup_from_session, :except => [:index, :substring_match, :search_name]
+
   def index
     if request.xhr?
       render :json => Breeder.all
@@ -6,9 +8,11 @@ class BreedersController < ApplicationController
       @breeders = Breeder.all
     end
   end
+
   def substring_match
     render :json => Breeder.find_by_substring(params[:name], params[:limit].to_i)
   end
+
   def search_name
     @breeder = Breeder.find_by_name(params[:breeders][:breeder_name])
     if !@breeder
@@ -18,7 +22,16 @@ class BreedersController < ApplicationController
     @avg_ratings = @breeder.avg_pup_rating
     @pups = @breeder.pups
   end
-  def all_breeders
 
+  def create
+     breeder, message = Breeder.find_or_create(params[:breeder])
+     if session[:pup]
+       session[:pup][:breeder] = breeder.id
+      redirect_to :controller => 'pups', :action => 'create', :pup => session[:pup]
+     else
+       flash[:message] = message
+       redirect_to root_path
+    end
   end
+
 end

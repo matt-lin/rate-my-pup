@@ -1,5 +1,14 @@
 class PupsController < ApplicationController
-  
+
+  before_filter :breeder_exists, :only => :create
+
+  def breeder_exists
+    if params[:pup][:breeder_id].to_i == -1
+      session[:pup] = params[:pup]
+      redirect_to new_breeder_path
+    end
+  end
+
   def index
     @pups = Pup.all
   end
