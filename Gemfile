@@ -15,6 +15,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'simplecov'
   gem 'factory_girl'
+  gem 'selenium-webdriver'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'codeclimate-test-reporter'
 	gem 'reek'

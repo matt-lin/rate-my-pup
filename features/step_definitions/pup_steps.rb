@@ -97,3 +97,13 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
     fill_in 'Owner Name', :with => rating['owner_name']
   end
 end
+
+Given(/^the following breeders exist:$/) do |table|
+  table.hashes.each do |breeder|
+    Breeder.create!(breeder)
+  end
+end
+
+When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
+  fill_in(field, :with => value)
+end

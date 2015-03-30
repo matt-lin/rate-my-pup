@@ -1,3 +1,5 @@
+
+@javascript
 Feature: autofill breeder name into breeder forms
   As a potential dog owner
   So that I can add a pup to or search by a breeder
@@ -16,27 +18,26 @@ Feature: autofill breeder name into breeder forms
 
     And I am on the RateMyPup home page
 
-
   Scenario: fill all breeders that start with C
-    When I enter "C" into "breeders_select"
+    When I enter "C" into "breeder_entry"
     Then I should see "Chris"
     And I should see "Carl"
     And I should not see "Alex"
-    And I should see "Add breeder"
+    And I should see "Don't see it? Add a new breeder"
 
   Scenario: fill all breeders that start with a substring
-    When I enter "Alex" into "breeders_select"
+    When I enter "Alex" into "breeder_entry"
     Then I should see "Alex"
     And I should see "Alexander"
     And I should not see "Carl"
     And I should not see "Michael Jackson"
-    And I should see "Add breeder"
+    And I should see "Don't see it? Add a new breeder"
 
   Scenario: redirect to create new breeder
-    When I enter "JMac" into "breeders_select"
+    When I enter "JMac" into "breeder_entry"
     And I should not see "Carl"
     And I should not see "Michael Jackson"
-    And I should see "Add breeder"
-    When I press "Add breeder"
+    And I should see "Don't see it? Add a new breeder"
+    When I press "Don't see it? Add a new breeder"
     Then I should be on the "Add breeder" page
 
