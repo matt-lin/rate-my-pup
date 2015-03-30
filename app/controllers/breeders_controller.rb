@@ -1,4 +1,14 @@
 class BreedersController < ApplicationController
+  def index
+    if request.xhr?
+      render :json => Breeder.all
+    else
+      @breeders = Breeder.all
+    end
+  end
+  def substring_match
+    render :json => Breeder.find_by_substring(params[:name], params[:limit].to_i)
+  end
   def search_name
     @breeder = Breeder.find_by_name(params[:breeders][:breeder_name])
     if !@breeder
@@ -7,5 +17,8 @@ class BreedersController < ApplicationController
     end
     @avg_ratings = @breeder.avg_pup_rating
     @pups = @breeder.pups
+  end
+  def all_breeders
+
   end
 end
