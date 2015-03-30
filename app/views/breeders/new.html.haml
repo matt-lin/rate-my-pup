@@ -1,0 +1,19 @@
+%div{:class => "container"}
+
+  %h1 Create New Breeder
+
+  - flash.each do |key, value|
+    %p= value
+
+  = form_tag breeders_path, :class => "form-horizontal" do
+    %div{:class => "form-group"}
+      = label :breeder, :name, 'Breeder or Kennel Name'
+      = text_field :breeder, 'name', :class => "form-control", :placeholder => "Enter Breeder or Kennel Name"
+    %div{:class => "form-group"}
+      = label :breeder, :location, 'Breeder Zipcode'
+      = text_field :breeder, 'location', :class => "form-control", :placeholder => "Enter Breeder Zipcode"
+    %div{:class => "form-group"}
+      = label :breeder, :website, 'Breeder or Kennel Website'
+      = text_field :breeder, 'website', :class => "form-control", :placeholder => "Enter Breeder or Kennel Website"
+    %div{:class => "form-group"}
+      = submit_tag 'Add Breeder', :id => 'Add Breeder', :class => "form-control"
