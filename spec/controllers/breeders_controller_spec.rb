@@ -11,6 +11,7 @@ describe BreedersController do
       breeder.stub(:pups).and_return(dogs)
       get :search_name, {:breeders => {:breeder_name => "Teddy Roosevelt"}}
     end
+
     it "should redirect to main page if breeder doesn't exist" do
       Breeder.should_receive(:find_by_name).with("Erik Bartlett").and_return(nil)
       get :search_name, {:breeders =>{:breeder_name => "Erik Bartlett"}}
@@ -22,17 +23,21 @@ describe BreedersController do
     before :each do
       @breeder = FactoryGirl.create(:breeder, :name => "Mcgoo", :location => "90210")
       @breeder_build = FactoryGirl.build(:breeder, :name => "Jmac", :location => "94704")
-      @params = {:name.to_s => "Jmac", :location.to_s => "94704"}
+      @params = {:name => "Jmac", :location => "94704"}
     end
 
     it "should create new breeder and redirect to create pups page" do
-      Breeder.should_receive(:find_or_create).with(@params).and_return([@breeder_build, "Erik"])
+      Breeder.should_receive(:find_or_create)
+          .with(@params[:name], @params[:location], @params[:website])
+          .and_return([@breeder_build, "Erik"])
       post :create, {:breeder => @params}, {:pup => {}}
       response.should redirect_to pups_path(:pup => {:breeder => @breeder_build.id})
     end
 
     it "should redirect to main page if not creating new pup" do
-      Breeder.should_receive(:find_or_create).with(@params).and_return([@breeder_build, "Erik"])
+      Breeder.should_receive(:find_or_create)
+          .with(@params[:name], @params[:location], @params[:website])
+          .and_return([@breeder_build, "Erik"])
       post :create, {:breeder => @params}
       response.should redirect_to root_path
     end
@@ -44,16 +49,19 @@ describe BreedersController do
         FactoryGirl.build(:breeder)
       end
     end
+
     it "should send all breeders in a json array" do
       Breeder.should_receive(:all).and_return(@breeders)
       xhr :get, :index
       response.body.should == @breeders.to_json
     end
+
     it "should send a limited number of breeders starting with given string" do
       Breeder.should_receive(:find_by_substring).with("Teddy", 0).and_return(@breeders)
       xhr :get, :substring_match, {:name => "Teddy", :limit => 0}
       response.body.should == @breeders.to_json
     end
+
     it "should render an html page if request is not xhr" do
       Breeder.should_receive(:all).and_return(@breeders)
       get :index

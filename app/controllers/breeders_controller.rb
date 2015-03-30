@@ -24,13 +24,14 @@ class BreedersController < ApplicationController
   end
 
   def create
-     breeder, message = Breeder.find_or_create(params[:breeder])
-     if session[:pup]
-       session[:pup][:breeder] = breeder.id
+    name, location, website = params[:breeder][:name], params[:breeder][:location], params[:breeder][:website]
+    breeder, message = Breeder.find_or_create(name, location, website)
+    if session[:pup]
+      session[:pup][:breeder] = breeder.id
       redirect_to :controller => 'pups', :action => 'create', :pup => session[:pup]
-     else
-       flash[:message] = message
-       redirect_to root_path
+    else
+      flash[:message] = message
+      redirect_to root_path
     end
   end
 
