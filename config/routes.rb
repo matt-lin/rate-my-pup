@@ -1,5 +1,7 @@
 Ratemypup::Application.routes.draw do
 
+  devise_for :users
+
   resources :pups
   resources :breeders
 

@@ -7,6 +7,7 @@ gem 'jquery-ui-rails'
 gem 'haml'
 gem 'rake'
 gem 'jasmine'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3'
