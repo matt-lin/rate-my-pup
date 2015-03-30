@@ -13,6 +13,7 @@ var BreederAutofill = {
         $('#breeder_entry').keyup( function() {
             BreederAutofill.breeder_ajax()
         });
+
     }
     // ajax call to breeder/match/
     // GET call with params name and limit
@@ -41,10 +42,18 @@ var BreederAutofill = {
             var id = data[num].id;
             var name = data[num].name;
             console.log(name + " " + id);
-            var html = '<div class="autofills"><a href="breeder/' + id + '">' + name + '</a></div>';
+            var html = '<div class="autofills"><a class="autofill_link" href="breeder/' + id + '">' + name + '</a></div>';
             console.log(html);
             var autofill = $(html);
             $('#autofills').append(autofill);
+
+            // bind autofill on scroll over option
+            autofill.mouseover(function() {
+                console.log('hovering');
+                var text = $(this).text();
+                console.log(text);
+                $('#breeder_entry').val(text);
+            });
         }
     }
 
