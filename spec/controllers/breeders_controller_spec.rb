@@ -17,6 +17,27 @@ describe BreedersController do
       response.should redirect_to root_path
     end
   end
+
+  describe "creating new breeder" do
+    before :each do
+      @breeder = FactoryGirl.create(:breeder, :name => "Mcgoo", :location => "90210")
+      @breeder_build = FactoryGirl.build(:breeder, :name => "Jmac", :location => "94704")
+      @params = {:name.to_s => "Jmac", :location.to_s => "94704"}
+    end
+
+    it "should create new breeder and redirect to create pups page" do
+      Breeder.should_receive(:find_or_create).with(@params).and_return([@breeder_build, "Erik"])
+      post :create, {:breeder => @params}, {:pup => {}}
+      response.should redirect_to pups_path(:pup => {:breeder => @breeder_build.id})
+    end
+
+    it "should redirect to main page if not creating new pup" do
+      Breeder.should_receive(:find_or_create).with(@params).and_return([@breeder_build, "Erik"])
+      post :create, {:breeder => @params}
+      response.should redirect_to root_path
+    end
+  end
+
   describe "sending json of all breeders" do
     before :each do
       @breeders = (1..10).map do |i|

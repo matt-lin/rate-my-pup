@@ -31,13 +31,12 @@ describe PupsController do
     end
   end
   describe "creating a pup review" do
-    it "should redirect to new pup page if fields are incomplete" do
-      post :create, {:pup => {:overall_health => ''}}
-      response.should redirect_to new_pup_path
-    end
-    it "should redirect to all pups page if correct fields are input" do
-      temp_pup = FactoryGirl.build(:pup)
-      pup_hash = {:pup => {
+    before :each do
+      @temp_pup = FactoryGirl.build(:pup)
+      @breeder = FactoryGirl.create(:breeder)
+      @pup_hash = {:pup =>
+         {
+          :breeder_id.to_s => @breeder.id.to_s,
           :breeder_responsibility.to_s => 4.to_s,
           :pup_name.to_s => "Doge",
           :owner_name.to_s => "Curious George",
@@ -51,10 +50,22 @@ describe PupsController do
           :comments.to_s => "DOPE CITY"
         }
       }
-      Pup.should_receive(:new).with(pup_hash[:pup]).and_return(temp_pup)
-      temp_pup.should_receive(:save).and_return(true)
-      post :create, pup_hash
+    end
+    it "should redirect to new pup page if fields are incomplete" do
+      post :create, {:pup => {:overall_health => ''}}
+      response.should redirect_to new_pup_path
+    end
+    it "should redirect to all pups page if correct fields are input" do
+      Pup.should_receive(:new).with(@pup_hash[:pup]).and_return(@temp_pup)
+      @temp_pup.should_receive(:save).and_return(true)
+      post :create, @pup_hash
       response.should redirect_to pups_path
+    end
+    it "should redirect to create breeder page if no breeder" do
+      @pup_hash[:pup]["breeder_id"] = -1.to_s
+      post :create, @pup_hash
+      response.should redirect_to new_breeder_path
+      session[:pup].should == @pup_hash[:pup]
     end
   end
   describe "updating a review" do

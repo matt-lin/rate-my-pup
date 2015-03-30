@@ -16,4 +16,9 @@ class Breeder < ActiveRecord::Base
     results = Breeder.where("name LIKE ?", "#{sub_string}%")
     limit == 0 ? results.all : results.limit(limit)
   end
+
+  def Breeder.find_or_create(name, location, website="")
+    Breeder.where(:name => name, :location => location).first ||
+        Breeder.create!(:name => name, :location => location, :website => website)
+  end
 end

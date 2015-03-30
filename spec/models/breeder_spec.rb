@@ -16,6 +16,16 @@ describe Breeder do
       @breeder.avg_pup_rating.should == results_hash
     end
   end
+  describe "find or create breeder by name nad location" do
+    it "should not create new breeder" do
+      breeder = FactoryGirl.create(:breeder, :name => "Mcgoo", :location => "94704")
+      Breeder.find_or_create("Mcgoo", "94704").should == breeder
+    end
+    it "should create new breeder" do
+      breeder = Breeder.find_or_create("Jmac", "94704", "www.jmac.com")
+      Breeder.where(:name => "Jmac").first.should == breeder
+    end
+  end
   describe "find all matching breeders" do
     before :each do
       @breeders = (1..10).map { |i| FactoryGirl.create(:breeder) }
