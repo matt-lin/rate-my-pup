@@ -27,8 +27,8 @@ class BreedersController < ApplicationController
     name, location, website = params[:breeder][:name], params[:breeder][:location], params[:breeder][:website]
     breeder, message = Breeder.find_or_create(name, location, website)
     if session[:pup]
-      session[:pup][:breeder] = breeder.id
-      redirect_to :controller => 'pups', :action => 'create', :pup => session[:pup]
+      session[:pup][:breeder_id] = breeder.id
+      redirect_to create_pup_path(:pup => session[:pup])
     else
       flash[:message] = message
       redirect_to root_path

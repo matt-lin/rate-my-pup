@@ -51,7 +51,7 @@ $(document).ready(function() {
                   update(5,ui.value); //changed
               }
           });
-          $("#slider-sympatico").slider({
+          $("#slider-simpatico").slider({
               animate: true,
               value: 0,
               min: 0,
@@ -68,13 +68,13 @@ $(document).ready(function() {
           $("#train").val(0);
           $("#social").val(0);
           $("#energy").val(0);
-          $("#sympatico").val(0);
+          $("#simpatico").val(0);
           // $("#breeder-label").val(0);
           // $("#health-label").val(0);
           // $("#train-label").val(0);
           // $("#social-label").val(0);
           // $("#energy-label").val(0);
-          // $("#sympatico-label").val(0);
+          // $("#simpatico-label").val(0);
           
           update();
       });
@@ -87,7 +87,7 @@ $(document).ready(function() {
         var $train = slider == 3?val:$("#train").val();
         var $social = slider == 4?val:$("#social").val();
         var $energy = slider == 5?val:$("#energy").val();
-        var $sympatico = slider == 6?val:$("#sympatico").val();
+        var $simpatico = slider == 6?val:$("#simpatico").val();
         /* commented
         $amount = $( "#slider" ).slider( "value" );
         $duration = $( "#slider2" ).slider( "value" );
@@ -98,13 +98,13 @@ $(document).ready(function() {
         // $("#train-label").val($train);
         // $("#social-label").val($social);
         // $("#energy-label").val($energy);
-        // $("#sympatico").val($sympatico);
+        // $("#simpatico").val($simpatico);
         $("#breeder-label").attr('value', $breeder);
         $("#health-label").attr('value', $health);
         $("#train-label").attr('value', $train);
         $("#social-label").attr('value', $social);
         $("#energy-label").attr('value', $energy);
-        $("#sympatico").attr('value', $sympatico);
+        $("#simpatico").attr('value', $simpatico);
         // $total = "$" + ($amount * $duration);
         // $( "#amount" ).val($amount);
         // $( "#amount-label" ).text($amount);
@@ -118,7 +118,7 @@ $(document).ready(function() {
         $('#slider-train a').html('<label><span class="fa fa-paw"></span>');
         $('#slider-social a').html('<label><span class="fa fa-paw"></span>');
         $('#slider-energy a').html('<label><span class="fa fa-paw"></span>');
-        $('#slider-sympatico a').html('<label><span class="fa fa-paw"></span>');
+        $('#slider-simpatico a').html('<label><span class="fa fa-paw"></span>');
         // $('#slider-health a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$health+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
         // $('#slider-train a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$train+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
         // $('#slider-breeder a').html('<label><span class="fa fa-paw"></span>');
