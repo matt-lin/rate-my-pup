@@ -107,14 +107,10 @@ When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
 end
 
 When(/^I am( not)? logged in$/) do |not_logged_in|
-  User.create!(
-    email: 'justin@gmail.com',
-    password: 'password'
-  )
-  @user = User.find_all_by_email('justin@gmail.com')
-  if not_logged_in
-    assert_equal @user.user_signed_in? false
+  @user = FactoryGirl.create(:user)
+  if !not_logged_in
+    sign_in :user, @user
   else
-    assert_equal @user.user_signed_in? true
+    sign_out @user
   end
 end
