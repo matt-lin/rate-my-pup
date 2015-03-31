@@ -7,6 +7,13 @@
     %p= value
   / http://bootsnipp.com/user/snippets/0M39d
   = form_tag pups_path, :class => "form-horizontal" do
+    %div{:class => "form-group great text-center"} 
+      = render 'text_input', title: '', var: 'pup_name', placeholder: "Pup Name"
+      %br
+      = render 'text_input', title: '', var: 'owner_name', placeholder: "Owner Name"
+    %div{:class => "form-group great row"}
+      = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
+      = render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2
     %div{:class => "form-group"}
       = label :pup, :owner_name, 'Breeder Name'
       = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Enter Breeder Name"
