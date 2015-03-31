@@ -70,7 +70,9 @@ var BreederAutofill = {
             var name = data[num].name;
             var html = '<div class="autofills"><a class="autofill_link">' + name + '</a></div>';
             var autofill = $(html);
+            console.log($('#autofills').html());
             $('#autofills').append(autofill);
+            console.log($('#autofills').html());
 
             // bind autofill on scroll over option
             autofill.mouseover(function() {

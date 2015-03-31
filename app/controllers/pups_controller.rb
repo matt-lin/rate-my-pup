@@ -35,6 +35,7 @@ class PupsController < ApplicationController
     @pup = Pup.new(params[:pup])
     if @pup.save
       flash[:notice] = "#{@pup.pup_name} was successfully added"
+      params = {}
       redirect_to pups_path
     else 
       flash.keep[:notice] = "Please make sure all fields are complete!"

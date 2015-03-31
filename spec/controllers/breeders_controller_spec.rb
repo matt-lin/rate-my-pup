@@ -31,7 +31,7 @@ describe BreedersController do
           .with(@params[:name], @params[:location], @params[:website])
           .and_return([@breeder_build, "Erik"])
       post :create, {:breeder => @params}, {:pup => {}}
-      response.should redirect_to pups_path(:pup => {:breeder => @breeder_build.id})
+      response.should redirect_to create_pup_path(:pup => {:breeder_id => @breeder_build.id})
     end
 
     it "should redirect to main page if not creating new pup" do

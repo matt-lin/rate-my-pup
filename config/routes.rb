@@ -2,13 +2,13 @@ Ratemypup::Application.routes.draw do
 
   devise_for :users
 
+  match '/pups/create' => 'pups#create', :as => :create_pup
   resources :pups
   resources :breeders
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breeder/search_name' => 'breeders#search_name', :as => :breeder_search
   get '/breeder/match' => 'breeders#substring_match', :as => :breeder_substring_match
-  match '/pups/create' => 'pups#create', :as => :create_pup
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root :to => 'pups#main'
