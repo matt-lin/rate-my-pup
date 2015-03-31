@@ -7,19 +7,17 @@
     %p= value
   / http://bootsnipp.com/user/snippets/0M39d
   = form_tag pups_path, :class => "form-horizontal" do
-    %div{:class => "form-group great text-center"} 
-      = render 'text_input', title: '', var: :pup_name, placeholder: "Pup Name"
-      %br
-      = render 'text_input', title: '', var: :owner_name, placeholder: "Breeder Name"
-    %div{:class => "form-group great row"}
-      = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
-      = render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2
     %div{:class => "form-group"}
       = label :pup, :owner_name, 'Breeder Name'
       = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Enter Breeder Name"
     %div{:id => 'autofills'}
       = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
   %form{:class => "form-horizontal form-pricing form-group"}
+    = render 'text_input', title: '', var: :pup_name, placeholder: "Pup Name"
+    %br
+    = render 'text_input', title: '', var: :owner_name, placeholder: "Breeder Name"
+    = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
+    = render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2
     = render 'slider_rating', title: "Breeder Responsibility", slider: "slider-breeder", id: "breeder-label", description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent health care and quality of life for their breeding dogs, even after the dogs are done with breeding. We recommend that you ask any dog breeder about their policies before buying a puppy from them. Please rate the breeder of your dog for the level of responsibility they demonstrated.", var: :breeder_responsibility
     = render 'slider_rating', title: "Overall Health", slider: "slider-health", id: "health-label", description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries, since these are beyond the breeder's control.", var: :overall_health
     = render 'slider_rating', title: "Trainability", slider: "slider-train", id: "train-label", description: "Please rate how easy your dog has been to train: consider housetraining, obedience training, and basic manners.", var: :trainability
