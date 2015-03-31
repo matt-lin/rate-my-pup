@@ -10,8 +10,6 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-
-
 Given /the following ratings exist/ do |pups_table|
   breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
@@ -106,4 +104,17 @@ end
 
 When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
   fill_in(field, :with => value)
+end
+
+When(/^I am( not)? logged in$/) do |not_logged_in|
+  User.create!(
+    email: 'justin@gmail.com',
+    password: 'password'
+  )
+  @user = User.find_all_by_email('justin@gmail.com')
+  if not_logged_in
+    assert_equal @user.user_signed_in? false
+  else
+    assert_equal @user.user_signed_in? true
+  end
 end
