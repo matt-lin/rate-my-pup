@@ -1,0 +1,222 @@
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+       url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
+       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
+       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.ui-widget-content {
+	border: 3px solid #bdc3c7;
+	background: #e1e1e1;
+	color: #222222;
+	margin-top: 0px;
+}
+
+.ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 3em;
+	height: 2.2em;
+	cursor: default;
+	/*margin: 0 -40px auto !important;*/
+	text-align: center;	
+	line-height: 30px;
+	color: #FFFFFF;
+	font-size: 15px;
+}
+
+.ui-slider .ui-slider-handle .glyphicon {
+	color: #FFFFFF;
+	margin: 0 3px; 
+	font-size: 11px;
+	opacity: 0.5;
+}
+
+.ui-corner-all {
+	border-radius: 20px;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+	top: -.9em;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+	border: 1px solid #f9f9f9;
+	background: #3498db;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+	margin-left: -0.5em;
+}
+
+.ui-slider .ui-slider-handle {
+	cursor: pointer;
+}
+
+.ui-slider a,
+.ui-slider a:focus {
+	cursor: pointer;
+	outline: none;
+}
+
+h4.great {
+	padding: 7px 0px;
+	color: #111111;
+	font-size: 15px;
+	font-weight: 600;
+	border-radius: 5px;
+	display: inline-block;
+/*	background: #0B0B61;
+	color: #ffffff;
+	margin: 0 0 25px 0px;
+	padding: 7px 15px;
+	font-size: 18px;
+	font-weight: 600;
+	border-radius: 5px;
+	display: inline-block;
+	-moz-box-shadow:    2px 4px 5px 0 #ccc;
+  	-webkit-box-shadow: 2px 4px 5px 0 #ccc;
+  	box-shadow:         2px 4px 5px 0 #ccc;*/
+}
+
+h1.new-pup {
+	padding: 7px 15px;
+	color: #111111;
+	font-size: 33px;
+	font-weight: 600;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.great {
+	padding: 7px 15px;
+	color: #111111;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 5px;
+	/*display: inline-block;*/
+}
+
+.price-slider {
+	margin-bottom: 30px;
+}
+
+.price-slider span {
+	font-weight: 200;
+	display: inline-block;
+	/*color: #7f8c8d;*/
+	font-size: 13px;
+}
+
+.form-pricing {
+	background: #ffffff;
+	padding: 20px;
+	border-radius: 4px;
+}
+
+.price-form {
+	background: #ffffff;
+	margin-bottom: 10px;
+	padding: 20px;
+	border: 1px solid #eeeeee;
+	border-radius: 4px;
+	/*-moz-box-shadow:    0 5px 5px 0 #ccc;
+  	-webkit-box-shadow: 0 5px 5px 0 #ccc;
+  	box-shadow:         0 5px 5px 0 #ccc;*/
+}
+
+.tag-holder a {
+	font-family: "Source Sans Pro";
+	text-transform: uppercase;
+	font-weight: 700;}
+#chooseTagModal .tag-holder {
+	float: left;width: 100%;
+	padding: 10px;background: white;
+	margin-top: 20px;
+}
+#chooseTagModal .tag-holder a {
+	display: block;float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	text-transform: uppercase;
+	width: auto;background: #b8b8b3;
+	color: #fff;
+	font-family: "Source Sans Pro Black";l
+	etter-spacing: 0.14em;
+	text-decoration: none;
+	font-size: 12px;
+	margin-right: 6px;
+	margin-bottom: 6px;
+}
+#chooseTagModal .tag-holder a.active {
+	background: #00adee;
+}
+#chooseTagModal input[type="submit"] {
+	float: left;
+	width: 100%;
+	background: #00adee;
+	color: #fff;
+	font-family: "league_gothicregular";
+	font-size: 28px;
+	line-height: 50px;
+	border: none;
+	outline: none;
+	text-align: center;
+}
+#chooseTagModal input[type="submit"]:active {
+	border: none;
+	outline: none;
+}
+.tag-holder, body.rate_school form.rate .form-element.tagger .tag-holder {
+	float: left;
+	width: 575px;
+	margin-left: 31px;
+	margin-top: 20px;
+	display: block;
+}
+
+
+.form-group {
+	margin-bottom: 0;
+}
+
+.form-group span.price {
+	font-weight: 200;
+	display: inline-block;
+	color: #7f8c8d;
+	font-size: 14px;
+}
+
+.help-text {
+	display: block;
+	margin-top: 32px;
+	margin-bottom: 10px;
+	color: #737373;
+	position: absolute;
+	/*margin-left: 20px;*/
+	font-weight: 200;
+	text-align: right;
+	width: 188px;
+}
+
+
+
+.ui-slider-range-min {
+	background: #2980b9;
+}
+
+/* HR */
+
+hr.style {
+	margin-top: 0;
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
