@@ -5,22 +5,22 @@
 
 var BreederAutofill = {
 
-    // setup adds #breeder_entry and #autofills
-    // setup sets a callback for #breeder_entry keyup
+    // setup sets a callback for #breeder_find keyup
     setup: function() {
-        console.log("setup works");
-        $('#breeder_entry').keyup( function() {
-            BreederAutofill.breeder_ajax()
+        $('#breeder_find').keyup( function() {
+            BreederAutofill.breeder_ajax('find')
         });
-
+        $('#breeder_form').keyup(function() {
+            BreederAutofill.breeder_ajax('form')
+        });
     }
 
     // ajax call to breeder/match/
     // GET call with params name and limit
-    ,breeder_ajax: function () {
-        console.log("calling ajax");
-        var prefix = $("#breeder_entry").val();
-        console.log(prefix);
+    ,breeder_ajax: function (success_type) {
+
+        // grab prefix from either find or form text
+        var prefix = success_type == 'find' ? $("#breeder_find").val() : $('#breeder_form').val();
         $.ajax({
             type: 'GET',
             url: '/breeder/match',
@@ -29,47 +29,85 @@ var BreederAutofill = {
                 "limit": 10
             },
             timeout: 5000,
-            success: BreederAutofill.breeders_add
+            // callback designated by selection of find or form
+            success: success_type == 'find' ? BreederAutofill.breeders_add_find : BreederAutofill.breeders_add_form
         })
     }
 
     // callback for breeder_ajax creates links for max 10 relevant breeders
     // class .autofills wraps each autofill
-    // id #breeder_entry contains .autofills
+    // id #breeder_find contains .autofills
     // class .autofill_link links to each breeder's average ratings page
-    ,breeders_add: function (data, requestStatus, xhrObject) {
+    ,breeders_add_find: function (data, requestStatus, xhrObject) {
 
         $('#autofills').empty();
         for (num in data) {
             var id = data[num].id;
             var name = data[num].name;
-            console.log(name + " " + id);
             var html = '<div class="autofills"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + '</a></div>';
-            console.log(html);
             var autofill = $(html);
             $('#autofills').append(autofill);
 
             // bind autofill on scroll over option
             autofill.mouseover(function() {
-                console.log('hovering');
                 var text = $(this).text();
-                console.log(text);
-                $('#breeder_entry').val(text);
+                $('#breeder_find').val(text);
             });
         }
 
         var html = '<div class="autofills"><a class="autofill_link" href="breeders/new">' + "Don't see it? Add a new breeder" + '</a></div>';
-        console.log(html);
         var autofill = $(html);
         $('#autofills').append(autofill);
     }
 
+    ,breeders_add_form: function (data, requestStatus, xhrObject) {
+        console.log('twerkin');
+        $('#autofills').empty();
+        console.log('emptied');
+        console.log(data)
+        for (num in data) {
+            var id = data[num].id;
+            var name = data[num].name;
+            var html = '<div class="autofills"><a class="autofill_link">' + name + '</a></div>';
+            var autofill = $(html);
+            $('#autofills').append(autofill);
 
+            // bind autofill on scroll over option
+            autofill.mouseover(function() {
+                var text = $(this).text();
+                $('#breeder_form').val(text);
+            });
+
+            // on click, fill form name value and form id value
+            function autofill_return(id) {
+                return function () {
+                    var text = $(this).text();
+                    $('#autofills').empty();
+                    $('#breeder_form').val(text);
+                    $('#invisible_id').val(id);
+                }
+            }
+
+            autofill.click(autofill_return(id));
+        }
+
+        // if a new breeder is selected, let id be -1
+        var html = '<div class="autofills"><a class="autofill_link">' + "Don't see it? Add a new breeder" + '</a></div>';
+        var new_breeder = $(html);
+        $('#autofills').append(new_breeder);
+
+        new_breeder.click(function () {
+            var text = $(this).text();
+            $('#autofills').empty();
+            $('#breeder_form').val(text);
+            $('#invisible_id').val(-1);
+        });
+
+    }
 };
 
 
 
 $(document).ready(function () {
-    console.log("document works");
     $(BreederAutofill.setup);
 });

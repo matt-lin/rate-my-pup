@@ -12,6 +12,11 @@
     %div{:class => "form-group"}
       = label :pup, :owner_name, 'Owner Name'
       = text_field :pup, 'owner_name', :class => "form-control", :placeholder => "Enter Owner Name"
+    %div{:class => "form-group"}
+      = label :pup, :owner_name, 'Breeder Name'
+      = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Enter Breeder Name"
+      %div{:id => 'autofills'}
+      = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
       / = label :pup, :breeder, 'Breeder'
       / = text_field :pup, 'breeder'
     %div{:class => "form-group"}

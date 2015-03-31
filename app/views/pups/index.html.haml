@@ -17,6 +17,7 @@
         %th Energy Level
         %th Simpatico Rating
         %th Comments
+        %th Breeder
         %th More
 
     %tbody
@@ -34,6 +35,7 @@
           %td= pup.energy_level
           %td= pup.simpatico_rating
           %td= pup.comments
+          %td= pup.breeder ? pup.breeder.name : "None listed"
           %td= link_to "More", pup_path(pup)
 
 
