@@ -8,6 +8,7 @@ gem 'haml'
 gem 'rake'
 gem 'jasmine'
 gem 'devise'
+gem 'figaro'
 
 group :development, :test do
   gem 'sqlite3'
@@ -23,7 +24,6 @@ group :development, :test do
 	gem 'reek'
 end
 
-
 group :production do
   gem 'pg'
 end
@@ -34,7 +34,6 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
 end
-
 
 gem 'omniauth-facebook', :github => 'mkdynamic/omniauth-facebook'
 gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
