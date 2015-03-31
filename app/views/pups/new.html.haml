@@ -10,7 +10,7 @@
     %div{:class => "form-group great text-center"} 
       = render 'text_input', title: '', var: 'pup_name', placeholder: "Pup Name"
       %br
-      = render 'text_input', title: '', var: 'owner_name', placeholder: "Breeder Name"
+      = render 'text_input', title: '', var: 'owner_name', placeholder: "Owner Name"
     %div{:class => "form-group great row"}
       = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
       = render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2

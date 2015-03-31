@@ -32,6 +32,8 @@ describe PupsController do
   end
   describe "creating a pup review" do
     before :each do
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
       @temp_pup = FactoryGirl.build(:pup)
       @breeder = FactoryGirl.create(:breeder)
       @pup_hash = {:pup =>
@@ -70,6 +72,8 @@ describe PupsController do
   end
   describe "updating a review" do
     it "should find the pup and update it's attributes" do
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
       temp_pup = FactoryGirl.build(:pup)
       Pup.should_receive(:find).with('1').and_return(temp_pup)
       temp_pup.should_receive(:update_attributes).with({})
@@ -79,6 +83,8 @@ describe PupsController do
   end
   describe "deleting a pup rating" do
     it "should find the pup and destroy it's review" do
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
       temp_pup = FactoryGirl.build(:pup)
       Pup.should_receive(:find).with('1').and_return(temp_pup)
       temp_pup.should_receive(:destroy)
