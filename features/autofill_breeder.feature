@@ -38,6 +38,6 @@ Feature: autofill breeder name into breeder forms
     And I should not see "Carl"
     And I should not see "Michael Jackson"
     And I should see "Don't see it? Add a new breeder"
-    When I press "Don't see it? Add a new breeder"
+    When I follow "Don't see it? Add a new breeder"
     Then I should be on the "Add breeder" page
 
