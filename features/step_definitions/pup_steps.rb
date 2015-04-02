@@ -44,6 +44,10 @@ When /^I press "(.*)"/ do |button|
 	click_button(button)
 end
 
+When /^(?:|I )follow "([^"]*)"$/ do |link|
+  click_link(link)
+end
+
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	if not_see != nil
 		assert page.has_no_content?(text)
