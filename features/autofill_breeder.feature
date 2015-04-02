@@ -19,14 +19,14 @@ Feature: autofill breeder name into breeder forms
     And I am on the RateMyPup home page
 
   Scenario: fill all breeders that start with C
-    When I enter "C" into "breeder_entry"
+    When I enter "C" into autocomplete "breeder_find"
     Then I should see "Chris"
     And I should see "Carl"
     And I should not see "Alex"
     And I should see "Don't see it? Add a new breeder"
 
   Scenario: fill all breeders that start with a substring
-    When I enter "Alex" into "breeder_find"
+    When I enter "Alex" into autocomplete "breeder_find"
     Then I should see "Alex"
     And I should see "Alexander"
     And I should not see "Carl"
@@ -34,7 +34,7 @@ Feature: autofill breeder name into breeder forms
     And I should see "Don't see it? Add a new breeder"
 
   Scenario: redirect to create new breeder
-    When I enter "JMac" into "breeder_find"
+    When I enter "Jmac" into autocomplete "breeder_find"
     And I should not see "Carl"
     And I should not see "Michael Jackson"
     And I should see "Don't see it? Add a new breeder"

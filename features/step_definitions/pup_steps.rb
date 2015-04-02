@@ -106,12 +106,17 @@ end
 
 Given(/^the following breeders exist:$/) do |table|
   table.hashes.each do |breeder|
-    FactoryGirl.create(:breeder, :name => breeder)
+    FactoryGirl.create(:breeder, :name => breeder[:name])
   end
+  puts Breeder.all
 end
 
 When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
   fill_in(field, :with => value)
+end
+
+When /^I enter "(.*?)" into autocomplete "(.*?)"$/ do |value, field|
+  auto_complete(field, value)
 end
 
 When(/^I am logged in$/) do
@@ -126,5 +131,9 @@ end
 def slide(slidr, value)
   page.execute_script "s=$('#slidr');"
   page.execute_script "s.slider('option', 'value', #{value})"
-  #page.execute_script "s.slider('option','slide').call(s,null,{ handle: $('.ui-slider-handle', s), value: #{value} });"
+end
+
+def auto_complete(text_field, value)
+  page.execute_script "s = $('##{text_field}');"
+  page.execute_script "s.val('#{value}').keyup();"
 end
