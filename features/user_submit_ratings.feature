@@ -22,11 +22,8 @@ Feature: only users with a user profile should be able to submit a rating
 #      | Tiny               | Justin          | Labrador Retriever | None            | 2                      | 5              | 3            | 4               | 4            | 4                | Easy to train. Excellent dog.     | 2                 |
     And I am not logged in
     And I press "Add Pup"
-    Then I should see "You cannot submit rating without being logged in. Please log in."
-    And I am on the "Create New Pup" page
-    And I should not see "Easy to train. Excellent dog."
-    And I should not see "Labrador Retriever"
-    And I should see "Log in or create new account" button.
+    Then I should be on the Login page
+    And I should see "You need to sign in or sign up before continuing."
 
   Scenario: should not be able to submit a rating if not logged in
 
