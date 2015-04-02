@@ -42,3 +42,4 @@ Feature: only users with a user profile should be able to submit a rating
     Then I should see "My favorite of my three dogs."
     And I should see "Justin"
     And I should see "Erik"
+    And I should see "Golden Retriever"
