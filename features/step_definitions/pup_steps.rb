@@ -115,8 +115,8 @@ When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
   fill_in(field, :with => value)
 end
 
-When /^I enter "(.*?)" into autocomplete "(.*?)"$/ do |value, field|
-  auto_complete(field, value)
+When /^I enter "(.*?)" into autocomplete "(.*?)" with "(.*)"$/ do |value, field, event|
+  auto_complete(field, value, event)
 end
 
 When(/^I am logged in$/) do
@@ -133,11 +133,10 @@ def slide(slidr, value)
   page.execute_script "s.slider('option', 'value', #{value})"
 end
 
-def auto_complete(text_field, value)
+def auto_complete(text_field, value, event='keyup')
   page.execute_script "s = $('##{text_field}');"
-  page.execute_script "s.val('#{value}').keyup();"
+  page.execute_script "s.val('#{value}').#{event}();"
 end
-
 Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
   @expected_message = message
 end
