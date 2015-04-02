@@ -26,7 +26,7 @@ Feature: autofill breeder name into breeder forms
     And I should see "Don't see it? Add a new breeder"
 
   Scenario: fill all breeders that start with a substring
-    When I enter "Alex" into "breeder_entry"
+    When I enter "Alex" into "breeder_form"
     Then I should see "Alex"
     And I should see "Alexander"
     And I should not see "Carl"
@@ -34,7 +34,7 @@ Feature: autofill breeder name into breeder forms
     And I should see "Don't see it? Add a new breeder"
 
   Scenario: redirect to create new breeder
-    When I enter "JMac" into "breeder_entry"
+    When I enter "JMac" into "breeder_form"
     And I should not see "Carl"
     And I should not see "Michael Jackson"
     And I should see "Don't see it? Add a new breeder"
