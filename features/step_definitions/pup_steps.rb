@@ -108,7 +108,6 @@ Given(/^the following breeders exist:$/) do |table|
   table.hashes.each do |breeder|
     FactoryGirl.create(:breeder, :name => breeder[:name])
   end
-  puts Breeder.all
 end
 
 When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
