@@ -16,7 +16,4 @@ Scenario: submit new review for single breed dog
     | Thor               | Anna            | Pug                | None            | 2                      | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable| 4                 |
     And I press "Add Pup"
     And a confirmation box saying "Please provide a rating for your dog only if you are certain that the dog belongs to a recognized breed, or is a mix between two specific recognized breeds. Genetic testing has shown that dogs who appear to be a purebred or a mix of two particular breeds often prove to actually have a very different genetic heritage. To keep our database of breed information as accurate as possible, please submit data only for dogs of known breeding" should pop up
-    And I want to click "Ok"
-    And I press "OK"
-    Then the confirmation box should have been displayed
-    And I should be on the "Pups" page
+
