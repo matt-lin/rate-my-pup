@@ -104,7 +104,7 @@ $(document).ready(function() {
         $("#train-label").attr('value', $train);
         $("#social-label").attr('value', $social);
         $("#energy-label").attr('value', $energy);
-        $("#simpatico").attr('value', $simpatico);
+        $("#simpatico-label").attr('value', $simpatico);
         // $total = "$" + ($amount * $duration);
         // $( "#amount" ).val($amount);
         // $( "#amount-label" ).text($amount);
