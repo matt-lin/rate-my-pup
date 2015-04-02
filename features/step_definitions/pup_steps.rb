@@ -114,11 +114,10 @@ When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
   fill_in(field, :with => value)
 end
 
-When(/^I am( not)? logged in$/) do |not_logged_in|
+When(/^I am logged in$/) do
   @user = FactoryGirl.create(:user)
-  if !not_logged_in
-    sign_in :user, @user
-  else
-    sign_out @user
-  end
+  click_link("Login")
+  fill_in(:user_email, :with => "lolright@aol.com")
+  fill_in(:user_password, :with => "lolright")
+  click_button("Log in")
 end

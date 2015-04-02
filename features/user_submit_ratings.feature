@@ -30,10 +30,7 @@ Feature: only users with a user profile should be able to submit a rating
   Scenario: should be able to submit a rating if not logged in
 
     Given I am on the RateMyPup home page
-    Then I follow "Login"
-    And I fill in "user_email" with "lolright@aol.com"
-    And I fill in "user_password" with "lolright"
-    And I press "Log in"
+    And I am logged in
     Then I am on the RateMyPup home page
     Then I press "Rate your Pup"
     Then I should be on the "Create New Pup" page
