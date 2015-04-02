@@ -49,7 +49,7 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
 end
 
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
-	if not_see != nil
+  if not_see != nil
 		assert page.has_no_content?(text)
   else
 		assert page.has_content?(text)
@@ -106,7 +106,7 @@ end
 
 Given(/^the following breeders exist:$/) do |table|
   table.hashes.each do |breeder|
-    Breeder.create!(breeder)
+    FactoryGirl.create(:breeder, :name => breeder)
   end
 end
 
