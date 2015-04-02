@@ -31,7 +31,7 @@ Given /the following ratings exist/ do |pups_table|
   end
 end
 
-Given /^(?:|I )am on (.+)/ do |page_name|
+Given /^I am on (.+)/ do |page_name|
 	visit path_to(page_name)
 end
 
@@ -98,6 +98,10 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
     fill_in 'Pup Name', :with => rating['pup_name']
     fill_in 'Owner Name', :with => rating['owner_name']
   end
+end
+
+When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+  fill_in(field, :with => value)
 end
 
 Given(/^the following breeders exist:$/) do |table|

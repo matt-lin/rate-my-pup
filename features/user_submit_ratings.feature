@@ -14,25 +14,31 @@ Feature: only users with a user profile should be able to submit a rating
     When I follow "Login"
     Then I should be on the Login page
 
-  Scenario: should be able to submit a rating if logged in as a user
+  Scenario: should not be able to submit a rating if logged in as a user
 
-    Given I am on the "Create New Pup" page
-#    When I fill out the form with the following attributes:
-#      | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
-#      | Tiny               | Justin          | Labrador Retriever | None            | 2                      | 5              | 3            | 4               | 4            | 4                | Easy to train. Excellent dog.     | 2                 |
-    And I am not logged in
+    Given I am on the RateMyPup home page
+    Then I should see "Login"
+    Then I press "Rate your Pup"
+    Then I should be on the "Create New Pup" page
+    When I fill out the form with the following attributes:
+      | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
+      | Tiny               | Justin          | Labrador Retriever | None            | 2                      | 5              | 3            | 4               | 4            | 4                | Easy to train. Excellent dog.     | 2                 |
     And I press "Add Pup"
     Then I should be on the Login page
     And I should see "You need to sign in or sign up before continuing."
 
-  Scenario: should not be able to submit a rating if not logged in
+  Scenario: should be able to submit a rating if not logged in
 
-    Given I am on the "Create New Pup" page
-#    When I fill out the form with the following attributes:
-#      | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
-#      | Sam                | Justin          | Golden Retriever   | None            | 2                      | 5              | 3            | 4               | 4            | 4                | My favorite of my three dogs.     | 2                 |
-    And I am logged in
+    Given I am on the RateMyPup home page
+    Then I follow "Login"
+    And I fill in "user_email" with "lolright@aol.com"
+    And I fill in "user_password" with "lolright"
+    And I press "Log in"
+    Then I am on the RateMyPup home page
+    Then I press "Rate your Pup"
+    Then I should be on the "Create New Pup" page
+    When I fill out the form with the following attributes:
+      | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
+      | Sam                | Justin          | Golden Retriever   | None            | 2                      | 5              | 3            | 4               | 4            | 4                | My favorite of my three dogs.     | 2                 |
     And I press "Add Pup"
-    And I should see "My favorite of my three dogs."
-    And I should see "Golden Retriever"
-    And I should see "My favorite of my three dogs."
+    Then I should see "My favorite of my three dogs."
