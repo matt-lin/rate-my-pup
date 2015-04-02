@@ -39,6 +39,8 @@ Feature: only users with a user profile should be able to submit a rating
     Then I should be on the "Create New Pup" page
     When I fill out the form with the following attributes:
       | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
-      | Sam                | Justin          | Golden Retriever   | None            | 2                      | 5              | 3            | 4               | 4            | 4                | My favorite of my three dogs.     | 2                 |
+      | Erik               | Justin          | Golden Retriever   | None            | 2                      | 5              | 3            | 4               | 4            | 4                | My favorite of my three dogs.     | 2                 |
     And I press "Add Pup"
     Then I should see "My favorite of my three dogs."
+    And I should see "Justin"
+    And I should see "Erik"
