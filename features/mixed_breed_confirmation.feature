@@ -5,6 +5,9 @@ Feature: submit new rating for an existing dog breed and breeder
     So that I can provide the most accurate information possible
     I want to be able to accurately state the dog's breed. 
 
+Background:
+    Given I am on the RateMyPup home page
+    And I am logged in
 
 Scenario: submit new review for single breed dog
     Given I am on the "Create New Pup" page

@@ -18,8 +18,9 @@ Background: reviews have been added to the database
     | Poodle 			| Cocker Spaniel | 4 					  | 5 			   | 5 			  | 4 				| 5 		   | 5 				  | The greatest dog I've ever owned. | 2 |
     | Poodle 			| Cocker Spaniel | 2 					  | 3 			   | 3 			  | 3 				| 5 		   | 4 				  | Incredibly high energy and strong.| 3  |
     | Shiba Inu 	  	| None 			 | 3 					  | 4 			   | 4 			  | 5 				| 4 		   | 2 				  | Such review. Wow. 				  | 1   |
-
+ 
     And I am on the RateMyPup home page
+    And I am logged in
 
 Scenario: navigate to review page
     When I press "Rate your Pup"
