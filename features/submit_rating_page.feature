@@ -20,15 +20,5 @@ Scenario: see the rating descriptions
 
     And I should see "Some dogs require a lot of physical exercise to keep them happy and calm, whereas others are content to sleep most of the day. Please rate your dog's overall energy level and exercise requirement at maturity (1--7 years of age)"
 
-    And I should see "Some dogs just seem to have what it takes to be the ultimate companion to "their" human. These dogs have the desire to please, the ability to communicate, an attitude of attentiveness, and the capacity to forge a relationship based on mutual respect and affection. We call these dogs Simpatico Dogs. Please give your dog an overall Simpatico rating, based on the overall compatibility that your dog has and the depth of the relationship you share."
-
-    And I should see "pick three comments that best describe your dog"
-
-    And I should see "#Easy to obedience train"
-
-    And I should see "#Hard to obedience train"
-
-    And I should see "#Easy to housetrain"
-
-    And I should see "#Hard to housetrain"
+    And I should see "Some dogs just seem to have what it takes to be the ultimate companion to 'their' human. These dogs have the desire to please, the ability to communicate, an attitude of attentiveness, and the capacity to forge a relationship based on mutual respect and affection. We call these dogs Simpatico Dogs. Please give your dog an overall Simpatico rating, based on the overall compatibility that your dog has and the depth of the relationship you share."
 
