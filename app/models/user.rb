@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  def user_signed_in?
-
+  def user_signed_in? (user)
+    User.find(user) != nil
   end
 
 end
