@@ -22,8 +22,8 @@ Background: reviews have been added to the database
     And I am on the RateMyPup home page
 
 Scenario: searching for a breeder
-    When I select "George W. Bush" from "breeders_breeder_name"
-    And I press "Find a Breeder"
+    When I fill in "breeder_find" with "George W. Bush"
+    And I press "Find Breeder"
     Then I should see "3.33"
     And I should see "The greatest dog I've ever owned"
     And I should see "Super chiller dog."
