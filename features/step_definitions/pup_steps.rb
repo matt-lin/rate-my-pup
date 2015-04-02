@@ -44,7 +44,7 @@ When /^I press "(.*)"/ do |button|
 	click_button(button)
 end
 
-When /^(?:|I )follow "(.*)"$/ do |link|
+When /^I follow "(.*)"$/ do |link|
   click_link(link)
 end
 
@@ -56,7 +56,7 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
-Then /^(?:|I )should be on (.+)$/ do |page_name|
+Then /^I should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
     current_path.should == path_to(page_name)
