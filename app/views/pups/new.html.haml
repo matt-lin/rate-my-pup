@@ -31,6 +31,6 @@
       = label :pup, :comments, 'Comments'
       = text_field :pup, 'comments', :class => "form-control"
     %div{:class => "form-group"}
-      = submit_tag 'Add Pup', :id => 'Add Pup', :class => "form-control"
+      = submit_tag 'Add Pup', :id => 'Add Pup', :class => "form-control", :confirm => "Please provide a rating for your dog only if you are certain that the dog belongs to a recognized breed, or is a mix between two specific recognized breeds. Genetic testing has shown that dogs who appear to be a purebred or a mix of two particular breeds often prove to actually have a very different genetic heritage. To keep our database of breed information as accurate as possible, please submit data only for dogs of known breeding. Are you sure you want to submit this rating?"
   %script{:src=>"https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"}
 
