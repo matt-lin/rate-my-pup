@@ -21,6 +21,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'codeclimate-test-reporter'
 	gem 'reek'
+	gem 'poltergeist'
 end
 
 group :production do
