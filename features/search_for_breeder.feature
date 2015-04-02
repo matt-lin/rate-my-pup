@@ -1,3 +1,4 @@
+@javascript
 Feature: display average rating of breeder along with corresponding reviews
 
     As a prospective dog owner

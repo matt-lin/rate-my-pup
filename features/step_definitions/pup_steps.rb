@@ -44,7 +44,7 @@ When /^I press "(.*)"/ do |button|
 	click_button(button)
 end
 
-When /^(?:|I )follow "([^"]*)"$/ do |link|
+When /^(?:|I )follow "(.*)"$/ do |link|
   click_link(link)
 end
 
@@ -88,12 +88,12 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
   pups_table.hashes.each do |rating|
     select rating['breed_1'], :from => 'Primary Breed'
     select rating['breed_2'], :from => 'Secondary Breed'
-    select rating['breeder_responsibility'], :from => 'Breeder Responsibility'
-    select rating['overall_health'], :from =>  'Overall Health'
-    select rating['trainability'], :from => 'Trainability'
-    select rating['social_behavior'], :from => 'Social Behavior'
-    select rating['energy_level'], :from => 'Energy Level'
-    select rating['simpatico_rating'], :from => 'Simpatico Rating'
+    slide('slider-breeder', rating['breeder_responsibility'])
+    slide('slider-health', rating['overall_health'])
+    slide('slider-train', rating['trainability'])
+    slide('slider-social', rating['social_behavior'])
+    slide('slider-energy', rating['energy_level'])
+    slide('slider-simpatico', rating['simpatico_rating'])
     fill_in 'Comments', :with => rating['comments']
     fill_in 'Pup Name', :with => rating['pup_name']
     fill_in 'Owner Name', :with => rating['owner_name']
@@ -120,4 +120,11 @@ When(/^I am logged in$/) do
   fill_in(:user_email, :with => "lolright@aol.com")
   fill_in(:user_password, :with => "lolright")
   click_button("Log in")
+end
+
+
+def slide(slidr, value)
+  page.execute_script "s=$('#slidr');"
+  page.execute_script "s.slider('option', 'value', #{value})"
+  #page.execute_script "s.slider('option','slide').call(s,null,{ handle: $('.ui-slider-handle', s), value: #{value} });"
 end

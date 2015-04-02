@@ -1,3 +1,4 @@
+@javascript
 Feature: submit new rating for an existing dog breed and breeder
 
     As a current dog owner
