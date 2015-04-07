@@ -9,6 +9,7 @@ gem 'rake'
 gem 'jasmine'
 gem 'devise'
 gem 'figaro'
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'sqlite3'

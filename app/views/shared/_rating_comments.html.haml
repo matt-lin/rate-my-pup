@@ -1,0 +1,13 @@
+%div{:class=>"row rating-desc"}
+    %div{:class=>"col-xs-3 col-md-3 text-left"}
+        %span{:class=>"fa fa-paw"} #{title}
+    %div{:class=>"col-xs-8 col-md-9"}
+        %div{:class=>"progress"}
+            - if width == 80 or width == 100
+                %div{:class=>"progress-bar progress-bar-success", :role=>"progressbar", :style=>"width: #{width}%"}
+            - elsif width == 40
+                %div{:class=>"progress-bar progress-bar-warning", :role=>"progressbar", :style=>"width: #{width}%"}
+            - elsif width = 20
+                %div{:class=>"progress-bar progress-bar-danger", :role=>"progressbar", :style=>"width: #{width}%"}
+            - else
+                %div{:class=>"progress-bar progress-bar", :role=>"progressbar", :style=>"width: #{width}%"}
