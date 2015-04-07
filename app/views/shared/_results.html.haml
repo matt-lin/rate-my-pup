@@ -15,7 +15,8 @@
   /       %td= @avg_ratings[:breeder_responsibility].round(2) if @avg_ratings[:breeder_responsibility
   %div{:class=>"row"}
     %div{:class=>"col-xs-12 col-md-10"}
-      = render 'shared/avg_rating', rating: @avg_ratings[:breeder_responsibility].round(2), width: @avg_ratings[:breeder_responsibility].round(2) * 20, title: "responsiblity", color: 'progress-bar-success'
+      - if @avg_ratings[:breeder_responsibility]
+        = render 'shared/avg_rating', rating: @avg_ratings[:breeder_responsibility].round(2), width: @avg_ratings[:breeder_responsibility].round(2) * 20, title: "responsiblity", color: 'progress-bar-success'
       = render 'shared/avg_rating', rating: @avg_ratings[:overall_health].round(2),  width: @avg_ratings[:overall_health].round(2) * 20, title: 'health', color: 'progress-bar'
       = render 'shared/avg_rating', rating: @avg_ratings[:trainability].round(2), width: @avg_ratings[:trainability].round(2) * 20, title: 'train', color: 'progress-bar'
       = render 'shared/avg_rating', rating: @avg_ratings[:social_behavior].round(2), width: @avg_ratings[:social_behavior].round(2) * 20, title: 'social', color: 'progress-bar'
