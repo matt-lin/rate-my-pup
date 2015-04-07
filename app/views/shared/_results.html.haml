@@ -1,24 +1,26 @@
 %div{:class=>"container"}
   %h3 Average Ratings for #{query}:
 
-  %table#avg_ratings
-    %thead
-    %tr
-      %th="Breeder Responsibility" if @avg_ratings[:breeder_responsibility]
-      %th Overall Health
-      %th Trainability
-      %th Social Behavior
-      %th Energy Level
-      %th Simpatico Rating
-    %tbody
-      %tr
-        %td= @avg_ratings[:breeder_responsibility].round(2) if @avg_ratings[:breeder_responsibility]
-        %td= @avg_ratings[:overall_health].round(2)
-        %td= @avg_ratings[:trainability].round(2)
-        %td= @avg_ratings[:social_behavior].round(2)
-        %td= @avg_ratings[:energy_level].round(2)
-        %td= @avg_ratings[:simpatico_rating].round(2)
-
+  / %table#avg_ratings
+  /   %thead
+  /   %tr
+  /     %th="Breeder Responsibility" if @avg_ratings[:breeder_responsibility]
+  /     %th Overall Health
+  /     %th Trainability
+  /     %th Social Behavior
+  /     %th Energy Level
+  /     %th Simpatico Rating
+  /   %tbody
+  /     %tr
+  /       %td= @avg_ratings[:breeder_responsibility].round(2) if @avg_ratings[:breeder_responsibility
+  %div{:class=>"row"}
+    %div{:class=>"col-xs-12 col-md-10"}
+      = render 'shared/rating_comments', width: @avg_ratings[:breeder_responsibility].round(2) * 20, title: "responsiblity", color: 'progress-bar-success'
+      = render 'shared/rating_comments', width: @avg_ratings[:overall_health].round(2) * 20, title: 'health', color: 'progress-bar'
+      = render 'shared/rating_comments', width: @avg_ratings[:trainability].round(2) * 20, title: 'train', color: 'progress-bar'
+      = render 'shared/rating_comments', width: @avg_ratings[:social_behavior].round(2) * 20, title: 'social', color: 'progress-bar'
+      = render 'shared/rating_comments', width: @avg_ratings[:energy_level].round(2) * 20, title: 'energy', color: 'progress-bar'
+      = render 'shared/rating_comments', width: @avg_ratings[:simpatico_rating].round(2) * 20, title: 'simpatico', color: 'progress-bar'
   %h3 Comments:
   - @pups.each do |pup|
     = render 'shared/comment', pup: pup, responsibility: pup.breeder_responsibility * 20, health: pup.overall_health * 20, train: pup.trainability * 20, social: pup.social_behavior * 20, simpatico: pup.simpatico_rating * 20, energy: pup.energy_level * 20
