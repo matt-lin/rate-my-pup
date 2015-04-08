@@ -38,8 +38,7 @@ Scenario: search for secondary breed of dog
     And I should see "Great dog."
     And I should not see "Very aloof."
 
-Scenario: see correct number of ratings 
-    ario: search for secondary breed of dog
+Scenario: see correct number of ratings
     When I select "Poodle" from "pup_breed_1"
     When I select "Cocker Spaniel" from "pup_breed_2"
     And I press "Find a Breed"
