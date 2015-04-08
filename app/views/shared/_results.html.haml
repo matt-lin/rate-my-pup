@@ -20,7 +20,7 @@
       = render 'shared/avg_rating', rating: @avg_ratings[:overall_health].round(2),  width: @avg_ratings[:overall_health].round(2) * 20, title: 'health', color: 'progress-bar'
       = render 'shared/avg_rating', rating: @avg_ratings[:trainability].round(2), width: @avg_ratings[:trainability].round(2) * 20, title: 'train', color: 'progress-bar'
       = render 'shared/avg_rating', rating: @avg_ratings[:social_behavior].round(2), width: @avg_ratings[:social_behavior].round(2) * 20, title: 'social', color: 'progress-bar'
-      = render 'shared/avg_rating', rating: @avg_ratings[:energy_level].round(2) * 20, width: @avg_ratings[:energy_level].round(2) * 20, title: 'energy', color: 'progress-bar'
+      = render 'shared/avg_rating', rating: @avg_ratings[:energy_level].round(2), width: @avg_ratings[:energy_level].round(2) * 20, title: 'energy', color: 'progress-bar'
       = render 'shared/avg_rating', rating: @avg_ratings[:simpatico_rating].round(2), width: @avg_ratings[:simpatico_rating].round(2) * 20, title: 'simpatico', color: 'progress-bar'
   %h3 Comments:
   - @pups.each do |pup|
