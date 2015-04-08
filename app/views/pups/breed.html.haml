@@ -1,5 +1,4 @@
-%h2="Results for breed: #{params[:breed1]} and #{params[:breed2]}" if params[:breed2]
-%h2="Results for breed: #{params[:breed1]}" if !params[:breed2]
-
-
-=render :partial => "shared/results"
+- if params[:breed2] 
+	=render "shared/results", query: "#{params[:breed1]} and #{params[:breed2]}"
+- else 
+	=render "shared/results", query: "#{params[:breed1]}"
