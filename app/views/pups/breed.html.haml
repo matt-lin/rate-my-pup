@@ -1,4 +1,4 @@
-- if params[:breed2] 
-	=render "shared/results", query: "#{params[:breed1]} and #{params[:breed2]}"
+- if params[:pup][:breed_2] != "None"
+	=render "shared/results", query: "#{params[:pup][:breed_1]} and #{params[:pup][:breed_2]}"
 - else 
-	=render "shared/results", query: "#{params[:breed1]}"
+	=render "shared/results", query: "#{params[:pup][:breed_1]}"
