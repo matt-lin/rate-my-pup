@@ -52,7 +52,7 @@ Scenario: show secondary breed dropdown when submitting a mixed breed dog
     When I click "My dog is a mixed breed"
     Then I should see "Secondary breed"
 
-Scenario: make sure mixed breed button togles
+Scenario: make sure mixed breed button toggles
     Given I am on the "Create New Pup" page
     When I click "My dog is a mixed breed"
     Then I should see "Secondary breed"
