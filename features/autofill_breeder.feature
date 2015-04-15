@@ -17,6 +17,7 @@ Feature: autofill breeder name into breeder forms
 
 
     And I am on the RateMyPup home page
+    And I follow "Rate a Pup"
 
   Scenario: fill all breeders that start with C
     When I enter "C" into autocomplete "breeder_find" with "keyup"
