@@ -23,6 +23,7 @@ Background: reviews have been added to the database
     And I am logged in
 
 Scenario: navigate to review page
+    And I click ".button-a"
     When I press "Rate your Pup"
     Then I should be on the "Create New Pup" page
 

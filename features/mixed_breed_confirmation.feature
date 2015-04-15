@@ -8,6 +8,7 @@ Feature: submit new rating for an existing dog breed and breeder
 Background:
     Given I am on the RateMyPup home page
     And I am logged in
+    And I click ".button-b"
 
 Scenario: submit new review for single breed dog
     Given I am on the "Create New Pup" page

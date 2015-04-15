@@ -16,6 +16,7 @@ Feature: Filter autofill response by breeder city and state
       | George Michael  | Fresno   | CA     |
       | George W. Bush  | Waco     | TX     |
     And I am on the RateMyPup home page
+    And I click ".button-c"
 
   Scenario: searching for a breeder with city and state
     When I enter "George", "Berkeley", "CA" into breeder search

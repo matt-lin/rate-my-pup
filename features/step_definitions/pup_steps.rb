@@ -154,3 +154,7 @@ Then /^the confirmation box should have been displayed$/ do
   page.evaluate_script("$.cookie('confirm_message')").should eq(@expected_message)
   page.evaluate_script("$.cookie('confirm_message', null)")
 end
+
+Given /^I click "(.*)"$/ do |click|
+  page.evaluate_script("$('#{click}').click()")
+end
