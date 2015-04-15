@@ -1,38 +1,71 @@
-%div{:class => "container"}
-	
-	%div{:class => "homepage-header"}
-		%h1 Welcome to RateMyPup.com
+%h3{:class => "warning"}=flash[:message] if flash[:message]
 
-	%h3{:class => "warning"}=flash[:message] if flash[:message]
+%div{:class => "container-fluid"}
+    %div{:class => "row", :id => "tagline"}
+        %h1{:id => "tagline-text"}
+            Find a pup from a <strong>reliable</strong> source
+    %div{:class => "row"}
 
-	%br
+        %div{:class => "col-lg-4 box-a hidden"}
+            %div{:class => "panel panel-default"}
+                %div{:class => "panel-heading"}
+                    %h3{:class => "panel-title"}
+                        Rate a puppy that you've purchased from a breeder:
+                %div{:class => "panel-body"}
+                    %div{:class => "form-group", :class => "button-positioning"}
+                        = button_to 'Rate your Pup', new_pup_path, :method => :get, :id => 'Rate your Pup', :class => "form-control"
 
-	%div{:class => "col-1-3"}
-		%div{:class => "form-group", :class => "button-positioning", :id => "rate-btn"}
-			= button_to 'Rate your Pup', new_pup_path, :method => :get, :id => 'Rate your Pup', :class => "homepage-button"
-	
-	/ %br
+        %div{:class => "col-lg-4 box-a text-center"}
+            %a{:class => "main-button-link button-a"}
+                %div{:class => "main-button"}
+                    %div{:class => "main-button-small-text"}
+                        Rate a
+                    %div{:class => "main-button-large-text"}
+                        Pup
 
-	%div{:class => "col-1-3"}
-		= form_tag breed_path, :method => :get, :class => "form-horizontal" do
-			%div{:class => "form-group", :class => "homepage-div"}
-				= label :pup, :breed_1, "Breed"
-				= select :pup, :breed_1, @all_breeds, {:class => 'form-control'}
-			%div{:class => "form-group", :class => "homepage-div"}
-				= label :pup, :breed_2, "Second Breed (if a mixed breed)"
-				= select :pup, :breed_2, @all_breeds_none, :class => "form-control"
 
-			%div{:class => "form-group", :class => "button-positioning", :id => "breed-btn"}
-				= submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control", :class => "homepage-button"
+        %div{:class => "col-lg-4 box-b hidden"}
+            %div{:class => "panel panel-default"}
+                %div{:class => "panel-heading"}
+                    %h3{:class => "panel-title"}
+                        Find a pup breed by type or mix:
+                %div{:class => "panel-body"}
+                    = form_tag breed_path, :method => :get, :class => "form-horizontal" do
+                        %div{:class => "form-group", :class => "homepage-div"}
+                            = label :pup, :breed_1, "Breed"
+                            = select :pup, :breed_1, @all_breeds, {:class => 'form-control'}
+                        %div{:class => "form-group", :class => "homepage-div"}
+                            = label :pup, :breed_2, "Second Breed (if a mixed breed)"
+                            = select :pup, :breed_2, @all_breeds_none, :class => "form-control"
+                        %br
+                        %div{:class => "form-group", :class => "button-positioning"}
+                            = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"
 
-	/ %br
-	
-	%div{:class => "col-1-3"}
-		= form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
-			%div{:class => "form-group", :class => "homepage-div"}
-				%input{:type => 'text', :id => 'breeder_find'}
-				%div{:id => 'autofills'}
-			%div{:class => "form-group", :class => "button-positioning", :id => "breeder-btn"}
-				= submit_tag 'Find A Breeder', :id => 'Find Breeder', :class => "form-control", :class => "homepage-button"
+        %div{:class => "col-lg-4 box-b text-center"}
+            %a{:class => "main-button-link button-b"}
+                %div{:class => "main-button"}
+                    %div{:class => "main-button-small-text"}
+                        Find a
+                    %div{:class => "main-button-large-text"}
+                        Breed
 
-	-#%br
+        %div{:class => "col-lg-4 box-c hidden"}
+            %div{:class => "panel panel-default"}
+                %div{:class => "panel-heading"}
+                    %h3{:class => "panel-title"}
+                        Find a pup breeder by name:
+                %div{:class => "panel-body"}
+                    = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
+                        %div{:class => "form-group", :class => "homepage-div"}
+                            %input{:type => 'text', :id => 'breeder_find', :class => "form-control"}
+                            %br
+                            %ul{:id => 'autofills', :class => "list-group"}
+
+        %div{:class => "col-lg-4 box-c text-center"}
+            %a{:class => "main-button-link button-c"}
+                %div{:class => "main-button"}
+                    %div{:class => "main-button-small-text"}
+                        Find a
+                    %div{:class => "main-button-large-text"}
+                        Breeder
+-#%br

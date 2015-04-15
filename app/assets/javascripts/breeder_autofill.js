@@ -44,7 +44,7 @@ var BreederAutofill = {
         for (num in data) {
             var id = data[num].id;
             var name = data[num].name;
-            var html = '<div class="autofills"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + '</a></div>';
+            var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + '</a></li>';
             var autofill = $(html);
             $('#autofills').append(autofill);
 
@@ -55,7 +55,7 @@ var BreederAutofill = {
             });
         }
 
-        var html = '<div class="autofills"><a class="autofill_link" href="breeders/new">' + "Don't see it? Add a new breeder" + '</a></div>';
+        var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeders/new">' + "Don't see it? Add a new breeder" + '</a></li>';
         var autofill = $(html);
         $('#autofills').append(autofill);
     }
