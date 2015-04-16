@@ -1,5 +1,6 @@
 %div{:class=>"container"}
-  %h1 #{query}
+  %div{:class=>"row"}
+    %h1 #{query} 
 
   / %table#avg_ratings
   /   %thead
@@ -22,6 +23,8 @@
       = render 'shared/avg_rating', rating: @avg_ratings[:social_behavior].round(2), width: @avg_ratings[:social_behavior].round(2) * 20, title: 'SOCIAL BEHAVIOR', color: 'progress-bar'
       = render 'shared/avg_rating', rating: @avg_ratings[:energy_level].round(2), width: @avg_ratings[:energy_level].round(2) * 20, title: 'ENERGY LEVEL', color: 'progress-bar'
       = render 'shared/avg_rating', rating: @avg_ratings[:simpatico_rating].round(2), width: @avg_ratings[:simpatico_rating].round(2) * 20, title: 'SIMPATICO RATING', color: 'progress-bar'
+    %div{:class=>"col-sm-4"}
+      = button_to 'Want to submit a rating?', new_pup_path, :method => :get, :id => 'Rate your Pup', :class => "form-control"
     %div{:class=>"col-sm-7"}
       %h3 There are #{@pups.length} ratings for #{query}:
       - @pups.each do |pup|
