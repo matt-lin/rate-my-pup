@@ -83,14 +83,27 @@ h4.great {
   	box-shadow:         2px 4px 5px 0 #ccc;*/
 }
 
-h1.new-pup {
-	padding: 7px 15px;
-	color: #111111;
-	font-size: 33px;
-	font-weight: 600;
-	border-radius: 5px;
-	display: inline-block;
+.header h1 {
+    padding: 7px 15px;
+    color: #111111;
+    font-size: 33px;
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+h2.sub-header {
+    /*padding: 6px 13px;*/
+    color: #111111;
+    font-size: 22px;
+    font-weight: 500;
+    /*border-radius: 4px;*/
+    display: inline-block;
+}
+
+
 
 .great {
 	padding: 7px 15px;

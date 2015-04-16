@@ -1,23 +1,28 @@
 / %body{:style => "background-color:#EBFAFF"}
 %div{:class => "container"}
 
-  %h1{:class => "new-pup"} Create New Pup
+  %div{:class => "header"}
+    %h1 Create New Pup
+
+  %br
+
+  %h2{:class => "sub-header"} Let's get some basic information about your pup!
   
   - flash.each do |key, value|
     %p= value
   / http://bootsnipp.com/user/snippets/0M39d
   = form_tag pups_path, :class => "form-horizontal" do
+    = label :pup, "What's your pups name?"
     %div{:class => "form-group great text-center"}
       = render 'text_input', title: '', var: 'pup_name', placeholder: "Pup Name"
-      %br
-      = render 'text_input', title: '', var: 'owner_name', placeholder: "Owner Name"
     %div{:class => "form-group great row"}
       = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
       = render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2
     %div{:class => "form-group"}
-      = label :pup, :owner_name, 'Breeder Name'
+      = label :pup, :owner_name, 'What Breeder/Kennel did your pup come from?'
       = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Enter Breeder Name"
     %div{:id => 'autofills', :class => "form-group"}
+    = label :pup, 'Time to tell us more about your pup!'
     = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
     = render 'slider_rating', title: "Breeder Responsibility", slider: "slider-breeder", id: "breeder-label", description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent health care and quality of life for their breeding dogs, even after the dogs are done with breeding. We recommend that you ask any dog breeder about their policies before buying a puppy from them. Please rate the breeder of your dog for the level of responsibility they demonstrated.", var: :breeder_responsibility
     = render 'slider_rating', title: "Overall Health", slider: "slider-health", id: "health-label", description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries, since these are beyond the breeder's control.", var: :overall_health
