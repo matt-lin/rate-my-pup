@@ -2,16 +2,16 @@
 / http://bootsnipp.com/snippets/featured/rating-card
 %div{:class=>"container"}
     %div{:class=>"row"}
-        %div{:class=>"col-xs-12 col-sm-10"}
+        %div{:class=>"col-sm-8"}
             %div{:class=>"well well-sm"}
                 %div{:class=>"row"}
-                    %div{:class=>"col-sm-5 pull-left"}
+                    %div{:class=>"col-sm-4 pull-left"}
                         %div{:class=>"row col-sm-5"}
                             / %h4 Comment
                         %div{:class=>"col-sm-11"}
                             %h4 #{pup.comments}
-                    %div{:class=>"col-sm-7 pull-right"}
-                        = render 'shared/rating_comments', width: responsibility, title: "responsiblity", color: 'progress-bar-success'
+                    %div{:class=>"col-sm-8 pull-right"}
+                        = render 'shared/rating_comments', width: responsibility, title: "RESONSIBILITY", color: 'progress-bar-success'
                         = render 'shared/rating_comments', width: health, title: 'health', color: 'progress-bar'
                         = render 'shared/rating_comments', width: train, title: 'train', color: 'progress-bar'
                         = render 'shared/rating_comments', width: social, title: 'social', color: 'progress-bar'
