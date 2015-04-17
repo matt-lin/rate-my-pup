@@ -1,14 +1,11 @@
-%div{:class=>"row rating-desc"}
-    %div{:class=>"col-xs-3 col-md-3 text-right"}
-        %span{:class=>"fa rating-label pull-right row"} 
-            %small{:class=>"rating-label"} #{title}
-    %div{:class=>"col-xs-8 col-md-9 row"}
-        %div{:class=>"comment-progress"}
-            - if width >= 75
-                %div{:class=>"progress-bar progress-bar-success", :role=>"progressbar", :style=>"width: #{width}%"}
-            - elsif width < 50 and width >= 25
-                %div{:class=>"progress-bar progress-bar-warning", :role=>"progressbar", :style=>"width: #{width}%"}
-            - elsif width < 25
-                %div{:class=>"progress-bar progress-bar-danger", :role=>"progressbar", :style=>"width: #{width}%"}
-            - else
-                %div{:class=>"progress-bar progress-bar", :role=>"progressbar", :style=>"width: #{width}%"}
+
+%div{:class=>"col-sm-2"}
+    %div{:class=>"break text-center"}
+        - if width > 3
+            %small{:class=>"score good"} #{width} 
+        - elsif width > 1
+            %small{:class=>"score average"} #{width} 
+        - else 
+            %small{:class=>"score poor"} #{width} 
+        %br
+        %small{:class=>"rating-label"} #{title}

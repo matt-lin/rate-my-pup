@@ -6,9 +6,11 @@
   line-height: 1;
   color: #333;
   text-align: center;
-  white-space: nowrap;
+  /*white-space: wrap;*/
   vertical-align: baseline;
   border-radius: .25em;
+  /*word-wrap: break-word;*/
+  /*white-space: normal;*/
 }
 
 .rating-comment {
@@ -18,6 +20,15 @@
   line-height: 1;
   color: #333;
 }
+
+.rating-c1 {
+  padding: .2em .6em .3em;
+  font-size: 111%;
+  font-weight: 300;
+  line-height: 1;
+  color: #149765;
+}
+
 
 .comment-progress {
   height: 20px;
@@ -33,3 +44,40 @@
   text-align:center;
 }
 .btn.newclass {width:25%; display:block; margin: 0 auto;}
+
+.comment-1 {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #148;
+}
+
+.score {
+  float: left;
+  text-align: center;
+  /*font-family: "league_gothicregular";*/
+  font-size: 35px;
+  padding: 7px 0;
+  background: #fff;
+  margin-right: 20px;
+  width: 40px
+}
+.breakdown .break, .professor-notes .tftable td .rating-block .breakdown .break {
+  float: left;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.score.good{
+  color: #b4d235;
+}
+
+.score.average{
+  color: #f7cc20;
+}
+
+.score.poor {
+  color: #df3d5f;
+}

@@ -5,19 +5,11 @@
         %div{:class=>"col-sm-12"}
             %div{:class=>"well well-sm"}
                 %div{:class=>"row"}
-                    %div{:class=>"col-sm-4 pull-left"}
-                        %div{:class=>"row col-sm-5"}
-                            / %h4 Comment
-                        %div{:class=>"col-sm-12"}
-                            / %div{:class=>"text-left rating-label"}
-                            /     %small COMMENT
-                            %div{:class=>""}
-                                %h4{:class=>"rating-comment"} #{pup.comments}
-                    %div{:class=>"col-sm-8 pull-right"}
-                        = render 'shared/rating_comments', width: responsibility, title: "Breeder Resonsibility", color: 'progress-bar-success'
-                        = render 'shared/rating_comments', width: health, title: 'Pup Health', color: 'progress-bar'
-                        = render 'shared/rating_comments', width: train, title: 'Trainability', color: 'progress-bar'
-                        = render 'shared/rating_comments', width: social, title: 'Social Behavior', color: 'progress-bar'
-                        = render 'shared/rating_comments', width: energy, title: 'Energy Level', color: 'progress-bar'
-                        = render 'shared/rating_comments', width: simpatico, title: 'Simpatico Rating', color: 'progress-bar'
+                    = render 'shared/rating_comments', width: responsibility, title: "Breeder Resonsibility", color: 'progress-bar-success'
+                    = render 'shared/rating_comments', width: health, title: 'Pup Health', color: 'progress-bar'
+                    = render 'shared/rating_comments', width: train, title: 'Trainability', color: 'progress-bar'
+                    = render 'shared/rating_comments', width: social, title: 'Social Behavior', color: 'progress-bar'
+                    = render 'shared/rating_comments', width: energy, title: 'Energy Level', color: 'progress-bar'
+                    = render 'shared/rating_comments', width: simpatico, title: 'Simpatico Rating', color: 'progress-bar'
+                %h4{:class=>"rating-comment"} #{pup.comments}
                     
