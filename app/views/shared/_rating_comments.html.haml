@@ -2,10 +2,10 @@
 %div{:class=>"col-sm-2"}
     %div{:class=>"break text-center"}
         - if width > 3
-            %small{:class=>"score good"} #{width} 
+            %small{:class=>"score good", :id=>"rcorners-good"} #{width} 
         - elsif width > 1
-            %small{:class=>"score average"} #{width} 
+            %small{:class=>"score average", :id=>"rcorners-avg"} #{width} 
         - else 
-            %small{:class=>"score poor"} #{width} 
+            %small{:class=>"score poor", :id=>"rcorners-bad"} #{width} 
         %br
-        %small{:class=>"rating-label"} #{title}
+        %small{:class=>"rating-label row"} #{title}
