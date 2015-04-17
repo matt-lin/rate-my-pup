@@ -19,15 +19,15 @@ Feature: Filter autofill response by breeder city and state
     And I click ".button-c"
 
   Scenario: searching for a breeder with city and state
-    When I enter "George", "Berkeley", "CA" into breeder search
+    When I enter "George", "Waco", "TX" into breeder search
     Then I should see "George W. Bush"
     And I should not see "Alex"
     And I should see "Don't see it? Add a new breeder"
 
   Scenario: search for a breeder without city and state
     When I enter "George", "", "" into breeder search
-    Then I should see "George W. Bush" and "George Michael"
+    Then I should see "George W. Bush"
 
   Scenario: search for a breeder with only state
-    When I Enter "C", "", "CA" into breeder search
-    Then I should see "Carl" and "Chris"
+    When I enter "C", "", "CA" into breeder search
+    Then I should see "Carl"

@@ -17,7 +17,6 @@ Given /the following ratings exist/ do |pups_table|
     # you should arrange to add that movie to the database here.
     Pup.create!(
       pup_name: 'Thor',
-      owner_name: 'Betty',
     	breed_1: rating['breed_1'],
     	breed_2: rating['breed_2'],
     	breeder_responsibility: rating['breeder_responsibility'],
@@ -106,7 +105,7 @@ end
 
 Given(/^the following breeders exist:$/) do |table|
   table.hashes.each do |breeder|
-    FactoryGirl.create(:breeder, :name => breeder[:name])
+    FactoryGirl.create(:breeder, :name => breeder[:name], :city => breeder[:city], :state => breeder[:state])
   end
 end
 
@@ -116,6 +115,12 @@ end
 
 When /^I enter "(.*?)" into autocomplete "(.*?)" with "(.*)"$/ do |value, field, event|
   auto_complete(field, value, event)
+end
+
+When /^I enter "(.*?)", "(.*?)", "(.*?)" into breeder search$/ do |name, city, state|
+  fill("breeder_city", city)
+  fill("breeder_state", state)
+  fill_and_trigger("breeder_find", name, "keyup")
 end
 
 When(/^I am logged in$/) do
@@ -136,6 +141,16 @@ def auto_complete(text_field, value, event='keyup')
   page.execute_script "s = $('##{text_field}');"
   page.execute_script "s.val('#{value}').#{event}();"
 end
+
+def fill(field, value)
+  page.execute_script "$('##{field}').val('#{value}');"
+end
+
+def fill_and_trigger(field, value, event_type)
+  page.execute_script "s = $('##{field}');"
+  page.execute_script "s.val('#{value}').#{event_type}();"
+end
+
 Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
   @expected_message = message
 end
