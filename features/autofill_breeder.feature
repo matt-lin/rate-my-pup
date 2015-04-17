@@ -8,12 +8,12 @@ Feature: autofill breeder name into breeder forms
   Background: breeders have been added to the database
 
     Given the following breeders exist:
-      | name            |
-      | Carl            |
-      | Chris           |
-      | Alex            |
-      | Alexander       |
-      | Michael Jackson |
+      | name            | city     | state |
+      | Carl            | Berkeley | CA    |
+      | Chris           | Berkeley | CA    |
+      | Alex            | Berkeley | CA    |
+      | Alexander       | Berkeley | CA    |
+      | Michael Jackson | Berkeley | CA    |
 
 
     And I am on the RateMyPup home page
