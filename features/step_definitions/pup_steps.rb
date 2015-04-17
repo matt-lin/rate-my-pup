@@ -64,29 +64,12 @@ Then /^I should be on (.+)$/ do |page_name|
   end
 end
 
-#Given /^I submit the following rating:$/ do |pups_table|
-#  pups_table.hashes.each do |rating|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-#    Pup.create(
-#      breed_1: rating['breed_1'],
-#      breed_2: rating['breed_2'],
-#      breeder_responsibility: rating['breeder_responsibility'],
-#      overall_health: rating['overall_health'],
-#      trainability: rating['trainability'],
-#      social_behavior: rating['social_behavior'],
-#      energy_level: rating['energy_level'],
-#      simpatico_rating: rating['simpatico_rating'],
-#      comments: rating['comments'],
-#      breeder_id: rating['breeder_id'])
-#      fill_in()
-#  end
-#end
-
 When /^I fill out the form with the following attributes:$/ do |pups_table|
+  # puts page.body
+  page.evaluate_script "$('#multiple_breeds').trigger('click');"
   pups_table.hashes.each do |rating|
-    select rating['breed_1'], :from => 'Primary Breed'
-    select rating['breed_2'], :from => 'Secondary Breed'
+    page.select rating['breed_1'], :from => 'Primary Breed'
+    page.select rating['breed_2'], :from => 'Secondary Breed'
     slide('slider-breeder', rating['breeder_responsibility'])
     slide('slider-health', rating['overall_health'])
     slide('slider-train', rating['trainability'])
@@ -95,7 +78,6 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
     slide('slider-simpatico', rating['simpatico_rating'])
     fill_in 'Comments', :with => rating['comments']
     fill_in 'Pup Name', :with => rating['pup_name']
-    fill_in 'Owner Name', :with => rating['owner_name']
   end
 end
 

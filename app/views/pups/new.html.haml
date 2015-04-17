@@ -17,8 +17,8 @@
     %div{:class => "form-group great text-center", :class => "sub-title"}
       = label :pup, "What's your pup's name?"
       %br
-      = render 'text_input', title: '', var: 'pup_name', placeholder: "Name"
-    = render 'breed_checkbox'
+      = render 'text_input', title: 'Pup Name', var: 'pup_name', placeholder: "Name"
+      = render 'breed_checkbox'
     %div{:class => "form-group", :class => "sub-title"}
       = label :pup, 'What breeder/kennel did your pup come from?'
       = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Breeder/Kennel Name"

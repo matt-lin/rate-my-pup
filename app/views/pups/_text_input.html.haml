@@ -1,9 +1,4 @@
 / = label :pup, :pup_name, title
 / = text_field :pup, var, :class => "form-control", :placeholder => placeholder
-
-%div{:class => "col-sm-10 row text-center"}
-	/ %div{:class => "col-sm-3"}
-	/ 	%p #{title}
-	%div{:class => "col-sm-5 text-center"}	
-		= text_field :pup, var, :class => "form-control", :placeholder => placeholder
-%br
+= label :pup, var, title
+= text_field :pup, var, :class => "form-control", :placeholder => placeholder
