@@ -6,7 +6,7 @@
   line-height: 1;
   color: #333;
   text-align: center;
-  /*white-space: wrap;*/
+  white-space: wrap;
   vertical-align: baseline;
   border-radius: .25em;
   /*word-wrap: break-word;*/
@@ -19,6 +19,7 @@
   font-weight: 300;
   line-height: 1;
   color: #333;
+  background-color: #fff;
 }
 
 .rating-c1 {
@@ -62,7 +63,7 @@
   padding: 7px 0;
   background: #fff;
   margin-right: 20px;
-  width: 50px;
+  width: 100%;
   border-radius: 15px;
 }
 .breakdown .break, .professor-notes .tftable td .rating-block .breakdown .break {
@@ -88,6 +89,6 @@
 }
 
 .score.poor {
-  color: #df3d5f;
-  border: 2px solid #df3d5f;
+  color: #ff3333;
+  border: 2px solid #ff3333;
 }

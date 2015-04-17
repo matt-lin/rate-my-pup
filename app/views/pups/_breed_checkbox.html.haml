@@ -1,7 +1,10 @@
-%div{:class => "form-group great row", :class => "sub-title"}
-  %div{:class => "checkbox_text"}
+%div{:class => "form-group great row"}
+  %div{:class => "sub-title"}
+    =label :pup, "What kind of pup do you have?"
+  %div{:class => "checkbox_text", :class => "sub-title"}
     = label :pup, :breed_1, "Primary Breed"
     = check_box_tag :multiple_breeds
+    %br
     = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
   %div{:id => "secondary-breed"}
     = label :pup, :breed_2, "Secondary Breed"
