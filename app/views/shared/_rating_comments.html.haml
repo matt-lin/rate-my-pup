@@ -3,9 +3,7 @@
     %div{:class=>"break text-center"}
         - if width > 3
             %small{:class=>"score good"} #{width} 
-        - elsif width == 3
-            %small{:class=>"score okay"} #{width} 
-        - elsif width == 2
+        - elsif width > 1
             %small{:class=>"score average"} #{width} 
         - else 
             %small{:class=>"score poor"} #{width} 
