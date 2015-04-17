@@ -50,12 +50,9 @@ Scenario: make sure all fields are full
 
 Scenario: show secondary breed dropdown when submitting a mixed breed dog
     Given I am on the "Create New Pup" page
-    When I click "My dog is a mixed breed"
-    Then I should see "Secondary breed"
+    Then I should see Secondary breed after clicking My dog is a mixed breed
 
 Scenario: make sure mixed breed button toggles
     Given I am on the "Create New Pup" page
-    When I click "My dog is a mixed breed"
-    Then I should see "Secondary breed"
-    And when I click "My dog is not a mixed breed"
-    Then I should not see "Secondary breed"
+    Then I should see Secondary breed after clicking My dog is a mixed breed
+    Then I should not see Secondary breed after clicking My dog is a mixed breed

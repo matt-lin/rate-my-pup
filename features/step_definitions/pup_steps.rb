@@ -112,6 +112,16 @@ When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
   click_button "Find a Breed"
 end
 
+Then /^I should( not)? see Secondary breed after clicking My dog is a mixed breed/ do |negatory|
+  page.evaluate_script "$('#multiple_breeds').trigger('click');"
+  if negatory != nil
+    expect(page).to have_selector('#multiple_breeds', visible: false)
+  else
+    expect(page).to have_selector('#multiple_breeds', visible: true)
+  end
+end
+
+
 When(/^I am logged in$/) do
   @user = FactoryGirl.create(:user)
   click_link("Login")
