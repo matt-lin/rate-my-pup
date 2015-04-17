@@ -105,6 +105,13 @@ When /^I enter "(.*?)", "(.*?)", "(.*?)" into breeder search$/ do |name, city, s
   fill_and_trigger("breeder_find", name, "keyup")
 end
 
+When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
+  select breed1, :from => 'Primary Breed'
+  page.evaluate_script "$('#multiple_breeds').trigger('click');"
+  select breed2, :from => 'Secondary Breed'
+  click_button "Find a Breed"
+end
+
 When(/^I am logged in$/) do
   @user = FactoryGirl.create(:user)
   click_link("Login")

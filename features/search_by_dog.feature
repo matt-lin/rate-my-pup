@@ -29,9 +29,7 @@ Scenario: search for single breed of dog
     And I should see "Such review. Wow."
 
 Scenario: search for secondary breed of dog
-    When I select "Poodle" from "pup_breed_1"
-    When I select "Cocker Spaniel" from "pup_breed_2"
-    And I press "Find a Breed"
+    When I select "Poodle" and "Cocker Spaniel" and search
     Then I should see "3.5"
     And I should see "4.5"
     And I should see "The greatest poodle ever."
@@ -39,7 +37,5 @@ Scenario: search for secondary breed of dog
     And I should not see "Very aloof."
 
 Scenario: see correct number of ratings
-    When I select "Poodle" from "pup_breed_1"
-    When I select "Cocker Spaniel" from "pup_breed_2"
-    And I press "Find a Breed"
+    When I select "Poodle" and "Cocker Spaniel" and search
     Then I should see "There are 2 ratings"
