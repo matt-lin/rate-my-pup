@@ -42,6 +42,4 @@ Feature: only users with a user profile should be able to submit a rating
       | Erik               | Justin          | Golden Retriever   | None            | 2                      | 5              | 3            | 4               | 4            | 4                | My favorite of my three dogs.     | 2                 |
     And I press "Add Pup"
     Then I should see "My favorite of my three dogs."
-    And I should see "Justin"
-    And I should see "Erik"
     And I should see "Golden Retriever"
