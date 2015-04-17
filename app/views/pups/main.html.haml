@@ -31,12 +31,7 @@
                         Find a pup breed by type or mix:
                 %div{:class => "panel-body"}
                     = form_tag breed_path, :method => :get, :class => "form-horizontal" do
-                        %div{:class => "form-group", :class => "homepage-div"}
-                            = label :pup, :breed_1, "Breed"
-                            = select :pup, :breed_1, @all_breeds, {:class => 'form-control'}
-                        %div{:class => "form-group", :class => "homepage-div"}
-                            = label :pup, :breed_2, "Second Breed (if a mixed breed)"
-                            = select :pup, :breed_2, @all_breeds_none, :class => "form-control"
+                        = render 'breed_checkbox'
                         %br
                         %div{:class => "form-group", :class => "button-positioning"}
                             = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"

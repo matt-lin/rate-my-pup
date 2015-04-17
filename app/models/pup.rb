@@ -3,7 +3,6 @@ class Pup < ActiveRecord::Base
   belongs_to :breeder
 
   validates :pup_name, :presence => true
-  validates :owner_name, :presence => true
   validates :breed_1, :presence => true
   validates :breeder_responsibility, :presence => true
   validates :overall_health, :presence => true
@@ -22,7 +21,7 @@ class Pup < ActiveRecord::Base
     errors.add(:comment, 'Limit comments to 140 characters') if comments && comments.length > 140
   end
   
-	attr_accessible :pup_name, :owner_name, :breeder_id, :breed_1, :breed_2, :breeder_responsibility, :overall_health,
+	attr_accessible :pup_name, :breeder_id, :breed_1, :breed_2, :breeder_responsibility, :overall_health,
                   :trainability, :social_behavior, :energy_level, :simpatico_rating, :comments, :kennel
 
   def Pup.find_by_breeds(breed_1, breed_2 = 'None')

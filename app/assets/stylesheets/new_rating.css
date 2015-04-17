@@ -149,6 +149,15 @@ h4.great {
   	box-shadow:         0 5px 5px 0 #ccc;*/
 }
 
+#secondary-breed {
+    display: none;
+}
+
+.checkbox_text {
+    font-style: italic;
+    font-size: 13px;
+}
+
 .tag-holder a {
 	font-family: "Source Sans Pro";
 	text-transform: uppercase;
