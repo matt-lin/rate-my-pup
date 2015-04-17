@@ -42,7 +42,7 @@ Scenario: make sure all fields are full
     Given I am on the "Create New Pup" page
     When I fill out the form with the following attributes:
     | pup_name            | owner_name        | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          |
-    | Thor                |                   | Pug                | None            | 1                      | 5              | 3            | 4               | 4            | 4                ||
+    |                     |                   | Pug                | None            | 1                      | 5              | 3            | 4               | 4            | 4                ||
     And I enter "George W. Bush" into autocomplete "breeder_form" with "click"
     And I press "Add Pup"
     Then I should see "Please make sure all fields are complete!"
