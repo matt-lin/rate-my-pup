@@ -22,8 +22,8 @@ class Breeder < ActiveRecord::Base
     limit == 0 ? results.all : results.limit(limit)
   end
 
-  def Breeder.find_or_create(name, website="")
-    Breeder.where(:name => name,).first ||
+  def Breeder.find_or_create(name, city, state, website="")
+    Breeder.where("name = ? AND city = ? and state = ?", name, city, state).first ||
         Breeder.create!(:name => name, :website => website)
   end
 end

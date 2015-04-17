@@ -23,12 +23,12 @@ describe BreedersController do
     before :each do
       @breeder = FactoryGirl.create(:breeder, :name => "Mcgoo", :location => "90210")
       @breeder_build = FactoryGirl.build(:breeder, :name => "Jmac", :location => "94704")
-      @params = {:name => "Jmac"}
+      @params = {:name => "Jmac", :city => "Berkeley", :state => "CA"}
     end
 
     it "should create new breeder and redirect to create pups page" do
       Breeder.should_receive(:find_or_create)
-          .with(@params[:name], @params[:website])
+          .with(@params[:name], @params[:city], @params[:state])
           .and_return([@breeder_build, "Erik"])
       post :create, {:breeder => @params}, {:pup => {}}
       response.should redirect_to create_pup_path(:pup => {:breeder_id => @breeder_build.id})
@@ -36,7 +36,7 @@ describe BreedersController do
 
     it "should redirect to main page if not creating new pup" do
       Breeder.should_receive(:find_or_create)
-          .with(@params[:name], @params[:website])
+          .with(@params[:name], @params[:city], @params[:state])
           .and_return([@breeder_build, "Erik"])
       post :create, {:breeder => @params}
       response.should redirect_to root_path

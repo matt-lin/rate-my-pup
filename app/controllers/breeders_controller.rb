@@ -24,8 +24,8 @@ class BreedersController < ApplicationController
   end
 
   def create
-    name, location, website = params[:breeder][:name], params[:breeder][:location], params[:breeder][:website]
-    breeder, message = Breeder.find_or_create(name, website)
+    name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
+    breeder, message = Breeder.find_or_create(name, city, state)
     if session[:pup]
       session[:pup][:breeder_id] = breeder.id
       redirect_to create_pup_path(:pup => session[:pup])

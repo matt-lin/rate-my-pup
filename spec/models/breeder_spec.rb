@@ -18,11 +18,11 @@ describe Breeder do
   end
   describe "find or create breeder by name nad location" do
     it "should not create new breeder" do
-      breeder = FactoryGirl.create(:breeder, :name => "Mcgoo", :location => "94704")
-      Breeder.find_or_create("Mcgoo", "94704").should == breeder
+      breeder = FactoryGirl.create(:breeder, :name => "Mcgoo")
+      Breeder.find_or_create("Mcgoo", "Berkeley", "CA").should == breeder
     end
     it "should create new breeder" do
-      breeder = Breeder.find_or_create("Jmac", "www.jmac.com")
+      breeder = Breeder.find_or_create("Jmac", "Berkeley", "CA")
       Breeder.where(:name => "Jmac").first.should == breeder
     end
   end
