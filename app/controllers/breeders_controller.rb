@@ -10,7 +10,7 @@ class BreedersController < ApplicationController
   end
 
   def substring_match
-    render :json => Breeder.find_by_substring(params[:name], params[:limit].to_i)
+    render :json => Breeder.find_by_substring(params[:name], params[:city], params[:state], params[:limit].to_i)
   end
 
   def search_name
@@ -25,7 +25,7 @@ class BreedersController < ApplicationController
 
   def create
     name, location, website = params[:breeder][:name], params[:breeder][:location], params[:breeder][:website]
-    breeder, message = Breeder.find_or_create(name, location, website)
+    breeder, message = Breeder.find_or_create(name, website)
     if session[:pup]
       session[:pup][:breeder_id] = breeder.id
       redirect_to create_pup_path(:pup => session[:pup])

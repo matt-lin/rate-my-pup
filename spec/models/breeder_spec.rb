@@ -22,7 +22,7 @@ describe Breeder do
       Breeder.find_or_create("Mcgoo", "94704").should == breeder
     end
     it "should create new breeder" do
-      breeder = Breeder.find_or_create("Jmac", "94704", "www.jmac.com")
+      breeder = Breeder.find_or_create("Jmac", "www.jmac.com")
       Breeder.where(:name => "Jmac").first.should == breeder
     end
   end
@@ -32,17 +32,17 @@ describe Breeder do
       @other_breeders = (1..5).map { |i| FactoryGirl.create(:breeder, :name => "Tedus") }
     end
     it "should find all the breeders input into database" do
-      Breeder.find_by_substring("Ted").should == @breeders + @other_breeders
+      Breeder.find_by_substring("Ted", "Berkeley", "CA").should == @breeders + @other_breeders
     end
     it "should only return 5 breeders input" do
-      breeders = Breeder.find_by_substring("Ted", 5)
+      breeders = Breeder.find_by_substring("Ted", "Berkeley", "CA", 5)
       breeders.each do |breeder|
         assert(@breeders.include?(breeder) || @other_breeders.include?(breeder), "Breeder not in those created")
       end
       breeders.size.should == 5
     end
     it "should only find the 'Teddy' breeders" do
-      Breeder.find_by_substring("Teddy", 0).each do |breeder|
+      Breeder.find_by_substring("Teddy", "Berkeley", "CA", 0).each do |breeder|
         assert(@breeders.include?(breeder), "Breeder not in the 'Teddy' breeders array")
       end
     end

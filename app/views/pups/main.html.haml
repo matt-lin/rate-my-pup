@@ -57,8 +57,13 @@
                 %div{:class => "panel-body"}
                     = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
                         %div{:class => "form-group", :class => "homepage-div"}
-                            %input{:type => 'text', :id => 'breeder_find', :class => "form-control"}
-                            %br
+                            %div{:class => "col-md-12"}
+                                %input{:type => 'text', :id => 'breeder_find', :class => "form-control", :placeholder => "Name"}
+                                %br
+                            %div{:class => "col-md-6"}
+                                %input{:type => 'text', :id => 'breeder_city', :class => "form-control", :placeholder => "City"}
+                            %div{:class => "col-md-6"}
+                                %input{:type => 'text', :id => 'breeder_state', :class => "form-control", :placeholder => "State"}
                             %ul{:id => 'autofills', :class => "list-group"}
 
         %div{:class => "col-lg-4 box-c text-center"}

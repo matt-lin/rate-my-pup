@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :breeder do
     name 'Teddy Roosevelt'
-    location 'Berkeley, Ca'
+    city 'Berkeley'
+    state 'CA'
     website 'www.ratemypup.com'
   end
 end

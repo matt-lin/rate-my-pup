@@ -21,11 +21,15 @@ var BreederAutofill = {
 
         // grab prefix from either find or form text
         var prefix = success_type == 'find' ? $("#breeder_find").val() : $('#breeder_form').val();
+        var city = success_type == 'find'? $("#breeder_city").val() : "";
+        var state = success_type == 'find' ? $("#breeder_state").val() : "";
         $.ajax({
             type: 'GET',
             url: '/breeder/match',
             data: {
                 "name": prefix,
+                "city": city,
+                "state": state,
                 "limit": 10
             },
             timeout: 5000,
@@ -47,6 +51,7 @@ var BreederAutofill = {
             var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + '</a></li>';
             var autofill = $(html);
             $('#autofills').append(autofill);
+            console.log($("#autofills").html())
 
             // bind autofill on scroll over option
             autofill.mouseover(function() {

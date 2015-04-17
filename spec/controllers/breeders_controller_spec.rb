@@ -23,12 +23,12 @@ describe BreedersController do
     before :each do
       @breeder = FactoryGirl.create(:breeder, :name => "Mcgoo", :location => "90210")
       @breeder_build = FactoryGirl.build(:breeder, :name => "Jmac", :location => "94704")
-      @params = {:name => "Jmac", :location => "94704"}
+      @params = {:name => "Jmac"}
     end
 
     it "should create new breeder and redirect to create pups page" do
       Breeder.should_receive(:find_or_create)
-          .with(@params[:name], @params[:location], @params[:website])
+          .with(@params[:name], @params[:website])
           .and_return([@breeder_build, "Erik"])
       post :create, {:breeder => @params}, {:pup => {}}
       response.should redirect_to create_pup_path(:pup => {:breeder_id => @breeder_build.id})
@@ -36,7 +36,7 @@ describe BreedersController do
 
     it "should redirect to main page if not creating new pup" do
       Breeder.should_receive(:find_or_create)
-          .with(@params[:name], @params[:location], @params[:website])
+          .with(@params[:name], @params[:website])
           .and_return([@breeder_build, "Erik"])
       post :create, {:breeder => @params}
       response.should redirect_to root_path
@@ -57,8 +57,8 @@ describe BreedersController do
     end
 
     it "should send a limited number of breeders starting with given string" do
-      Breeder.should_receive(:find_by_substring).with("Teddy", 0).and_return(@breeders)
-      xhr :get, :substring_match, {:name => "Teddy", :limit => 0}
+      Breeder.should_receive(:find_by_substring).with("Teddy", "Berkeley", "CA", 0).and_return(@breeders)
+      xhr :get, :substring_match, {:name => "Teddy", :city => "Berkeley", :state => "CA", :limit => 0}
       response.body.should == @breeders.to_json
     end
 

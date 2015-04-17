@@ -1,6 +1,6 @@
 class Breeder < ActiveRecord::Base
   has_many :pups
-  attr_accessible :name, :location, :website, :kennel
+  attr_accessible :name, :city, :state, :website, :kennel
 
   def avg_pup_rating
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
@@ -12,13 +12,18 @@ class Breeder < ActiveRecord::Base
     Hash[results_hash.map { |k,v| [k, v.to_f/pups.length.to_f]}]
   end
 
-  def Breeder.find_by_substring(sub_string, limit=0)
-    results = Breeder.where("name LIKE ?", "#{sub_string}%")
+  def Breeder.find_by_substring(name, city, state, limit=0)
+    results = Breeder.where(
+        "name LIKE ? AND state LIKE ? AND city LIKE ?",
+        "#{name}%",
+        "#{state}%",
+        "#{city}%"
+    )
     limit == 0 ? results.all : results.limit(limit)
   end
 
-  def Breeder.find_or_create(name, location, website="")
-    Breeder.where(:name => name, :location => location).first ||
-        Breeder.create!(:name => name, :location => location, :website => website)
+  def Breeder.find_or_create(name, website="")
+    Breeder.where(:name => name,).first ||
+        Breeder.create!(:name => name, :website => website)
   end
 end
