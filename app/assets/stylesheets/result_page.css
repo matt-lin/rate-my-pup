@@ -58,11 +58,11 @@
   float: left;
   text-align: center;
   /*font-family: "league_gothicregular";*/
-  font-size: 35px;
+  font-size: 25px;
   padding: 7px 0;
   background: #fff;
   margin-right: 20px;
-  width: 60px;
+  width: 50px;
   border-radius: 15px;
 }
 .breakdown .break, .professor-notes .tftable td .rating-block .breakdown .break {
@@ -75,6 +75,12 @@
   color: #b4d235;
   border: 2px solid #8AC007;
 }
+
+.score.okay{
+  color: #337ab7;
+  border: 2px solid #337ab7;
+}
+
 
 .score.average{
   color: #f7cc20;
