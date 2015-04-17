@@ -94,7 +94,7 @@ h4.great {
     margin-left: auto;
 }
 
-h2.sub-header {
+.sub-header {
     /*padding: 6px 13px;*/
     color: #111111;
     font-size: 22px;
@@ -103,7 +103,14 @@ h2.sub-header {
     display: inline-block;
 }
 
-
+.sub-title {
+    color: #111111;
+    font-size: 16px;
+    font-weight: 500;
+    /*margin-top: 40px;*/
+    margin-bottom: 40px;
+    /*border-radius: 4px;*/
+}
 
 .great {
 	padding: 7px 15px;

@@ -6,23 +6,33 @@
 
   %br
 
-  %h2{:class => "sub-header"} Let's get some basic information about your pup!
+  %div{:class => "sub-header"}
+    %h3 Let's get some basic information about your pup!
   
   - flash.each do |key, value|
     %p= value
   / http://bootsnipp.com/user/snippets/0M39d
   = form_tag pups_path, :class => "form-horizontal" do
-    = label :pup, "What's your pups name?"
-    %div{:class => "form-group great text-center"}
+    %br
+    %div{:class => "form-group great text-center", :class => "sub-title"}
+      = label :pup, "What's your pup's name?"
+      %br
       = render 'text_input', title: '', var: 'pup_name', placeholder: "Pup Name"
-    %div{:class => "form-group great row"}
+    %br
+    %div{:class => "form-group great row", :class => "sub-title"}
+      = label :pup, "What type of pup do you have?"
       = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
       = render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2
-    %div{:class => "form-group"}
+    %br
+    %div{:class => "form-group", :class => "sub-title"}
+      %br
       = label :pup, :owner_name, 'What Breeder/Kennel did your pup come from?'
       = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Enter Breeder Name"
+
+  %div{:class => "sub-header"}
+    %h3 How would you rate your pup?
+
     %div{:id => 'autofills', :class => "form-group"}
-    = label :pup, 'Time to tell us more about your pup!'
     = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
     = render 'slider_rating', title: "Breeder Responsibility", slider: "slider-breeder", id: "breeder-label", description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent health care and quality of life for their breeding dogs, even after the dogs are done with breeding. We recommend that you ask any dog breeder about their policies before buying a puppy from them. Please rate the breeder of your dog for the level of responsibility they demonstrated.", var: :breeder_responsibility
     = render 'slider_rating', title: "Overall Health", slider: "slider-health", id: "health-label", description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries, since these are beyond the breeder's control.", var: :overall_health
@@ -32,10 +42,13 @@
     = render 'slider_rating', title: "Simpatico Rating", slider: "slider-simpatico", id: "simpatico-label", description: "Some dogs just seem to have what it takes to be the ultimate companion to 'their' human. These dogs have the desire to please, the ability to communicate, an attitude of attentiveness, and the capacity to forge a relationship based on mutual respect and affection. We call these dogs Simpatico Dogs. Please give your dog an overall Simpatico rating, based on the overall compatibility that your dog has and the depth of the relationship you share.", var: :simpatico_rating
     %div{:class => "row"}
       = render 'tags_input'
-    %div{:class => "form-group"}
-      = label :pup, :comments, 'Comments'
-      = text_field :pup, 'comments', :class => "form-control"
-    %div{:class => "form-group"}
-      = submit_tag 'Add Pup', :id => 'Add Pup', :class => "form-control", :confirm => "Please provide a rating for your dog only if you are certain that the dog belongs to a recognized breed, or is a mix between two specific recognized breeds. Genetic testing has shown that dogs who appear to be a purebred or a mix of two particular breeds often prove to actually have a very different genetic heritage. To keep our database of breed information as accurate as possible, please submit data only for dogs of known breeding. Are you sure you want to submit this rating?"
+
+  %div{:class => "sub-header"}
+    %h3 Tell us more!
+
+  %div{:class => "form-group"}
+    = text_field :pup, 'comments', :class => "form-control", :placeholder => "Comments"
+  %div{:class => "form-group"}
+    = submit_tag 'Add Pup', :id => 'Add Pup', :class => "form-control", :confirm => "Please provide a rating for your dog only if you are certain that the dog belongs to a recognized breed, or is a mix between two specific recognized breeds. Genetic testing has shown that dogs who appear to be a purebred or a mix of two particular breeds often prove to actually have a very different genetic heritage. To keep our database of breed information as accurate as possible, please submit data only for dogs of known breeding. Are you sure you want to submit this rating?"
   %script{:src=>"https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"}
 
