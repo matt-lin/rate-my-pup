@@ -11,6 +11,8 @@
                 %div{:class => "panel-heading"}
                     %h3{:class => "panel-title"}
                         Rate a puppy that you've purchased from a breeder:
+                        %span{:id => "cancel-a"}
+                            %a{:class => "cancel"} &#10006;
                 %div{:class => "panel-body"}
                     %div{:class => "form-group", :class => "button-positioning"}
                         = button_to 'Rate your Pup', new_pup_path, :method => :get, :id => 'Rate your Pup', :class => "form-control"
@@ -29,6 +31,8 @@
                 %div{:class => "panel-heading"}
                     %h3{:class => "panel-title"}
                         Find a pup breed by type or mix:
+                        %span{:id => "cancel-b"}
+                            %a{:class => "cancel"} &#10006;
                 %div{:class => "panel-body"}
                     = form_tag breed_path, :method => :get, :class => "form-horizontal" do
                         = render 'breed_checkbox'
@@ -49,6 +53,8 @@
                 %div{:class => "panel-heading"}
                     %h3{:class => "panel-title"}
                         Find a pup breeder by name:
+                        %span{:id => "cancel-c"}
+                            %a{:class => "cancel"} &#10006;
                 %div{:class => "panel-body"}
                     = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
                         %div{:class => "form-group", :class => "homepage-div"}

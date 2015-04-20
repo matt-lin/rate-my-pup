@@ -12,16 +12,28 @@ var MainButtons = {
             $('#tagline-text').html("Keep breeders <strong>honest</strong> by rating your pup");
         });
 
+        $('#cancel-a').click( function() {
+            $('.box-a').toggleClass("hidden");
+        });
+
         $('.button-b').click( function() {
             $('.box-b').toggleClass("hidden");
         }).hover( function() {
             $('#tagline-text').html("Find the <strong>right</strong> breed for you");
         });
 
+        $('#cancel-b').click( function() {
+            $('.box-b').toggleClass("hidden");
+        });
+
         $('.button-c').click( function() {
             $('.box-c').toggleClass("hidden");
         }).hover( function() {
             $('#tagline-text').html("Find a pup from a <strong>reliable</strong> breeder");
+        });
+
+        $('#cancel-c').click( function() {
+            $('.box-c').toggleClass("hidden");
         });
     }
 };

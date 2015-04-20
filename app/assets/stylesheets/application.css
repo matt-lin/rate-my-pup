@@ -15,6 +15,12 @@
  *= require jquery-ui
  */
 
+body {
+    background-size: cover;
+    -webkit-transition: background-image 1.5s ease-in;
+    transition: background-image 1.5s ease-in;
+}
+
 .warning {
     font-size: 20px;
     color: red;
@@ -120,4 +126,13 @@
 #tagline {
     margin: 100px;
     text-align: center;
+}
+
+#cancel-a, #cancel-b, #cancel-c {
+    float: right;
+    cursor: pointer;
+}
+
+.cancel, .cancel:hover {
+    text-decoration: none;
 }
