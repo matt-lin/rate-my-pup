@@ -11,15 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150417051332) do
+ActiveRecord::Schema.define(:version => 20150330094402) do
 
   create_table "breeders", :force => true do |t|
     t.string "name"
     t.string "location"
     t.string "website"
     t.string "kennel"
-    t.string "city"
-    t.string "state"
   end
 
   create_table "pups", :force => true do |t|
