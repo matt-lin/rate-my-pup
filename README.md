@@ -3,6 +3,7 @@ README.md
 
 
 Dream Team CS 169 - RateMyPup
+![Build Status](https://travis-ci.org/eabartlett/ratemypup.svg?branch=master)
 
 
 
