@@ -17,6 +17,9 @@ class PupsController < ApplicationController
   end
 
   def new
+    if not user_signed_in?
+      redirect_to '/users/sign_in'
+    end
     @all_breeds = Pup.all_breeds
     @all_breeds_none = Pup.all_breeds_none
   end
