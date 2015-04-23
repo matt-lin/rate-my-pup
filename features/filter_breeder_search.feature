@@ -2,7 +2,7 @@
 Feature: Filter autofill response by breeder city and state
 
   As a prospective dog owner
-  So that I can quickly breeders in my area
+  So that I can quickly find breeders in my area
   I want to be able to filter breeders by there city and state
 
   Background: breeders have been added to the database
