@@ -4,7 +4,7 @@ $(document).ready(function() {
               value: 0,
               min: 0,
               max: 5,
-              step: 1,
+              step: 0.5,
               slide: function(event, ui) {
                   update(1,ui.value); //changed
               }
@@ -16,7 +16,7 @@ $(document).ready(function() {
               value: 0,
               min: 0,
               max: 5,
-              step: 1,
+              step: 0.5,
               slide: function(event, ui) {
                   update(2,ui.value); //changed
               }
@@ -26,7 +26,7 @@ $(document).ready(function() {
               value: 0,
               min: 0,
               max: 5,
-              step: 1,
+              step: 0.5,
               slide: function(event, ui) {
                   update(3,ui.value); //changed
               }
@@ -36,7 +36,7 @@ $(document).ready(function() {
               value: 0,
               min: 0,
               max: 5,
-              step: 1,
+              step: 0.5,
               slide: function(event, ui) {
                   update(4,ui.value); //changed
               }
@@ -46,7 +46,7 @@ $(document).ready(function() {
               value: 0,
               min: 0,
               max: 5,
-              step: 1,
+              step: 0.5,
               slide: function(event, ui) {
                   update(5,ui.value); //changed
               }
@@ -56,7 +56,7 @@ $(document).ready(function() {
               value: 0,
               min: 0,
               max: 5,
-              step: 1,
+              step: 0.5,
               slide: function(event, ui) {
                   update(6,ui.value); //changed
               }
