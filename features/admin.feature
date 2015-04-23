@@ -18,6 +18,20 @@ Feature: An admin should be able to edit, delete, and change comments
       | Shiba Inu 	  	    | None 			 | 3 					  | 4 			   | 4 			  | 5 				| 4 		   | 2 				  | Such review. Wow. 				  | 1              |
     And I am on the RateMyPup home page
 
+  Scenario: A user that is an admin should be able to see the admin page button and go to the admin page home
+    Given I am logged in
+    And I am an admin
+    And I am on the RateMyPup home page
+    Then I should see the admin page button
+    And I click the admin page button
+    Then I should see "Comments"
+
+  Scenario: A user that is not an admin should not be able to see the admin page button
+    Given I am logged in
+    And I am not an admin
+    And I am on the RateMyPup home page
+    Then I should not see the admin page button
+
   Scenario: An admin should be able to see all the comments in the database
     Given I am on the admin page
     And I click the comments button
