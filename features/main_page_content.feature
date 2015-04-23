@@ -9,5 +9,21 @@ Background:
     Given I am on the RateMyPup home page
     And I am logged in
 
-Scenario: submit new review for single breed dog
-    Given I am on the "Home" page
+Scenario: information content on main page 
+    Given I am on the RateMyPup home page
+    Then I should see "Mission Statement"
+    And I should see "Contact"
+
+
+Scenario: Hover over buttons should show hidden div 
+    Given I am on the RateMyPup home page
+    When I hover over ".button-b"
+    Then I should see "Find a pup breed by type or mix:"
+    When I hover over ".button-b"
+    Then I should see "Find a pup breeder by name:"
+
+Scenario: Direct to rate your pup 
+    Given I am on the RateMyPup home page
+    When I click ".button-a"
+    Then I should be on the "Create New Pup" page
+
