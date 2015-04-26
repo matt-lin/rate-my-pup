@@ -31,20 +31,24 @@ describe Breeder do
       @breeders = (1..10).map { |i| FactoryGirl.create(:breeder) }
       @other_breeders = (1..5).map { |i| FactoryGirl.create(:breeder, :name => "Tedus") }
     end
-    it "should find all the breeders input into database" do
-      Breeder.find_by_substring("Ted", "Berkeley", "CA").should == @breeders + @other_breeders
-    end
-    it "should only return 5 breeders input" do
-      breeders = Breeder.find_by_substring("Ted", "Berkeley", "CA", 5)
-      breeders.each do |breeder|
-        assert(@breeders.include?(breeder) || @other_breeders.include?(breeder), "Breeder not in those created")
+    describe "find by city, state, name" do
+      it "should find all the breeders input into database" do
+        Breeder.find_by_substring("Ted", "Berkeley", "CA").should == @breeders + @other_breeders
       end
-      breeders.size.should == 5
-    end
-    it "should only find the 'Teddy' breeders" do
-      Breeder.find_by_substring("Teddy", "Berkeley", "CA", 0).each do |breeder|
-        assert(@breeders.include?(breeder), "Breeder not in the 'Teddy' breeders array")
+      it "should only return 5 breeders input" do
+        breeders = Breeder.find_by_substring("Ted", "Berkeley", "CA")
+        breeders.each do |breeder|
+          assert(@breeders.include?(breeder) || @other_breeders.include?(breeder), "Breeder not in those created")
+        end
       end
+      it "should only find the 'Teddy' breeders" do
+        Breeder.find_by_substring("Teddy", "Berkeley", "CA").each do |breeder|
+          assert(@breeders.include?(breeder), "Breeder not in the 'Teddy' breeders array")
+        end
+      end
+    end
+    describe "find by city, state, name, or breed" do
+      it "should find all "
     end
   end
 end

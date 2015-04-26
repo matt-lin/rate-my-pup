@@ -25,9 +25,8 @@ class Pup < ActiveRecord::Base
                   :trainability, :social_behavior, :energy_level, :simpatico_rating, :comments, :kennel
 
   def Pup.find_by_breeds(breed_1, breed_2 = 'None')
-    Rails.logger.info breed_1 + breed_2 if breed_2
     breed_2 = breed_2 || 'None'
-    Pup.where(:breed_1 => breed_1, :breed_2 => breed_2) + Pup.where(:breed_1 => breed_2, :breed_2 => breed_1)
+    Pup.where("breed_1 = ? AND breed_2 = ? OR breed_1 = ? AND breed_2 = ?", breed_1, breed_2, breed_2, breed_1)
   end
 
   def Pup.avg_ratings_by_breeds(breed_1, breed_2 = 'None')

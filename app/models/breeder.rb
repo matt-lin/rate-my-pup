@@ -12,13 +12,21 @@ class Breeder < ActiveRecord::Base
     Hash[results_hash.map { |k,v| [k, v.to_f/pups.length.to_f]}]
   end
 
-  def Breeder.find_by_substring(name, city, state, limit=0)
+  def Breeder.find_by_substring(name, city, state)
     # Want to limit the number of AND statements in query so as
     # to limit load on the database
-    query_str = Breeder.generate_query_string([["city", city],["state", state]])
+    query_str = Breeder.generate_query_string([["city", city], ["state", state]])
     query_values = Breeder.generate_query_values(name, city, state)
-    results = Breeder.where(query_str, *query_values)
+    Breeder.where(query_str, *query_values)
     # if no limit provided, default to all results
+  end
+
+  def Breeder.union_by_substring_and_breed(query_values, limit=0)
+    by_breed = Pup.find_by_breeds(query_values[:breed_1], query_values[:breed_2]).select(:breeder_id)
+    by_breed = Breeder.where(id: by_breed)
+    by_substring = Breeder.find_by_substring(query_values[:name], query_values[:city], query_values[:state])
+    results = by_breed | by_substring
+
     limit == 0 ? results.all : results.limit(limit)
   end
 
