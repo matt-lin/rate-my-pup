@@ -13,17 +13,30 @@ class Breeder < ActiveRecord::Base
   end
 
   def Breeder.find_by_substring(name, city, state, limit=0)
-    results = Breeder.where(
-        "name LIKE ? AND state LIKE ? AND city LIKE ?",
-        "#{name}%",
-        "#{state}%",
-        "#{city}%"
-    )
+    # Want to limit the number of AND statements in query so as
+    # to limit load on the database
+    query_str = Breeder.generate_query_string([["city", city],["state", state]])
+    query_values = Breeder.generate_query_values(name, city, state)
+    results = Breeder.where(query_str, *query_values)
+    # if no limit provided, default to all results
     limit == 0 ? results.all : results.limit(limit)
   end
 
-  def Breeder.find_or_create(name, city, state, website="")
-    Breeder.where("name = ? AND city = ? and state = ?", name, city, state).first ||
-        Breeder.create!(:name => name, :website => website)
+  private
+  def Breeder.generate_query_string(params)
+    #only keep non-nil values
+    non_nil_params = params.select{ |e| e[1] }
+    # create string to take in sanitized values, default include name as query param
+    (["name LIKE ?"] + non_nil_params.map { |param| "#{param[0]} LIKE ?"}).join(" AND ")
+  end
+
+  private
+  def Breeder.generate_query_values(name, city, state)
+    ["%#{name}%"] + [city, state].select{ |param| param }.map{ |param| "#{param}%" }
+  end
+
+  def Breeder.find_or_create(name, city, state)
+    Breeder.where("name = ? AND city = ? AND state = ?", name, city, state).first ||
+        Breeder.create!(:name => name, :city => city, :state => state)
   end
 end
