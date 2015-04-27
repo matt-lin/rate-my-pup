@@ -10,7 +10,7 @@ class BreedersController < ApplicationController
   end
 
   def substring_match
-    render :json => Breeder.find_by_substring(params[:name], params[:city], params[:state], params[:limit].to_i)
+    render :json => Breeder.find_by_substring(params[:name], params[:city], params[:state])
   end
 
   def search_name
