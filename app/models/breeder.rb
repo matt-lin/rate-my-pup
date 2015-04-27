@@ -5,33 +5,39 @@ class Breeder < ActiveRecord::Base
   def avg_pup_rating
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0, :breeder_responsibility => 0}
-    Rails.logger.info pups if pups == 10
     pups.each do |pup|
       results_hash.each {|rating,v| results_hash[rating] += pup.send(rating)}
     end
     Hash[results_hash.map { |k,v| [k, v.to_f/pups.length.to_f]}]
   end
 
-  def Breeder.find_by_substring(breeders = Breeder.all, name, city, state)
+  def Breeder.find_by_substring(name, city, state, breeders = nil)
     # Want to limit the number of AND statements in query so as
     # to limit load on the database
+    # #breeders input allows for chaining of where clauses
+    breeders = breeders || Breeder
     query_str = Breeder.generate_query_string([["city", city], ["state", state]])
     query_values = Breeder.generate_query_values(name, city, state)
     breeders.where(query_str, *query_values)
-    # if no limit provided, default to all results
   end
 
   def Breeder.intersect_by_substring_and_breed(query_values, limit=0)
-    breeder_by_breed = Breeder.find_breeder_by_breed(query_values[:breed_1], query_values[:breed_2])
-    results = Breeder.find_by_substring(breeder_by_breed,
-                                        query_values[:name], query_values[:city], query_values[:state])
-
+    breeders_by_breed = Breeder.find_breeders_by_breed(query_values[:breed_1], query_values[:breed_2])
+    results = Breeder.find_by_substring(
+        query_values[:name],
+        query_values[:city],
+        query_values[:state],
+        breeders_by_breed
+    )
+    # if no limit provided, default to all results
     limit == 0 ? results.all : results.limit(limit)
   end
 
-  def Breeder.find_breeder_by_breed(breed_1, breed_2)
+  def Breeder.find_breeders_by_breed(breed_1, breed_2, breeders = nil)
+    #breeders input allows for chaining of where clauses
+    breeders = breeders || Breeder
     by_breed = Pup.find_by_breeds(breed_1, breed_2).select(:breeder_id)
-    Breeder.where(id: by_breed)
+    breeders.where(id: by_breed)
   end
 
   def Breeder.find_or_create(name, city, state)
