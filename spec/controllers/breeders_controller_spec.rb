@@ -58,7 +58,7 @@ describe BreedersController do
 
     it "should send a limited number of breeders starting with given string" do
       Breeder.should_receive(:find_by_substring).with("Teddy", "Berkeley", "CA", 0).and_return(@breeders)
-      xhr :get, :substring_match, {:name => "Teddy", :city => "Berkeley", :state => "CA", :limit => 0}
+      xhr :get, :search_breeder, {:name => "Teddy", :city => "Berkeley", :state => "CA", :limit => 0}
       response.body.should == @breeders.to_json
     end
 

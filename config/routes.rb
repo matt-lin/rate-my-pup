@@ -8,7 +8,7 @@ Ratemypup::Application.routes.draw do
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breeder/search_name' => 'breeders#search_name', :as => :breeder_search
-  get '/breeder/match' => 'breeders#substring_match', :as => :breeder_substring_match
+  get '/breeder/match' => 'breeders#search_breeder', :as => :breeder_substring_match
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root :to => 'pups#main'

@@ -23,6 +23,7 @@ var BreederAutofill = {
         var prefix = success_type == 'find' ? $("#breeder_find").val() : $('#breeder_form').val();
         var city = success_type == 'find'? $("#breeder_city").val() : "";
         var state = success_type == 'find' ? $("#breeder_state").val() : "";
+        var breed_1 = success_type == 'find' ? $("#breeder_breed_1").val() : null;
         $.ajax({
             type: 'GET',
             url: '/breeder/match',
@@ -30,6 +31,7 @@ var BreederAutofill = {
                 "name": prefix,
                 "city": city,
                 "state": state,
+                "breed_1": breed_1,
                 "limit": 10
             },
             timeout: 5000,
