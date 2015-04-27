@@ -30,6 +30,7 @@ describe Breeder do
     before :each do
       @breeders = (1..10).map { |i| FactoryGirl.create(:breeder) }
       @other_breeders = (1..5).map { |i| FactoryGirl.create(:breeder, :name => "Tedus") }
+      @pups = (1..10).map {|i| FactoryGirl.create(:pup, :breeder_id => @breeders[i-1].id)}
     end
     describe "find by city, state, name" do
       it "should find all the breeders input into database" do
@@ -47,8 +48,31 @@ describe Breeder do
         end
       end
     end
-    describe "find by city, state, name, or breed" do
-      it "should find all "
+    describe "find by type of dog breed" do
+      it "should find all breeders" do
+        breeders_by_breed = Breeder.find_breeders_by_breed(@pups[0].breed_1, @pups[0].breed_2)
+        @breeders.each {|breeder| assert(breeders_by_breed.include?(breeder), "Breeder by breed not found")}
+      end
+      it "should not find any breeders" do
+        breeders_by_breed = Breeder.find_breeders_by_breed("NOT A REAL BREED", "None")
+        breeders_by_breed.size.should == 0
+      end
+    end
+    describe "find breeders by city, state, name, and breed" do
+      it "should find all initial 10 breeders" do
+        query = {
+            :city => "Berkeley",
+            :state => "CA",
+            :name => "Ted",
+            :breed_1 => @pups[0].breed_1,
+            :breed_2 => @pups[0].breed_2
+        }
+        breeders_intersect = Breeder.intersect_by_substring_and_breed(query, limit = 5)
+        breeders_intersect.each do |breeder|
+          assert(@breeders.include?(breeder))
+        end
+        breeders_intersect.size.should == 5
+      end
     end
   end
 end
