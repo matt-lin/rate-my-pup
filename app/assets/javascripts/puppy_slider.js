@@ -6,7 +6,6 @@ var PupSlider = {
 
     // setup sets a callback for #breeder_find keyup
     setup: function() {
-        console.log("hello");
         PupSlider.puppy_change(7);
         /*var pup_num = 2;
         var interval = setInterval(function() {
@@ -17,8 +16,10 @@ var PupSlider = {
     },
 
     puppy_change: function(pup_num) {
-        console.log(pup_num);
-        $('body').css("background-image", "url('/assets/pup" + pup_num + ".jpg')");
+        console.log(window.location.pathname);
+        if (window.location.pathname == "/") {
+            $('body').css("background-image", "url('/assets/pup" + pup_num + ".jpg')");
+        }
     }
 };
 

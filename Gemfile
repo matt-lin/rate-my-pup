@@ -10,6 +10,7 @@ gem 'jasmine'
 gem 'devise'
 gem 'figaro'
 gem "font-awesome-rails"
+gem 'geocoder'
 
 group :development, :test do
   gem 'sqlite3'
