@@ -109,6 +109,22 @@ h4.great {
     font-weight: 500;
 }
 
+.radio-text {
+    color: #111111;
+    font-size: 12px;
+    font-weight: 300;
+    margin-bottom: 10px
+}
+
+#primary-radio-button {
+	display: inline-block;
+	margin-right: 20px
+}
+
+#secondary-radio-button {
+	display: inline-block;
+}
+
 .great {
 	padding: 7px 15px;
 	color: #111111;
@@ -148,11 +164,6 @@ h4.great {
 
 #secondary-breed {
     display: none;
-}
-
-.checkbox_text {
-    font-style: italic;
-    font-size: 13px;
 }
 
 .tag-holder a {

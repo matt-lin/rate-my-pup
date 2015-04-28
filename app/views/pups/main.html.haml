@@ -34,6 +34,7 @@
                         %span{:id => "cancel-b"}
                             %a{:class => "cancel"} &#10006;
                 %div{:class => "panel-body"}
+                    =label :pup, "What kind of pup are you looking for?"
                     = form_tag breed_path, :method => :get, :class => "form-horizontal" do
                         = render 'breed_checkbox'
                         %br

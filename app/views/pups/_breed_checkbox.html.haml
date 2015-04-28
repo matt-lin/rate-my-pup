@@ -1,10 +1,12 @@
 %div{:class => "form-group great row"}
-  %div{:class => "sub-title"}
-    =label :pup, "What kind of pup do you have?"
-  %div{:class => "checkbox_text", :class => "sub-title"}
-    = label :pup, :breed_1, "Is your dog a mixed breed?"
-    = check_box_tag :multiple_breeds
-    %br
-    = render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
-  %div{:id => "secondary-breed"}
-    = render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2
+	%div{:class => "radio-text"}
+		%div{:id => 'primary-radio-button'}
+			= radio_button_tag 'multiple_breeds', 'Purebred'
+			= label :pup, 'Purebred'
+		%div{:id => 'secondary-radio-button'}
+			= radio_button_tag 'multiple_breeds', 'Mixed Breed'
+			= label :pup, 'Mixed Breed'	
+	%div{:id => "primary-breed"}
+		= render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
+	%div{:id => "secondary-breed"}
+		= render 'select_input', title: "Secondary Breed", list: @all_breeds_none, var: :breed_2, id: 'secondary-breed-selector'
