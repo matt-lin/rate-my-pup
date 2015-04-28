@@ -136,3 +136,20 @@ body {
 .cancel, .cancel:hover {
     text-decoration: none;
 }
+
+.paw {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.paw > i {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+.paw > i:hover:before,
+.paw > i:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+    color: gold;
+}
