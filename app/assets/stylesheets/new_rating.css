@@ -99,14 +99,23 @@ h4.great {
     color: #111111;
     font-size: 22px;
     font-weight: 500;
-    /*border-radius: 4px;*/
-    display: inline-block;
+/*    display: inline-block;*/
 }
 
 .sub-title {
     color: #111111;
     font-size: 16px;
     font-weight: 500;
+}
+
+.explanation {
+	font-size: 12px;
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+h4.explanation {
+	font-size: 14px;
 }
 
 .radio-text {
