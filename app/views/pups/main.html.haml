@@ -30,13 +30,13 @@
             %div{:class => "panel panel-default"}
                 %div{:class => "panel-heading"}
                     %h3{:class => "panel-title"}
-                        Find a pup breed by type or mix:
+                        Search for ratings by breed:
                         %span{:id => "cancel-b"}
                             %a{:class => "cancel"} &#10006;
                 %div{:class => "panel-body"}
+                    =label :pup, "What kind of pup are you looking for?"
                     = form_tag breed_path, :method => :get, :class => "form-horizontal" do
                         = render 'breed_checkbox'
-                        %br
                         %div{:class => "form-group", :class => "button-positioning"}
                             = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"
 

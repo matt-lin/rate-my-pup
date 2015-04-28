@@ -1,5 +1,11 @@
 $(document).ready(function() {
-    $('#multiple_breeds').change(function(e) {
-        $("#secondary-breed").toggle(this.checked);
-    });
+   $('input[type="radio"]').click(function() {
+       if($(this).val() == 'Mixed Breed') {
+            $('#secondary-breed').show();           
+       }
+       else {
+            $('#secondary-breed').hide();
+            $("#pup_breed_2").val("None");
+       }
+   });
 });

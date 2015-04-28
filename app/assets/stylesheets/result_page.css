@@ -1,7 +1,7 @@
 .rating-label {
   display: inline;
   padding: .2em .6em .3em;
-  font-size: 75%;
+  font-size: 80%;
   font-weight: 700;
   line-height: 1;
   color: #333;
@@ -11,6 +11,18 @@
   border-radius: .25em;
   /*word-wrap: break-word;*/
   /*white-space: normal;*/
+}
+
+.rating-description {
+  display: inline;
+  padding: .2em .6em .9em;
+  font-size: 75%;
+  line-height: 1;
+  color: #333;
+  text-align: center;
+  white-space: wrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }
 
 .rating-comment {
