@@ -116,6 +116,12 @@ h4.great {
     margin-bottom: 10px
 }
 
+.unfilled_fields {
+	color: red;
+	font-size: 18px;
+	font-weight: bold;
+}
+
 #primary-radio-button {
 	display: inline-block;
 	margin-right: 20px

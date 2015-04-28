@@ -7,20 +7,19 @@
 
   %br
 
+  - flash.each do |key, value|
+    %p{:class => "unfilled_fields"}= value
+
   %div{:class => "sub-header"}
     %h3 Let's get some basic information about your pup!
   
-  - flash.each do |key, value|
-    %p= value
   / http://bootsnipp.com/user/snippets/0M39d
   = form_tag pups_path, :class => "form-horizontal" do
     %br
     %div{:class => "form-group great text-center", :class => "sub-title"}
-      = label :pup, "What's your pup's name?"
+      = render 'text_input', title: "What's your pup's name?", var: 'pup_name', placeholder: "Name"
       %br
-      = render 'text_input', title: 'Pup Name', var: 'pup_name', placeholder: "Name"
-      %br
-      =label :pup, "What kind of pup do you have?"
+      =label :pup, "Is your dog a purebred or a mix of two known breeds?"
       = render 'breed_checkbox'
     %div{:class => "form-group", :class => "sub-title"}
       = label :pup, 'What breeder/kennel did your pup come from?'

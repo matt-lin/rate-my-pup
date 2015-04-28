@@ -5,7 +5,7 @@ $(document).ready(function() {
        }
        else {
             $('#secondary-breed').hide();
-            $('#secondary-breed-selector').select("None"); 
+            $("#pup_breed_2").val("None");
        }
    });
 });
