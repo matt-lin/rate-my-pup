@@ -52,7 +52,6 @@ var RatingPaws = {
     setup: function() {
         for (var i = 0; i < RatingPaws.categories.length; i++) {
             RatingPaws.setupCategory(RatingPaws.categories[i]);
-            RatingPaws.changeColors(RatingPaws.categories[i], "first")();
         }
     }
 }
