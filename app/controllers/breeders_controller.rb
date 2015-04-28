@@ -11,8 +11,9 @@ class BreedersController < ApplicationController
 
   def search_breeder
     name, city, state, limit= params[:name], params[:city], params[:state], params[:limit].to_i
-    render :json => Breeder.find_by_substring(name, city, state, limit) unless params[:breed_1]
-    render :json => Breeder.intersect_by_substring_and_breed(params, limit) if params[:breed_1]
+    puts params[:breed_1].size
+    render :json => Breeder.find_by_substring(name, city, state).limit(limit) if params[:breed_1].size == 0
+    render :json => Breeder.intersect_by_substring_and_breed(params, limit) if params[:breed_1].size > 0
   end
 
   def search_name
