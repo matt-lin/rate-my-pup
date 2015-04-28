@@ -1,125 +1,60 @@
-$(document).ready(function() {
-          $("#slider-breeder").slider({
-              animate: true,
-              value: 0,
-              min: 0,
-              max: 5,
-              step: 0.5,
-              slide: function(event, ui) {
-                  update(1,ui.value); //changed
-              }
-          });
-          
+var RatingPaws = {
+    pos: ["first", "second", "third", "fourth", "fifth"],
+    categories: ["breeder-label", "simpatico-label", "health-label", "train-label", "social-label", "energy-label"],
+    unselectedColor: "navy",
+    selectedColor: "gold",
+    setupCategory: function(label) {
+        for (var i = 0; i < RatingPaws.pos.length; i++) {
+            $("#"+label).val(1);
+            $("#"+label+"-"+RatingPaws.pos[i]).on(
+                "mouseover", RatingPaws.changeColors(label, RatingPaws.pos[i])
+            );
+            $("#"+label+"-"+RatingPaws.pos[i]).on(
+                "mouseout", RatingPaws.revertColors(label, RatingPaws.pos[i])
+            );
+            $("#"+label+"-"+RatingPaws.pos[i]).on(
+                "click", RatingPaws.setValue(label, RatingPaws.pos[i])
+            );
+        }
+    },
+    setValue: function(label, loc) {
+        return function() {
+            var val = RatingPaws.pos.indexOf(loc) + 1;
+            //console.log(val);
+            $('#'+label).val(RatingPaws.pos.indexOf(loc) + 1);
+            RatingPaws.changeColors(label, loc, RatingPaws.selectedColor, true)();
+        }
+    },
+    changeColors: function(label, loc) {
+        return function() {
+            var current_val = Number.parseInt($("#" + label).val()) - 1;
+            var loc_val = RatingPaws.pos.indexOf(loc);
+            var start = loc_val <= current_val ? loc_val : current_val;
+            for (var i = start; RatingPaws.pos.indexOf(loc) >= i; i++) {
+                $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.selectedColor);
+            }
+            for (; i < RatingPaws.pos.length; i++) {
+                $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.unselectedColor);
+            }
+        };
+    },
+    revertColors: function(label, loc) {
+        return function() {
+            var current_val = Number.parseInt($("#" + label).val()) - 1;
+            for (var i = 0; current_val >= i; i++) {
+                $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.selectedColor);
+            }
+            for (; i < RatingPaws.pos.length; i++) {
+                $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.unselectedColor);
+            }
+        };
+    },
+    setup: function() {
+        for (var i = 0; i < RatingPaws.categories.length; i++) {
+            RatingPaws.setupCategory(RatingPaws.categories[i]);
+            RatingPaws.changeColors(RatingPaws.categories[i], "first")();
+        }
+    }
+}
 
-          $("#slider-health").slider({
-              animate: true,
-              value: 0,
-              min: 0,
-              max: 5,
-              step: 0.5,
-              slide: function(event, ui) {
-                  update(2,ui.value); //changed
-              }
-          });
-          $("#slider-train").slider({
-              animate: true,
-              value: 0,
-              min: 0,
-              max: 5,
-              step: 0.5,
-              slide: function(event, ui) {
-                  update(3,ui.value); //changed
-              }
-          });
-          $("#slider-social").slider({
-              animate: true,
-              value: 0,
-              min: 0,
-              max: 5,
-              step: 0.5,
-              slide: function(event, ui) {
-                  update(4,ui.value); //changed
-              }
-          });
-          $("#slider-energy").slider({
-              animate: true,
-              value: 0,
-              min: 0,
-              max: 5,
-              step: 0.5,
-              slide: function(event, ui) {
-                  update(5,ui.value); //changed
-              }
-          });
-          $("#slider-simpatico").slider({
-              animate: true,
-              value: 0,
-              min: 0,
-              max: 5,
-              step: 0.5,
-              slide: function(event, ui) {
-                  update(6,ui.value); //changed
-              }
-          });
-
-          //Added, set initial value.
-          $("#health").val(0);
-          $("#breeder").val(0);
-          $("#train").val(0);
-          $("#social").val(0);
-          $("#energy").val(0);
-          $("#simpatico").val(0);
-          // $("#breeder-label").val(0);
-          // $("#health-label").val(0);
-          // $("#train-label").val(0);
-          // $("#social-label").val(0);
-          // $("#energy-label").val(0);
-          // $("#simpatico-label").val(0);
-          
-          update();
-      });
-
-      //changed. now with parameter
-      function update(slider,val) {
-        //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
-        var $breeder = slider == 1?val:$("#breeder").val();
-        var $health = slider == 2?val:$("#health").val();
-        var $train = slider == 3?val:$("#train").val();
-        var $social = slider == 4?val:$("#social").val();
-        var $energy = slider == 5?val:$("#energy").val();
-        var $simpatico = slider == 6?val:$("#simpatico").val();
-        /* commented
-        $amount = $( "#slider" ).slider( "value" );
-        $duration = $( "#slider2" ).slider( "value" );
-         */
-
-        // $("#breeder-label").val($breeder);
-        // $("#health-label").val($health);
-        // $("#train-label").val($train);
-        // $("#social-label").val($social);
-        // $("#energy-label").val($energy);
-        // $("#simpatico").val($simpatico);
-        $("#breeder-label").attr('value', $breeder);
-        $("#health-label").attr('value', $health);
-        $("#train-label").attr('value', $train);
-        $("#social-label").attr('value', $social);
-        $("#energy-label").attr('value', $energy);
-        $("#simpatico-label").attr('value', $simpatico);
-        // $total = "$" + ($amount * $duration);
-        // $( "#amount" ).val($amount);
-        // $( "#amount-label" ).text($amount);
-        // $( "#duration" ).val($duration);
-        
-        // $( "#total" ).val($total);
-        // $( "#total-label" ).text($total);
-
-        $('#slider-breeder a').html('<label><span class="fa fa-paw"></span>');
-        $('#slider-health a').html('<label><span class="fa fa-paw"></span>');
-        $('#slider-train a').html('<label><span class="fa fa-paw"></span>');
-        $('#slider-social a').html('<label><span class="fa fa-paw"></span>');
-        $('#slider-energy a').html('<label><span class="fa fa-paw"></span>');
-        $('#slider-simpatico a').html('<label><span class="fa fa-paw"></span>');
-        // $('#slider-health a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$health+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
-        // $('#slider-train a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$train+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
-        // $('#slider-breeder a').html('<label><span class="fa fa-paw"></span>');
-      }
+$(document).ready(RatingPaws.setup);
