@@ -18,14 +18,14 @@ class Breeder < ActiveRecord::Base
     Hash[results_hash.map { |k,v| [k, v.to_f/pups.length.to_f]}]
   end
 
-  def Breeder.find_by_substring(name, city, state, breeders = nil)
+  def Breeder.find_by_substring(name, city, state, limit = 0, breeders = nil)
     # Want to limit the number of AND statements in query so as
     # to limit load on the database
     # #breeders input allows for chaining of where clauses
     breeders = breeders || Breeder
     query_str = Breeder.generate_query_string([["city", city], ["state", state]])
     query_values = Breeder.generate_query_values(name, city, state)
-    breeders.where(query_str, *query_values)
+    limit == 0 ? breeders.where(query_str, *query_values) : breeders.where(query_str, *query_values).limit(limit)
   end
 
   def Breeder.intersect_by_substring_and_breed(query_values, limit=0)
