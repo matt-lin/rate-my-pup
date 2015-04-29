@@ -11,5 +11,7 @@
                     = render 'shared/rating_comments', width: social, title: 'Social Behavior', color: 'progress-bar'
                     = render 'shared/rating_comments', width: energy, title: 'Energy Level', color: 'progress-bar'
                     = render 'shared/rating_comments', width: simpatico, title: 'Simpatico Rating', color: 'progress-bar'
+
                 %h4{:class=>"rating-comment"} #{pup.comments}
+                %h4{:class=>"rating-comment"} #{pup.hashtag_1 + ", " + pup.hashtag_2 + ", " + pup.hashtag_3}
                     

@@ -41,9 +41,11 @@ var PupHashTags = {
                 if ($(this).attr('class').indexOf("hashtag_selected") > -1) {
                     $(this).removeClass('hashtag_selected');
                     PupHashTags.num--;
-                    if ($('#invisible_hashtag_1').val() == $(this).attr('number')) {
+                    this_id = parseInt($(this).attr('number'));
+
+                    if ($('#invisible_hashtag_1').val() == PupHashTags.hashtags[this_id]) {
                         $('#invisible_hashtag_1').val("")
-                    } else if ($('#invisible_hashtag_2').val() == $(this).attr('number')) {
+                    } else if ($('#invisible_hashtag_2').val() == PupHashTags.hashtags[this_id]) {
                         $('#invisible_hashtag_2').val("")
                     } else {
                         $('#invisible_hashtag_3').val("")
@@ -53,11 +55,11 @@ var PupHashTags = {
                         this_id = parseInt($(this).attr('number'))
                         console.log(this_id);
                         if ($('#invisible_hashtag_1').val() == "") {
-                            $('#invisible_hashtag_1').val(this_id)
+                            $('#invisible_hashtag_1').val(PupHashTags.hashtags[this_id])
                         } else if ($('#invisible_hashtag_2').val() == "") {
-                            $('#invisible_hashtag_2').val(this_id)
+                            $('#invisible_hashtag_2').val(PupHashTags.hashtags[this_id])
                         } else {
-                            $('#invisible_hashtag_3').val(this_id)
+                            $('#invisible_hashtag_3').val(PupHashTags.hashtags[this_id])
                         }
 
 

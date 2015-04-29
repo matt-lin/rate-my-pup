@@ -38,7 +38,6 @@
       %h3 How would you rate your pup?
     %h4{:class => "explanation"}
       (1 = Unsatisfactory, 5 = Excellent)
-    = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
     = render 'slider_rating', title: "Breeder Responsibility", slider: "slider-breeder", id: "breeder-label", description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent health care and quality of life for their breeding dogs, even after the dogs are done with breeding. We recommend that you ask any dog breeder about their policies before buying a puppy from them. Please rate the breeder of your dog for the level of responsibility they demonstrated.", var: :breeder_responsibility
     = render 'slider_rating', title: "Overall Health", slider: "slider-health", id: "health-label", description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries, since these are beyond the breeder's control.", var: :overall_health
     = render 'slider_rating', title: "Trainability", slider: "slider-train", id: "train-label", description: "Please rate how easy your dog has been to train: consider housetraining, obedience training, and basic manners.", var: :trainability
@@ -48,6 +47,13 @@
     %div{:class => "row"}
       = render 'tags_input'
 
+    /HASHTAGS GROUPING/
+    %div{:class => "form-group col-lg-12", :id => "hashtags"}
+      %h3 Choose up to three of the following:
+      = text_field :pup, 'hashtag_1', :class => "form-control", :id =>"invisible_hashtag_1", :type => 'hidden'
+      = text_field :pup, 'hashtag_2', :class => "form-control", :id =>"invisible_hashtag_2", :type => 'hidden'
+      = text_field :pup, 'hashtag_3', :class => "form-control", :id =>"invisible_hashtag_3", :type => 'hidden'
+
     /COMMENTS GROUPING/
     %div{:class => "sub-header"}
       %h3 Tell us more!
@@ -56,10 +62,6 @@
     %div{:class => "form-group col-lg-12"}
       = text_field :pup, 'comments', :class => "form-control", :placeholder => "Comments"
 
-    %div{:class => "form-group col-lg-12", :id => "hashtags"}
-      = text_field :pup, 'hashtag_1', :class => "form-control", :id =>"invisible_hashtag_1", :type => 'hidden'
-      = text_field :pup, 'hashtag_2', :class => "form-control", :id =>"invisible_hashtag_2", :type => 'hidden'
-      = text_field :pup, 'hashtag_3', :class => "form-control", :id =>"invisible_hashtag_3", :type => 'hidden'
 
     
     %br
