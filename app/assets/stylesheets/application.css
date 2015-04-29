@@ -149,3 +149,8 @@ body {
 .paw .first {
     color: #98FB98;
 }
+
+.hashtag_selected {
+    color: #333;
+    text-decoration: none;
+}

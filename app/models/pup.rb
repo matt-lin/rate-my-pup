@@ -22,7 +22,7 @@ class Pup < ActiveRecord::Base
   end
   
 	attr_accessible :pup_name, :breeder_id, :breed_1, :breed_2, :breeder_responsibility, :overall_health,
-                  :trainability, :social_behavior, :energy_level, :simpatico_rating, :comments, :kennel
+                  :trainability, :social_behavior, :energy_level, :simpatico_rating, :comments, :kennel, :hashtag_1, :hashtag_2, :hashtag_3
 
   def Pup.find_by_breeds(breed_1, breed_2 = 'None')
     breed_2 = breed_2 || 'None'

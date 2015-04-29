@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150428230222) do
+ActiveRecord::Schema.define(:version => 20150429190042) do
 
   create_table "breeders", :force => true do |t|
     t.string "name"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20150428230222) do
     t.integer "simpatico_rating"
     t.text    "comments"
     t.integer "breeder_id"
+    t.integer "hashtag_1"
+    t.integer "hashtag_2"
+    t.integer "hashtag_3"
   end
 
   create_table "users", :force => true do |t|
