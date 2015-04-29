@@ -23,10 +23,12 @@
       =label :pup, "Is your dog a purebred or a mix of two known breeds?"
       = render 'breed_checkbox'
     %div{:class => "form-group", :class => "sub-title"}
-      = label :pup, 'What breeder/kennel did your pup come from?'
-      = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Breeder/Kennel Name"
+      = label :pup, 'What breeder did your pup come from?'
+      = text_field :breeder, 'breeder', :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name"
       = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
       %div{:id => 'autofills', :class => "form-group col-md-12"}
+     / = label :pup, 'What kennel did your pup come from?'
+     / = text_field :kennel, 'kennel', :class => "form-control", :id => "kennel_form", :placeholder => "Kennel Name"
 
     %br
     
