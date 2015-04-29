@@ -13,6 +13,12 @@ var BreederAutofill = {
         $('#breeder_form').keyup(function() {
             BreederAutofill.breeder_ajax('form')
         });
+        $('#breeder_city').keyup(function() {
+            BreederAutofill.breeder_ajax_address()
+        });
+        $('#breeder_state').keyup(function() {
+            BreederAutofill.breeder_ajax_address()
+        });
     }
 
     // ajax call to breeder/match/
@@ -21,17 +27,17 @@ var BreederAutofill = {
 
         // grab prefix from either find or form text
         var prefix = success_type == 'find' ? $("#breeder_find").val() : $('#breeder_form').val();
-        var city = success_type == 'find'? $("#breeder_city").val() : "";
-        var state = success_type == 'find' ? $("#breeder_state").val() : "";
-        var breed_1 = success_type == 'find' ? $("#breeder_breed_1").val() : null;
+        //var city = success_type == 'find'? $("#breeder_city").val() : "";
+        //var state = success_type == 'find' ? $("#breeder_state").val() : "";
+        //var breed_1 = success_type == 'find' ? $("#breeder_breed_1").val() : null;
         $.ajax({
             type: 'GET',
             url: '/breeder/match',
             data: {
                 "name": prefix,
-                "city": city,
-                "state": state,
-                "breed_1": breed_1,
+                // "city": city,
+                // "state": state,
+                // "breed_1": breed_1,
                 "limit": 10
             },
             timeout: 5000,
@@ -50,7 +56,9 @@ var BreederAutofill = {
         for (num in data) {
             var id = data[num].id;
             var name = data[num].name;
-            var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + '</a></li>';
+            var city = data[num].city;
+            var state = data[num].state;
+            var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + ' - ' + city + ", " + state + '</a></li>';
             var autofill = $(html);
             $('#autofills').append(autofill);
             console.log($("#autofills").html())
@@ -112,6 +120,24 @@ var BreederAutofill = {
             $('#invisible_id').val(-1);
         });
 
+    }
+
+    ,breeder_ajax_address: function (success_type) {
+
+        var city = $("#breeder_city").val();
+        var state = $("#breeder_state").val();
+
+        $.ajax({
+            type: 'GET',
+            url: '/breeder/spot',
+            data: {
+                "city": city,
+                "state": state
+            },
+            timeout: 5000,
+            // callback designated by selection of find or form
+            success: BreederAutofill.breeders_add_find
+        })
     }
 };
 
