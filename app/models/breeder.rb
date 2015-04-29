@@ -2,6 +2,13 @@ class Breeder < ActiveRecord::Base
   has_many :pups
   attr_accessible :name, :city, :state, :website, :kennel
 
+  geocoded_by :address
+  after_validation :geocode
+
+  def address
+    self.city + ', ' + self.state
+  end
+
   def avg_pup_rating
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0, :breeder_responsibility => 0}

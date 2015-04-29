@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150417051332) do
+ActiveRecord::Schema.define(:version => 20150428230222) do
 
   create_table "breeders", :force => true do |t|
     t.string "name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20150417051332) do
     t.string "kennel"
     t.string "city"
     t.string "state"
+    t.float  "latitude"
+    t.float  "longitude"
   end
 
   create_table "pups", :force => true do |t|
