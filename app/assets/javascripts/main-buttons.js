@@ -6,14 +6,8 @@ var MainButtons = {
 
     // setup sets a callback for #breeder_find keyup
     setup: function() {
-        $('.button-a').click( function() {
-            $('.box-a').toggleClass("hidden");
-        }).hover( function() {
+        $('.button-a').hover( function() {
             $('#tagline-text').html("Keep breeders <strong>honest</strong> by rating your pup");
-        });
-
-        $('#cancel-a').click( function() {
-            $('.box-a').toggleClass("hidden");
         });
 
         $('.button-b').click( function() {

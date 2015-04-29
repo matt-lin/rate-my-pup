@@ -5,20 +5,8 @@
         %h1{:id => "tagline-text"}
             Find a pup from a <strong>reliable</strong> source
     %div{:class => "row"}
-
-        %div{:class => "col-lg-4 box-a hidden"}
-            %div{:class => "panel panel-default"}
-                %div{:class => "panel-heading"}
-                    %h3{:class => "panel-title"}
-                        Rate a puppy that you've purchased from a breeder:
-                        %span{:id => "cancel-a"}
-                            %a{:class => "cancel"} &#10006;
-                %div{:class => "panel-body"}
-                    %div{:class => "form-group", :class => "button-positioning"}
-                        = button_to 'Rate your Pup', new_pup_path, :method => :get, :id => 'Rate your Pup', :class => "form-control"
-
         %div{:class => "col-lg-4 box-a text-center"}
-            %a{:class => "main-button-link button-a"}
+            %a{:class => "main-button-link button-a", :href => "/pups/new?"}
                 %div{:class => "main-button"}
                     %div{:class => "main-button-small-text"}
                         Rate your
