@@ -146,6 +146,6 @@ body {
     padding: 3px;
 }
 
-.paw input {
-    margin-top: 10px;
+.paw .first {
+    color: gold;
 }
