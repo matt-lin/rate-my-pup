@@ -23,7 +23,7 @@ var MainButtons = {
         $('.button-c').click( function() {
             $('.box-c').toggleClass("hidden");
         }).hover( function() {
-            $('#tagline-text').html("Find a pup from a <strong>reliable</strong> breeder");
+            $('#tagline-text').html("Find a dog breeder with <strong>great</strong> reviews");
         });
 
         $('#cancel-c').click( function() {
