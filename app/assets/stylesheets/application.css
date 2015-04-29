@@ -140,12 +140,12 @@ body {
 .paw {
     unicode-bidi: bidi-override;
     direction: rtl;
-    color: navy;
+    color: #bbb;
 }
 .paw i {
     padding: 3px;
 }
 
 .paw .first {
-    color: gold;
+    color: #98FB98;
 }

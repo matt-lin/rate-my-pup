@@ -1,8 +1,8 @@
 var RatingPaws = {
     pos: ["first", "second", "third", "fourth", "fifth"],
     categories: ["breeder-label", "simpatico-label", "health-label", "train-label", "social-label", "energy-label"],
-    unselectedColor: "navy",
-    selectedColor: "gold",
+    unselectedColor: "#bbb",
+    selectedColor: "#98FB98",
     setupCategory: function(label) {
         for (var i = 0; i < RatingPaws.pos.length; i++) {
             $("#"+label).val(1);
