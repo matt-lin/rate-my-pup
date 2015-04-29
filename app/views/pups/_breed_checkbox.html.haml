@@ -1,7 +1,7 @@
 %div{:class => "form-group great row"}
 	%div{:class => "radio-text"}
 		%div{:id => 'primary-radio-button'}
-			= radio_button_tag 'multiple_breeds', 'Purebred'
+			= radio_button_tag 'multiple_breeds', 'Purebred', :checked => "checked"
 			= label :pup, 'Purebred'
 		%div{:id => 'secondary-radio-button'}
 			= radio_button_tag 'multiple_breeds', 'Mixed Breed'
