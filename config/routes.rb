@@ -1,4 +1,5 @@
 Ratemypup::Application.routes.draw do
+  root :to => 'pups#main'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -16,7 +17,6 @@ Ratemypup::Application.routes.draw do
   get '/breeder/spot' => 'breeders#search_spot', :as => :breeder_search_spot
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  root :to => 'pups#main'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
