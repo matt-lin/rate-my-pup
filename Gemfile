@@ -11,6 +11,7 @@ gem 'devise'
 gem 'figaro'
 gem "font-awesome-rails"
 gem 'geocoder'
+gem 'activeadmin'
 
 group :development, :test do
   gem 'sqlite3'
