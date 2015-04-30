@@ -18,7 +18,7 @@ class Pup < ActiveRecord::Base
   end
 
   def comment_length
-    errors.add(:comment, 'Limit comments to 140 characters') if comments && comments.length > 140
+    errors.add(:comment, 'Limit comments to 500 characters') if comments && comments.length > 500
   end
   
 	attr_accessible :pup_name, :breeder_id, :breed_1, :breed_2, :breeder_responsibility, :overall_health,
