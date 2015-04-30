@@ -1,0 +1,8 @@
+%div{:class => "panel panel-default"}
+  %div{:class => "panel-heading", :role => "tab", :id => "heading" + num}
+    %h4{:class => "panel-title"}
+      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse" + num, "aria-expanded" => "true", "aria-controls" => "collapse" + num}
+        = title
+  %div{:id => "collapse" + num, :class => "panel-collapse collapse " + open, "data-parent" => "#accordion", :role => "tabpanel", "aria-labelledby" => "heading" + num}
+    %div{:class => "panel-body"}
+      = text
