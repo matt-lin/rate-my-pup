@@ -1,115 +1,116 @@
-%h3{:class => "warning"}=flash[:message] if flash[:message]
+%body{:id=>"background"}
+    %h3{:class => "warning"}=flash[:message] if flash[:message]
 
-%div{:class => "container-fluid", :id => "pup"}
-    
-    //TOP PART (Tagline, Buttons)
-    %div{:class => "row top"}
-        %div{:class => "row tagline"}
-            %h1{:id => "tagline-text"}
-                Find a pup from a <strong>reliable</strong> source
+    %div{:class => "container-fluid", :id => "pup"}
         
-        %div{:class => "row"}
-            %div{:class => "col-lg-4 box-a text-center"}
-                %a{:class => "main-button-link button-a", :href => "/pups/new?"}
-                    %div{:class => "main-button"}
-                        %div{:class => "main-button-small-text"}
-                            Rate your
-                        %div{:class => "main-button-large-text"}
-                            Pup
-
-
-            %div{:class => "col-lg-4 box-b hidden"}
-                %div{:class => "panel panel-default"}
-                    %div{:class => "panel-heading"}
-                        %h3{:class => "panel-title"}
-                            Search for ratings by breed:
-                            %span{:id => "cancel-b"}
-                                %a{:class => "cancel"} &#10006;
-                    %div{:class => "panel-body"}
-                        =label :pup, "What kind of pup are you looking for?"
-                        = form_tag breed_path, :method => :get, :class => "form-horizontal" do
-                            = render 'breed_checkbox'
-                            %div{:class => "form-group", :class => "button-positioning"}
-                                = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"
-
-            %div{:class => "col-lg-4 box-b text-center"}
-                %a{:class => "main-button-link button-b"}
-                    %div{:class => "main-button"}
-                        %div{:class => "main-button-small-text"}
-                            Find a
-                        %div{:class => "main-button-large-text"}
-                            Breed
-
-            %div{:class => "col-lg-4 box-c hidden"}
-                %div{:class => "panel panel-default"}
-                    %div{:class => "panel-heading"}
-                        %h3{:class => "panel-title"}
-                            Find a pup breeder by name or city and state:
-                            %span{:id => "cancel-c"}
-                                %a{:class => "cancel"} &#10006;
-                    %div{:class => "panel-body"}
-                        = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
-                            %div{:class => "form-group", :class => "homepage-div"}
-
-                                %div{:class => "col-md-12"}
-                                    %input{:type => 'text', :id => 'breeder_find', :class => "form-control", :placeholder => "Name"}
-                                %div{:class => "col-md-12"}
-                                    %hr
-
-                                %div{:class => "col-md-6"}
-                                    %input{:type => 'text', :id => 'breeder_city', :class => "form-control", :placeholder => "City"}
-                                %div{:class => "col-md-6"}
-                                    %input{:type => 'text', :id => 'breeder_state', :class => "form-control", :placeholder => "State"}
-                    %ul{:id => 'autofills', :class => "list-group"}
-
-            %div{:class => "col-lg-4 box-c text-center"}
-                %a{:class => "main-button-link button-c"}
-                    %div{:class => "main-button"}
-                        %div{:class => "main-button-small-text"}
-                            Find a
-                        %div{:class => "main-button-large-text"}
-                            Breeder
-    
-//MISSION STATEMENT
-%div{:class => "row"}
-    %div{:class => "col-md-12 mission"}
-        %h2{:class => "tagline subsection-tagline"}
-            Our Mission
-        %div{:class => "panel-group", :id => "accordion", :role => "tablist", "aria-multiselectable" => "true"}
-            -@mission_statement_sections.each do |section|
-                = render 'accordion', num: section.section_order.to_s, open: section.section_order == 1 ? "in": "", title: section.title, text: section.text
-
-        %h3{:class => "mission-text"}
-            Linda H Sanders, DVM
-
-//CONTACT INFO
-%div{:class => "row"}
-    %div{:class => "col-md-12 contact"}
-        
-        %div{:class => "tagline subsection-tagline", :style => "color: white"}
-            Contact Info
-
-        %div{:class => "row"}
+        //TOP PART (Tagline, Buttons)
+        %div{:class => "row top"}
+            %div{:class => "row tagline"}
+                %h1{:id => "tagline-text"}
+                    Find a pup from a <strong>reliable</strong> source
             
-            %div{:class => "col-md-4"}
-                %div{:class =>"row"}
-                    %div{:class => "contact-text-sm"}
-                        Phone
-                    %div{:class => "contact-text-lg"}
-                        (123) 456-7890
+            %div{:class => "row"}
+                %div{:class => "col-lg-4 box-a text-center"}
+                    %a{:class => "main-button-link button-a", :href => "/pups/new?"}
+                        %div{:class => "main-button"}
+                            %div{:class => "main-button-small-text"}
+                                Rate your
+                            %div{:class => "main-button-large-text"}
+                                Pup
 
-            %div{:class => "col-md-4"}
-                %div{:class =>"row"}
-                    %div{:class => "contact-text-sm"}
-                        Email
-                    %div{:class => "contact-text-lg"}
-                        linda@rateyourpup.com
 
-            %div{:class => "col-md-4"}
-                %div{:class =>"row"}
-                    %div{:class => "contact-text-sm"}
-                        Address
-                    %div{:class => "contact-text-lg"}
-                        1234 Telegraph Ave.
-                        %br
-                        Berkeley, CA 94704
+                %div{:class => "col-lg-4 box-b hidden"}
+                    %div{:class => "panel panel-default"}
+                        %div{:class => "panel-heading"}
+                            %h3{:class => "panel-title"}
+                                Search for ratings by breed:
+                                %span{:id => "cancel-b"}
+                                    %a{:class => "cancel"} &#10006;
+                        %div{:class => "panel-body"}
+                            =label :pup, "What kind of pup are you looking for?"
+                            = form_tag breed_path, :method => :get, :class => "form-horizontal" do
+                                = render 'breed_checkbox'
+                                %div{:class => "form-group", :class => "button-positioning"}
+                                    = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"
+
+                %div{:class => "col-lg-4 box-b text-center"}
+                    %a{:class => "main-button-link button-b"}
+                        %div{:class => "main-button"}
+                            %div{:class => "main-button-small-text"}
+                                Find a
+                            %div{:class => "main-button-large-text"}
+                                Breed
+
+                %div{:class => "col-lg-4 box-c hidden"}
+                    %div{:class => "panel panel-default"}
+                        %div{:class => "panel-heading"}
+                            %h3{:class => "panel-title"}
+                                Find a pup breeder by name or city and state:
+                                %span{:id => "cancel-c"}
+                                    %a{:class => "cancel"} &#10006;
+                        %div{:class => "panel-body"}
+                            = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
+                                %div{:class => "form-group", :class => "homepage-div"}
+
+                                    %div{:class => "col-md-12"}
+                                        %input{:type => 'text', :id => 'breeder_find', :class => "form-control", :placeholder => "Name"}
+                                    %div{:class => "col-md-12"}
+                                        %hr
+
+                                    %div{:class => "col-md-6"}
+                                        %input{:type => 'text', :id => 'breeder_city', :class => "form-control", :placeholder => "City"}
+                                    %div{:class => "col-md-6"}
+                                        %input{:type => 'text', :id => 'breeder_state', :class => "form-control", :placeholder => "State"}
+                        %ul{:id => 'autofills', :class => "list-group"}
+
+                %div{:class => "col-lg-4 box-c text-center"}
+                    %a{:class => "main-button-link button-c"}
+                        %div{:class => "main-button"}
+                            %div{:class => "main-button-small-text"}
+                                Find a
+                            %div{:class => "main-button-large-text"}
+                                Breeder
+        
+    //MISSION STATEMENT
+    %div{:class => "row"}
+        %div{:class => "col-md-12 mission"}
+            %h2{:class => "tagline subsection-tagline"}
+                Our Mission
+            %div{:class => "panel-group", :id => "accordion", :role => "tablist", "aria-multiselectable" => "true"}
+                -@mission_statement_sections.each do |section|
+                    = render 'accordion', num: section.section_order.to_s, open: section.section_order == 1 ? "in": "", title: section.title, text: section.text
+
+            %h3{:class => "mission-text"}
+                Linda H Sanders, DVM
+
+    //CONTACT INFO
+    %div{:class => "row"}
+        %div{:class => "col-md-12 contact"}
+            
+            %div{:class => "tagline subsection-tagline", :style => "color: white"}
+                Contact Info
+
+            %div{:class => "row"}
+                
+                %div{:class => "col-md-4"}
+                    %div{:class =>"row"}
+                        %div{:class => "contact-text-sm"}
+                            Phone
+                        %div{:class => "contact-text-lg"}
+                            (123) 456-7890
+
+                %div{:class => "col-md-4"}
+                    %div{:class =>"row"}
+                        %div{:class => "contact-text-sm"}
+                            Email
+                        %div{:class => "contact-text-lg"}
+                            linda@rateyourpup.com
+
+                %div{:class => "col-md-4"}
+                    %div{:class =>"row"}
+                        %div{:class => "contact-text-sm"}
+                            Address
+                        %div{:class => "contact-text-lg"}
+                            1234 Telegraph Ave.
+                            %br
+                            Berkeley, CA 94704
