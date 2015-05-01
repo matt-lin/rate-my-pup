@@ -194,3 +194,7 @@ Given (/^I login as an admin$/) do
   fill_in(:admin_user_password, :with => 'password')
   find('#admin_user_submit_action').click
 end
+
+When(/^I hover over "(.*?)"$/) do |element_name|
+  page.evaluate_script("$('#{element_name}').trigger('mouseover')")
+end
