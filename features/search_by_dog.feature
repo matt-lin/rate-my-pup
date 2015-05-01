@@ -27,7 +27,7 @@ Scenario: search for single breed of dog
     And I press "Find a Breed"
     Then I should see "4.0"
     And I should see "Such review. Wow."
-    And I should see "today's date"
+    And I should see todays date
 
 Scenario: search for secondary breed of dog
     When I select "Poodle" and "Cocker Spaniel" and search
@@ -36,7 +36,7 @@ Scenario: search for secondary breed of dog
     And I should see "The greatest poodle ever."
     And I should see "Great dog."
     And I should not see "Very aloof."
-    And I should see "today's date"
+    And I should see todays date
 
 Scenario: see correct number of ratings
     When I select "Poodle" and "Cocker Spaniel" and search
