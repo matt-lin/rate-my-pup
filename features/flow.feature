@@ -17,13 +17,6 @@ Feature: Improve "flow" of site
       | George W. Bush  | Waco     | TX     |
     And I am on the RateMyPup home page
 
-    Scenario: Intuitive login redirect
-      Given I am not logged in
-      And I click ".button-a"
-      Then I should be on the Login page
-      When I log in
-      Then I should be on the "Create New Pup" page
-
     Scenario: More descriptions
       Given I am logged in
       And I am on the "Create New Pup" page
