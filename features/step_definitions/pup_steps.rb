@@ -80,6 +80,12 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
   end
 end
 
+Then /^I should see all of:/ do |names|
+  names.hashes.each do |name|
+    page.has_content?(name['name'])
+  end
+end
+
 When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
@@ -172,6 +178,7 @@ end
 Given /^I click "(.*)"$/ do |click|
   page.evaluate_script("$('#{click}').click()")
 end
+
 
 Given (/^I login as an admin$/) do
   visit('/admin/login')
