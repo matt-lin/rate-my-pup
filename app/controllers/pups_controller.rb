@@ -5,7 +5,19 @@ class PupsController < ApplicationController
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed]
 
+  def add_breeder_first
+    print params
+  end
+
   def breeder_exists
+
+    print params
+    if params[:breeder]
+      print "------------- HELLLOOOOOOOOOOOO IT WOOOOORKKKKKKKSSS -----------"
+      print params[:breeder]
+      breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
+      params[:pup][:breeder_id] = breeder.id
+    end
     if params[:pup][:breeder_id].to_i == -1
       session[:pup] = params[:pup]
       redirect_to new_breeder_path
