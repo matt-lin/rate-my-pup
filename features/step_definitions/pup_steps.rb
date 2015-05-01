@@ -72,9 +72,9 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
   page.evaluate_script "$('#multiple_breeds').trigger('click');"
   pups_table.hashes.each do |rating|
 
-    choose('secondary-radio-button')
-    page.select rating['breed_1'], :from => 'primary-breed'
-    page.select rating['breed_2'], :from => 'secondary-breed'
+    choose('multiple_breeds_Mixed_Breed')
+    page.select rating['breed_1'], :from => 'pup_breed_1'
+    page.select rating['breed_2'], :from => 'pup_breed_2'
     slide('slider-breeder', rating['breeder_responsibility'])
     slide('slider-health', rating['overall_health'])
     slide('slider-train', rating['trainability'])
