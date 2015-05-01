@@ -16,7 +16,6 @@ var PupSlider = {
     },
 
     puppy_change: function(pup_num) {
-        console.log(window.location.pathname);
         if (window.location.pathname == "/") {
             $('body').css("background-image", "url('/assets/pup" + pup_num + ".jpg')");
         }
