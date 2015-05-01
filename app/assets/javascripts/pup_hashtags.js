@@ -33,8 +33,6 @@ var PupHashTags = {
     ,num: 0
 
     ,setup: function() {
-        console.log('working');
-        console.log(PupHashTags.selected);
         for (hashtag in PupHashTags.hashtags) {
             $('<a number="' + hashtag + '" class="hashtag">' + PupHashTags.hashtags[hashtag] + ' </a>').appendTo('#hashtags').click( function() {
 
@@ -53,7 +51,6 @@ var PupHashTags = {
                 } else {
                     if (PupHashTags.num < 3) {
                         this_id = parseInt($(this).attr('number'))
-                        console.log(this_id);
                         if ($('#invisible_hashtag_1').val() == "") {
                             $('#invisible_hashtag_1').val(PupHashTags.hashtags[this_id])
                         } else if ($('#invisible_hashtag_2').val() == "") {

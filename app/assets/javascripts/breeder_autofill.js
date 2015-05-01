@@ -61,7 +61,6 @@ var BreederAutofill = {
             var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + ' - ' + city + ", " + state + '</a></li>';
             var autofill = $(html);
             $('#autofills').append(autofill);
-            console.log($("#autofills").html())
 
             // bind autofill on scroll over option
             autofill.mouseover(function() {
@@ -76,18 +75,13 @@ var BreederAutofill = {
     }
 
     ,breeders_add_form: function (data, requestStatus, xhrObject) {
-        console.log('twerkin');
         $('#autofills').empty();
-        console.log('emptied');
-        console.log(data)
         for (num in data) {
             var id = data[num].id;
             var name = data[num].name;
             var html = '<div class="autofills"><a class="autofill_link">' + name + '</a></div>';
             var autofill = $(html);
-            console.log($('#autofills').html());
             $('#autofills').append(autofill);
-            console.log($('#autofills').html());
 
             // bind autofill on scroll over option
             autofill.mouseover(function() {
