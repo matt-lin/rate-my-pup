@@ -171,3 +171,10 @@ end
 Given /^I click "(.*)"$/ do |click|
   page.evaluate_script("$('#{click}').click()")
 end
+
+Given (/^I login as an admin$/) do
+  visit('/admin/login')
+  fill_in(:admin_user_email, :with => 'admin@example.com')
+  fill_in(:admin_user_password, :with => 'password')
+  find('#admin_user_submit_action').click
+end
