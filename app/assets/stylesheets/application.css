@@ -15,8 +15,11 @@
  *= require jquery-ui
  */
 
+#background {
+    background-size: 100% auto;
+}
+
 body {
-    background-size: cover;
     -webkit-transition: background-image 1.5s ease-in;
     transition: background-image 1.5s ease-in;
     background-attachment: fixed;
