@@ -82,7 +82,7 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
     slide('slider-energy', rating['energy_level'])
     slide('slider-simpatico', rating['simpatico_rating'])
     fill_in 'Comments', :with => rating['comments']
-    fill_in 'Pup Name', :with => rating['pup_name']
+    fill_in 'Name', :with => rating['pup_name']
     
   end
 end
