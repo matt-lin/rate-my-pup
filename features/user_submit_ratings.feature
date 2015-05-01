@@ -15,25 +15,19 @@ Feature: only users with a user profile should be able to submit a rating
     When I follow "Login"
     Then I should be on the Login page
 
-  Scenario: should not be able to submit a rating if logged in as a user
+  Scenario: should not be able to submit a rating if not logged in as a user
 
     Given I am on the RateMyPup home page
     Then I should see "Login"
-    And I click ".button-a"
-    Then I should be on the "Create New Pup" page
-    When I fill out the form with the following attributes:
-      | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
-      | Tiny               | Justin          | Labrador Retriever | None            | 2                      | 5              | 3            | 4               | 4            | 4                | Easy to train. Excellent dog.     | 2                 |
-    And I press "Add Pup"
+    And I follow "Rate your Pup"
     Then I should be on the Login page
-    And I should see "You need to sign in or sign up before continuing."
 
-  Scenario: should be able to submit a rating if not logged in
+  Scenario: should be able to submit a rating if logged in
 
     Given I am on the RateMyPup home page
     And I am logged in
     Then I am on the RateMyPup home page
-    And I click ".button-a"
+    And I follow "Rate your Pup"
     Then I should be on the "Create New Pup" page
     When I fill out the form with the following attributes:
       | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |

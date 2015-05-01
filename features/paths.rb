@@ -15,6 +15,7 @@ module NavigationHelpers
 
     when /^the RateMyPup home page$/ then '/'
     when /^the "Create New Pup" page$/ then '/pups/new'
+    when /^the Login page$/ then 'users/sign_in'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
