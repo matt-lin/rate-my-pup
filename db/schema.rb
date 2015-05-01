@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150430030038) do
+ActiveRecord::Schema.define(:version => 20150501050235) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -47,14 +47,15 @@ ActiveRecord::Schema.define(:version => 20150430030038) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "breeders", :force => true do |t|
-    t.string "name"
-    t.string "location"
-    t.string "website"
-    t.string "kennel"
-    t.string "city"
-    t.string "state"
-    t.float  "latitude"
-    t.float  "longitude"
+    t.string  "name"
+    t.string  "location"
+    t.string  "website"
+    t.string  "kennel"
+    t.string  "city"
+    t.string  "state"
+    t.float   "latitude"
+    t.float   "longitude"
+    t.integer "removed_reviews", :default => 0
   end
 
   create_table "pups", :force => true do |t|

@@ -13,6 +13,8 @@ class Pup < ActiveRecord::Base
   validate :breeds_not_same
   validate :comment_length
 
+  before_destroy { |pup| pup.breeder ? pup.breeder.increment_deleted_reviews : nil }
+
   def breeds_not_same
     errors.add(:breed_1, 'Primary and secondary breeds are listed as the same') if breed_1 == breed_2
   end

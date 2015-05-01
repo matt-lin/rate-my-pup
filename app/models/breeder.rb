@@ -1,12 +1,16 @@
 class Breeder < ActiveRecord::Base
   has_many :pups
-  attr_accessible :name, :city, :state, :website, :kennel
+  attr_accessible :name, :city, :state, :website, :kennel, :removed_reviews
 
   geocoded_by :address
   after_validation :geocode
 
   def address
-    self.city + ', ' + self.state
+    if self.city and self.state
+      self.city + ', ' + self.state
+    else
+      ""
+    end
   end
 
   def avg_pup_rating
@@ -16,6 +20,11 @@ class Breeder < ActiveRecord::Base
       results_hash.each {|rating,v| results_hash[rating] += pup.send(rating)}
     end
     Hash[results_hash.map { |k,v| [k, v.to_f/pups.length.to_f]}]
+  end
+
+  def increment_deleted_reviews
+    update_attributes(:removed_reviews => removed_reviews + 1)
+    save!
   end
 
   def Breeder.find_by_substring(name, city, state, limit = 0, breeders = nil)
