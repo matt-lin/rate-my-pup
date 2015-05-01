@@ -55,6 +55,10 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
+Then /^I should see todays date/ do
+  assert page.has_no_content?(Date.today)
+end
+
 Then /^I should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -139,10 +143,14 @@ When(/^I am logged in$/) do
   assert page.has_content?("Logout")
 end
 
-
 def set_hidden_field(field, value)
   page.execute_script "s=$('##{field}');"
   page.execute_script "s.val(#{value})"
+end
+
+def slide(slidr, value)
+  page.execute_script "s=$('#slidr');"
+  page.execute_script "s.slider('option', 'value', #{value})"
 end
 
 def auto_complete(text_field, value, event='keyup')
