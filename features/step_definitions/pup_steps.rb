@@ -134,14 +134,11 @@ When(/^I am logged in$/) do
   assert page.has_content?("Logout")
 end
 
-<<<<<<< HEAD
 def set_hidden_field(field, value)
   page.execute_script "s=$('##{field}');"
   page.execute_script "s.val(#{value})"
 end
 
-=======
->>>>>>> d99ee348df13c294cb8806d2d310445e9e17167f
 def slide(slidr, value)
   page.execute_script "s=$('#slidr');"
   page.execute_script "s.slider('option', 'value', #{value})"

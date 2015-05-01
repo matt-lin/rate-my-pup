@@ -23,11 +23,7 @@ Background: reviews have been added to the database
     And I am logged in
 
 Scenario: navigate to review page
-<<<<<<< HEAD
     And I follow "Rate your Pup"
-=======
-    And I click ".button-a"
->>>>>>> d99ee348df13c294cb8806d2d310445e9e17167f
     Then I should be on the "Create New Pup" page
 
 Scenario: submit new review
