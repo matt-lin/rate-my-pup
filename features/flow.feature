@@ -17,8 +17,31 @@ Feature: Improve "flow" of site
       | George W. Bush  | Waco     | TX     |
     And I am on the RateMyPup home page
 
-    Scenario: More descriptions
+    Scenario: The hashtags should be present on the page
       Given I am logged in
       And I am on the "Create New Pup" page
-      Then I should see "What do you feel are the most important positive of negative aspects of your dog?"
-      And I should see the hashtags
+      Then I should see "What do you feel are the most important positive or negative aspects of your dog?"
+      And I should see all of:
+        | "#EasyToObedienceTrain"                     |
+        | "#HardToObedienceTrain"                     |
+        | "#EasyToHouseTrain"                         |
+        | "#HardToHouseTrain"                         |
+        | "#HighEnergy"                               |
+        | "#CalmPersonality"                          |
+        | "#BarksALot"                                |
+        | "#VeryQuiet"                                |
+        | "#OnePersonDog"                             |
+        | "#FriendlyTowardEveryone"                   |
+        | "#UnpredictableWithStrangers"               |
+        | "#UnpredictableWithChildren"                |
+        | "#Independent"                              |
+        | "#ConstantCompanionAroundHome"              |
+        | "#GreatWithOtherDogs"                       |
+        | "#UnpredictableWithOtherDogs"               |
+        | "#GreatWithCats&OtherSmallAnimals"          |
+        | "#UnpredictableWithCats&OtherSmallAnimals"  |
+        | "#LovesToPlayBall&Fetch"                    |
+        | "#WellMannered&CanGoAnywhereWithMe"         |
+        | "#ShedsALot"                                |
+        | "#CoatNeedsFrequentGrooming"                |
+        | "#EatsPoopOrOtherDisgustingThings"          |
