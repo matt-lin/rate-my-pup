@@ -118,9 +118,9 @@ When /^I enter "(.*?)", "(.*?)", "(.*?)" into breeder search$/ do |name, city, s
 end
 
 When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
-  select breed1, :from => 'Primary Breed'
-  page.evaluate_script "$('#multiple_breeds').trigger('click');"
-  select breed2, :from => 'Secondary Breed'
+  choose('multiple_breeds_Mixed_Breed')
+  page.select(breed1, :from => 'pup_breed_1')
+  page.select(breed2, :from => 'pup_breed_2')
   click_button "Find a Breed"
 end
 
