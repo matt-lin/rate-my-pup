@@ -55,6 +55,10 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
+Then /^I should see todays date/ do
+  assert page.has_no_content?(Date.today)
+end
+
 Then /^I should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -128,7 +132,6 @@ When(/^I am logged in$/) do
   fill_in(:user_password, :with => "lolright")
   click_button("Log in")
 end
-
 
 def slide(slidr, value)
   page.execute_script "s=$('#slidr');"
