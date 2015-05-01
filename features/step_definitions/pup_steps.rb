@@ -127,11 +127,12 @@ When(/^I am logged in$/) do
   fill_in(:user_email, :with => "lolright@aol.com")
   fill_in(:user_password, :with => "lolright")
   click_button("Log in")
+  assert page.has_content?("Logout")
 end
 
 
 def set_hidden_field(field, value)
-  page.execute_script "s=$(##{field});"
+  page.execute_script "s=$('##{field}');"
   page.execute_script "s.val(#{value})"
 end
 
