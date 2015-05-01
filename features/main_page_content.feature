@@ -17,10 +17,10 @@ Scenario: information content on main page
 
 Scenario: Hover over buttons should show hidden div 
     Given I am on the RateMyPup home page
-    When I hover over ".button-b"
-    Then I should see "Find a pup breed by type or mix:"
-    When I hover over ".button-b"
-    Then I should see "Find a pup breeder by name:"
+    When I click ".button-b"
+    Then I should see "Search for ratings by breed:"
+    When I click ".button-c"
+    Then I should see "Find a pup breeder by name or city and state:"
 
 Scenario: Direct to rate your pup 
     Given I am on the RateMyPup home page

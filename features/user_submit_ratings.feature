@@ -20,7 +20,6 @@ Feature: only users with a user profile should be able to submit a rating
     Given I am on the RateMyPup home page
     Then I should see "Login"
     And I click ".button-a"
-    Then I press "Rate your Pup"
     Then I should be on the "Create New Pup" page
     When I fill out the form with the following attributes:
       | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
@@ -35,7 +34,6 @@ Feature: only users with a user profile should be able to submit a rating
     And I am logged in
     Then I am on the RateMyPup home page
     And I click ".button-a"
-    Then I press "Rate your Pup"
     Then I should be on the "Create New Pup" page
     When I fill out the form with the following attributes:
       | pup_name           | owner_name      | breed_1            | breed_2         | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments                          | breeder_id        |
