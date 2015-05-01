@@ -69,12 +69,12 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
   pups_table.hashes.each do |rating|
     page.select rating['breed_1'], :from => 'Primary Breed'
     page.select rating['breed_2'], :from => 'Secondary Breed'
-    slide('slider-breeder', rating['breeder_responsibility'])
-    slide('slider-health', rating['overall_health'])
-    slide('slider-train', rating['trainability'])
-    slide('slider-social', rating['social_behavior'])
-    slide('slider-energy', rating['energy_level'])
-    slide('slider-simpatico', rating['simpatico_rating'])
+    set_hidden_field('breeder-label', rating['breeder_responsibility'])
+    set_hidden_field('health-label', rating['overall_health'])
+    set_hidden_field('train-label', rating['trainability'])
+    set_hidden_field('social-label', rating['social_behavior'])
+    set_hidden_field('energy-label', rating['energy_level'])
+    set_hidden_field('simpatico-label', rating['simpatico_rating'])
     fill_in 'Comments', :with => rating['comments']
     fill_in 'Pup Name', :with => rating['pup_name']
   end
@@ -130,9 +130,9 @@ When(/^I am logged in$/) do
 end
 
 
-def slide(slidr, value)
-  page.execute_script "s=$('#slidr');"
-  page.execute_script "s.slider('option', 'value', #{value})"
+def set_hidden_field(field, value)
+  page.execute_script "s=$(##{field});"
+  page.execute_script "s.val(#{value})"
 end
 
 def auto_complete(text_field, value, event='keyup')
