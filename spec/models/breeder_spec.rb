@@ -75,4 +75,13 @@ describe Breeder do
       end
     end
   end
+
+  describe "increment deleted reviews for breeder" do
+    it "should increase by 1" do
+      breeder = FactoryGirl.create(:breeder)
+      initial = breeder.removed_reviews
+      breeder.increment_deleted_reviews
+      breeder.removed_reviews.should == (initial + 1)
+    end
+  end
 end
