@@ -45,7 +45,7 @@ Feature: Allow searching by only city, state, or breed
       | Carl            |
 
   Scenario: search for a breeder with only its breed
-    When I enter "German Short Hair" into the breed
+    When I enter "German Short Hair" into "breed"
     Then I should see all of:
       | name            |
       | Chris           |
