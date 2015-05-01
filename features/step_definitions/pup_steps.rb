@@ -55,6 +55,10 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
+Then /^I should see todays date/ do
+  assert page.has_no_content?(Date.today)
+end
+
 Then /^I should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -68,9 +72,9 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
   page.evaluate_script "$('#multiple_breeds').trigger('click');"
   pups_table.hashes.each do |rating|
 
-    choose('secondary-radio-button')
-    page.select rating['breed_1'], :from => 'primary-breed'
-    page.select rating['breed_2'], :from => 'secondary-breed'
+    choose('multiple_breeds_Mixed_Breed')
+    page.select rating['breed_1'], :from => 'pup_breed_1'
+    page.select rating['breed_2'], :from => 'pup_breed_2'
     slide('slider-breeder', rating['breeder_responsibility'])
     slide('slider-health', rating['overall_health'])
     slide('slider-train', rating['trainability'])
@@ -139,10 +143,14 @@ When(/^I am logged in$/) do
   assert page.has_content?("Logout")
 end
 
-
 def set_hidden_field(field, value)
   page.execute_script "s=$('##{field}');"
   page.execute_script "s.val(#{value})"
+end
+
+def slide(slidr, value)
+  page.execute_script "s=$('#slidr');"
+  page.execute_script "s.slider('option', 'value', #{value})"
 end
 
 def auto_complete(text_field, value, event='keyup')
@@ -188,4 +196,8 @@ Given (/^I login as an admin$/) do
   fill_in(:admin_user_email, :with => 'admin@example.com')
   fill_in(:admin_user_password, :with => 'password')
   find('#admin_user_submit_action').click
+end
+
+When(/^I hover over "(.*?)"$/) do |element_name|
+  page.evaluate_script("$('#{element_name}').trigger('mouseover')")
 end
