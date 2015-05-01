@@ -65,7 +65,6 @@ Then /^I should be on (.+)$/ do |page_name|
 end
 
 When /^I fill out the form with the following attributes:$/ do |pups_table|
-  # puts page.body
   page.evaluate_script "$('#multiple_breeds').trigger('click');"
   pups_table.hashes.each do |rating|
     page.select rating['breed_1'], :from => 'Primary Breed'

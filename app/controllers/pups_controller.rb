@@ -28,6 +28,7 @@ class PupsController < ApplicationController
     @all_breeds = Pup.all_breeds
     @all_breeds_none = Pup.all_breeds_none
     @all_breeders = Breeder.all.map {|breeder| breeder.name}
+    @mission_statement_sections = Text.mission_statement_sections
   end
 
   def show
