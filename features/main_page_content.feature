@@ -11,7 +11,7 @@ Background:
 
 Scenario: information content on main page 
     Given I am on the RateMyPup home page
-    Then I should see "Mission Statement"
+    Then I should see "Our Mission"
     And I should see "Contact"
 
 
