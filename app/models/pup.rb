@@ -46,7 +46,7 @@ class Pup < ActiveRecord::Base
 
   def safe_hashtag_string
     hashtags = [hashtag_1, hashtag_2, hashtag_3].select{|hashtag| hashtag}
-    hashtags.size == 0 ? "This dog has no categorical behaviors related with it" : hashtags.join(' ,')
+    hashtags.size == 0 ? "This dog has no categorical behaviors related with it" : hashtags.join(', ')
   end
 
   def self.all_breeds

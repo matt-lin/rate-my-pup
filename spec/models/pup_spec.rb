@@ -64,4 +64,18 @@ describe Pup do
       end
     end
   end
+  describe "returning a safe hashtag no matter what the values of hashtags_1-3 are" do
+    it "should return a default string if no hashtags" do
+      pup = FactoryGirl.create(:pup)
+      pup.safe_hashtag_string.should == 'This dog has no categorical behaviors related with it'
+    end
+    it "should return the joined hashtags that are present" do
+      pup = FactoryGirl.create(:pup, :hashtag_1 => "#lolright", :hashtag_2 => "#okilydokily")
+      pup.safe_hashtag_string.should == '#lolright, #okilydokily'
+    end
+    it "should return all three joined hashtags" do
+      pup = FactoryGirl.create(:pup, :hashtag_1 => "#lolright", :hashtag_2 => "#okilydokily", :hashtag_3 => "#i'mdone")
+      pup.safe_hashtag_string.should == "#lolright, #okilydokily, #i'mdone"
+    end
+  end
 end
