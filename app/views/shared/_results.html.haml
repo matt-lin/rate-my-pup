@@ -1,6 +1,8 @@
 %div{:class=>"container"}
   %div{:class=>"row"}
-    %h1 #{query} 
+    %h1 #{query}
+    %p
+      %i="This breeder has asked for #{@breeder.removed_reviews} reviews to be taken down" if @breeder
     / %div{:class=>"col-sm-3"}
     /   = button_to 'Submit a New Pup Rating', new_pup_path, :method => :get, :id => 'Rate your Pup', :class => "form-control btn-sm btn-primary"
 
