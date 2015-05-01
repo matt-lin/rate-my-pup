@@ -8,13 +8,14 @@
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-.read {
+input.read {
     background-color: transparent;
-    border: 0px;
+  	font-size: 1.1em !important;
+    border: 0px !important;
     height: 40px;
-    width: 10px;
+    width: 40px  !important;
     color: #CCC;
-    outline: 0;
+    outline: 0  !important;
     -webkit-appearance:none;
     -moz-appearance:none;
     appearance:none;
