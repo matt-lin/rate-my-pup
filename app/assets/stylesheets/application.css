@@ -172,6 +172,20 @@ body {
 
 }
 
+.hashtag_results {
+    border: 1px solid gray;
+    background: gray;
+    color: white;
+    padding: 4px 4px 4px 4px;
+    border-radius: 8px;
+    margin: 3px 3px 3px 3px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 200;
+    font-size: 12px;
+
+}
+
 .hashtag:hover {
     background: #3399FF;
     border: 1px solid #3399FF;
