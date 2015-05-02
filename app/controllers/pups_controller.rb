@@ -49,7 +49,7 @@ class PupsController < ApplicationController
     @pup = Pup.new(params[:pup])
     if @pup.save
       flash[:notice] = "#{@pup.pup_name} was successfully added"
-      redirect_to breed_path(:breed_1 => @pup.breed_1, :breed_2 => @pup.breed_2)
+      redirect_to breed_path(:pup => {:breed_1 => @pup.breed_1, :breed_2 => @pup.breed_2})
     else 
       flash.keep[:notice] = "Please make sure all fields are complete!"
       redirect_to new_pup_path

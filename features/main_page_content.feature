@@ -14,13 +14,12 @@ Scenario: information content on main page
     Then I should see "Our Mission"
     And I should see "Contact"
 
-
 Scenario: Hover over buttons should show hidden div 
     Given I am on the RateMyPup home page
     When I click ".button-b"
     Then I should see "Search for ratings by breed:"
     When I click ".button-c"
-    Then I should see "Find a pup breeder by name or city and state:"
+    Then I should see "Find a breeder or kennel by name or city and state:"
 
 Scenario: Direct to rate your pup 
     Given I am on the RateMyPup home page

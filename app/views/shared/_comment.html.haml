@@ -5,7 +5,7 @@
         %div{:class=>"col-sm-11"}
             %div{:class=>"well well-sm"}
                 %div{:class=>"col-lg-12"}
-                    %p= pup.created_at.to_date
+                    %p= pup.created_at ? pup.created_at.to_date : ""
                 %div{:class=>"row"}
                     = render 'shared/rating_comments', width: responsibility, title: "Breeder Responsibility", color: 'progress-bar'
                     = render 'shared/rating_comments', width: health, title: 'Pup Health', color: 'progress-bar'
