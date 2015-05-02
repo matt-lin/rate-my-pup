@@ -1,9 +1,9 @@
 #encoding: utf-8
 
 pups = [{:pup_name => 'Chloe', :breeder_id => '1', :breed_1 => 'Cocker Spaniel', :breed_2 => 'Poodle', :breeder_responsibility => '5', :overall_health => '5', :trainability => '3', :social_behavior => '4', :energy_level => '4', :simpatico_rating => '5', :comments => 'great dog!'},
-  	 	{:pup_name => 'Spot', :breeder_id => '2', :breed_1 => 'Dalmation', :breed_2 => 'None', :breeder_responsibility => '3', :overall_health => '3', :trainability => '3', :social_behavior => '3', :energy_level => '3', :simpatico_rating => '3', :comments => 'love my dog!'},
+  	 	{:pup_name => 'Spot', :breeder_id => '2', :breed_1 => 'Dalmatian', :breed_2 => 'None', :breeder_responsibility => '3', :overall_health => '3', :trainability => '3', :social_behavior => '3', :energy_level => '3', :simpatico_rating => '3', :comments => 'love my dog!'},
   	 	{:pup_name => 'Gypsy', :breeder_id => '1', :breed_1 => 'Akita', :breed_2 => 'None', :breeder_responsibility => '5', :overall_health => '4', :trainability => '3', :social_behavior => '2', :energy_level => '1', :simpatico_rating => '5', :comments => 'not very playful'},
-  	 	{:pup_name => 'Jenny', :breeder_id => '2', :breed_1 => 'Dalmation', :breed_2 => 'None', :breeder_responsibility => '3', :overall_health => '4', :trainability => '5', :social_behavior => '5', :energy_level => '3', :simpatico_rating => '4', :comments => 'very well behaved!'}]
+  	 	{:pup_name => 'Jenny', :breeder_id => '2', :breed_1 => 'Dalmatian', :breed_2 => 'None', :breeder_responsibility => '3', :overall_health => '4', :trainability => '5', :social_behavior => '5', :energy_level => '3', :simpatico_rating => '4', :comments => 'very well behaved!'}]
  
 breeders = [{:name => 'Justin MacMillin', :city => "Porterville", :state => 'CA', :website => 'www.com', :kennel => 'happy dogs'},
 			{:name => 'Alex McGourty', :city => "San Fransisco", :state => 'CA', :website => 'www.com', :kennel => 'happy dogs 2'}]
