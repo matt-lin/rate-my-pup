@@ -13,10 +13,10 @@
                     = render 'shared/rating_comments', width: simpatico, title: 'Simpatico Rating', color: 'progress-bar'
 
                 %h4{:class=>"rating-comment"} #{pup.comments}
-                %h4{:class=>"rating-comment"}
+                %h4
                     - if pup.safe_hashtag_string.size() < 1
                         %p This pup has no attribute tags
                     - else
                         - pup.safe_hashtag_string.each do |hashtag|
-                            %p{:class => "hashtag"}=hashtag
+                            %p{:class => "hashtag_results"}=hashtag
                     
