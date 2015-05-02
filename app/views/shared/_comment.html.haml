@@ -5,7 +5,7 @@
         %div{:class=>"col-sm-11"}
             %div{:class=>"well well-sm"}
                 %div{:class=>"col-lg-12"}
-                    %p= pup.created_at ? pup.created_at.to_date : ""
+                    %p{:class => "date"}= pup.created_at ? "Created: "+pup.created_at.to_date.to_s : ""
                 %div{:class=>"row"}
                     = render 'shared/rating_comments', width: responsibility, title: "Breeder Responsibility", color: 'progress-bar'
                     = render 'shared/rating_comments', width: health, title: 'Pup Health', color: 'progress-bar'
@@ -17,8 +17,9 @@
                 %h4{:class=>"rating-comment"} #{pup.comments}
                 %h4
                     - if pup.safe_hashtag_string.size() < 1
-                        %p This pup has no attribute tags
+                        %p{:class => "no-hashtags"} This pup has no attribute tags
                     - else
                         - pup.safe_hashtag_string.each do |hashtag|
-                            %p{:class => "hashtag_results"}=hashtag
+                            - if hashtag != ""
+                                %p{:class => "hashtag_results"}=hashtag
                     

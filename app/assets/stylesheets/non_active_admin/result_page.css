@@ -104,3 +104,15 @@
   color: #ff3333;
   border: 2px solid #ff3333;
 }
+
+.no-hashtags {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.date {
+  margin-left: -12px;
+}
+
