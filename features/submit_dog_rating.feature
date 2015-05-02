@@ -33,7 +33,7 @@ Scenario: submit new review
     | Thor               | Anna            | Pug                | None            | 2                      | 5              | 3            | 4               | 4            | 4                | A little hard to train but lovable|
     And I press "Add Pup"
     Then I should not see "Please make sure all fields are complete!"
-    And I should be on the "Pups" page
+    And I should be on the Breed page
     And I should see "A little hard to train but lovable"
     And I should see "Pug"
 
