@@ -19,6 +19,11 @@ var BreederAutofill = {
         $('#breeder_state').keyup(function() {
             BreederAutofill.breeder_ajax_address()
         });
+
+        $('#cancel_form').click(function () {
+            $('#breeder_form_collapse').collapse('show');
+            $('#breeder_well').collapse('hide');
+        })
     }
 
     // ajax call to breeder/match/
@@ -103,15 +108,16 @@ var BreederAutofill = {
         }
 
         // if a new breeder is selected, let id be -1
-        var html = '<div class="autofills"><a class="autofill_link">' + "Don't see it? Add a new breeder" + '</a></div>';
+        var html = '<div class="autofills"><a class="autofill_link">' + "Don't see the breeder that you're looking for? Add a new breeder to our database" + '</a></div>';
         var new_breeder = $(html);
         $('#autofills').append(new_breeder);
 
         new_breeder.click(function () {
             var text = $(this).text();
             $('#autofills').empty();
-            $('#breeder_form').val(text);
             $('#invisible_id').val(-1);
+            $('#breeder_form_collapse').collapse('hide');
+            $('#breeder_well').collapse('show');
         });
 
     }
