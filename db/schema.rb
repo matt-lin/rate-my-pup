@@ -78,13 +78,6 @@ ActiveRecord::Schema.define(:version => 20150502001742) do
     t.datetime "updated_at"
   end
 
-  create_table "text", :force => true do |t|
-    t.string  "section_title", :default => ""
-    t.integer "section_order", :default => 0
-    t.string  "title",         :default => ""
-    t.text    "text",          :default => ""
-  end
-
   create_table "texts", :force => true do |t|
     t.string  "section_title", :default => ""
     t.integer "section_order", :default => 0
