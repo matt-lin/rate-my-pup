@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150501190908) do
+ActiveRecord::Schema.define(:version => 20150502001742) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -59,21 +59,30 @@ ActiveRecord::Schema.define(:version => 20150501190908) do
   end
 
   create_table "pups", :force => true do |t|
-    t.string  "pup_name"
-    t.string  "owner_name"
-    t.string  "breed_1"
-    t.string  "breed_2"
-    t.integer "breeder_responsibility"
-    t.integer "overall_health"
-    t.integer "trainability"
-    t.integer "social_behavior"
-    t.integer "energy_level"
-    t.integer "simpatico_rating"
-    t.text    "comments"
-    t.integer "breeder_id"
-    t.string  "hashtag_1"
-    t.string  "hashtag_2"
-    t.string  "hashtag_3"
+    t.string   "pup_name"
+    t.string   "owner_name"
+    t.string   "breed_1"
+    t.string   "breed_2"
+    t.integer  "breeder_responsibility"
+    t.integer  "overall_health"
+    t.integer  "trainability"
+    t.integer  "social_behavior"
+    t.integer  "energy_level"
+    t.integer  "simpatico_rating"
+    t.text     "comments"
+    t.integer  "breeder_id"
+    t.string   "hashtag_1"
+    t.string   "hashtag_2"
+    t.string   "hashtag_3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "text", :force => true do |t|
+    t.string  "section_title", :default => ""
+    t.integer "section_order", :default => 0
+    t.string  "title",         :default => ""
+    t.text    "text",          :default => ""
   end
 
   create_table "texts", :force => true do |t|
