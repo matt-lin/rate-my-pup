@@ -10,16 +10,10 @@ class PupsController < ApplicationController
   end
 
   def breeder_exists
-
     if params[:pup][:breeder_id].to_i == -1
       breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
       params[:pup][:breeder_id] = breeder.id
     end
-
-    #if params[:pup][:breeder_id].to_i == -1
-    #  session[:pup] = params[:pup]
-    #  redirect_to new_breeder_path
-    #end
   end
 
   def index

@@ -41,7 +41,6 @@ describe PupsController do
           :breeder_id.to_s => @breeder.id.to_s,
           :breeder_responsibility.to_s => 4.to_s,
           :pup_name.to_s => "Doge",
-          :owner_name.to_s => "Curious George",
           :breed_1.to_s => "Shiba Inu",
           :breed_2.to_s => "None",
           :overall_health.to_s => 1.to_s,
@@ -50,7 +49,12 @@ describe PupsController do
           :energy_level.to_s => 5.to_s,
           :simpatico_rating.to_s => 5.to_s,
           :comments.to_s => "DOPE CITY"
-        }
+        },
+         :breeder => {
+             :name => @breeder.name,
+             :city => @breeder.city,
+             :state => @breeder.state
+         }
       }
     end
     it "should redirect to new pup page if fields are incomplete" do
@@ -66,8 +70,7 @@ describe PupsController do
     it "should redirect to create breeder page if no breeder" do
       @pup_hash[:pup]["breeder_id"] = -1.to_s
       post :create, @pup_hash
-      response.should redirect_to new_breeder_path
-      session[:pup].should == @pup_hash[:pup]
+      response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=Shiba+Inu&pup%5Bbreed_2%5D=None"
     end
   end
   describe "updating a review" do
