@@ -29,4 +29,3 @@ Scenario: searching for a breeder
     And I should see "The greatest dog I've ever owned"
     And I should see "Super chiller dog."
     And I should see "Another great dog."
-    And I should see todays date"
