@@ -61,7 +61,7 @@ describe PupsController do
       Pup.should_receive(:new).with(@pup_hash[:pup]).and_return(@temp_pup)
       @temp_pup.should_receive(:save).and_return(true)
       post :create, @pup_hash
-      response.should redirect_to "http://test.host/breed?breed_1=shiba+inu&breed_2=None"
+      response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=shiba+inu&pup%5Bbreed_2%5D=None"
     end
     it "should redirect to create breeder page if no breeder" do
       @pup_hash[:pup]["breeder_id"] = -1.to_s
