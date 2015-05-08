@@ -7,7 +7,7 @@ var MainButtons = {
     // setup sets a callback for #breeder_find keyup
     setup: function() {
         $('.button-a').hover( function() {
-            $('#tagline-text').html("Keep breeders <strong>honest</strong> by rating your pup");
+            $('#tagline-text').html("Contribute information about <strong>your<strong> dog to our database");
         });
 
         $('.button-b').click( function() {
