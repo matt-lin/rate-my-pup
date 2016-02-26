@@ -1,4 +1,8 @@
-**Current status** ![Build Status](https://travis-ci.org/eabartlett/ratemypup.svg?branch=master)
+This project is based on previous existed CS169 project-ratemypup
+
+
+
+===================Previous Team Info============================
 ####Dependencies - 
   1. [rvm](https://rvm.io)
   2. Ruby: 1.9.3
