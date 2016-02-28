@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.2.2'
 
-if RUBY_VERSION =~ /1.9/ # default encoding for db:seed
+if RUBY_VERSION =~ /2.2/ # default encoding for db:seed
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
@@ -21,7 +21,7 @@ gem 'activeadmin'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'ruby-debug19'
+  gem 'byebug', '5.0.0'
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.14.0'
