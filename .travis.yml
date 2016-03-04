@@ -4,7 +4,7 @@ language: ruby
 rvm:
 - 2.2.2
 bundler_args: --without production
-script:
+env:
 - RAILS_ENV=test bundle exec rake db:migrate --trace
 - CODECLIMATE_REPO_TOKEN=dc56c51f893b29f35afc4b418883a5f75b9fed6bf336569b5c1796553816f0c7 bundle exec rake
 addons:
