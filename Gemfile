@@ -31,6 +31,7 @@ group :development, :test do
   gem 'codeclimate-test-reporter'
 	gem 'reek'
 	gem 'poltergeist'
+	gem 'test-unit', '~> 3.0'
 end
 
 group :production do
