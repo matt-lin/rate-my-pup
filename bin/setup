@@ -4,7 +4,7 @@
 bundle install --without production
 
 # set up heroku git remote
-git remote add heroku https://git.heroku.com/ratemypup.git
+git remote add heroku https://git.heroku.com/rate-my-pup.git
 
 # set up db
 rake db:setup
