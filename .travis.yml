@@ -1,13 +1,12 @@
 language: ruby
 rvm:
-- 1.9.3
+- 2.2.2
 bundler_args: --without production
 script:
 - RAILS_ENV=test bundle exec rake db:migrate --trace
-- CODECLIMATE_REPO_TOKEN=513863723819dbcb559790bb5c154b907e27a6b9fc327353ec13416b3547ec05 bundle exec rake
+- CODECLIMATE_REPO_TOKEN=dc56c51f893b29f35afc4b418883a5f75b9fed6bf336569b5c1796553816f0c7 bundle exec rake
 addons:
   code_climate:
-    repo_token: 513863723819dbcb559790bb5c154b907e27a6b9fc327353ec13416b3547ec05
+    repo_token: dc56c51f893b29f35afc4b418883a5f75b9fed6bf336569b5c1796553816f0c7
 notifications:
-  slack:
-    secure: CLiMC4Qiu8sSaV4NxRm1Yjtqt//ql4izY9UV7qDlFc9KwK0sceeNAni36GGzgWtxM0i1PyXj3TON7qtaNYwjh1gCilyTCRxFmwr4tNW1u88h6QEr3dLmKpUG1w0LL/zK4LLDOeg9xTnwo1xfmSqR7RGkhdjYmE2CXBhV6l4tJ+8=
+  slack: cs169-team:efQmw1c7Yvi5Zp1slBG9IkTg
