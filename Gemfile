@@ -32,6 +32,7 @@ group :development, :test do
 	gem 'reek'
 	gem 'poltergeist'
 	gem 'test-unit', '~> 3.0'
+	gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 group :production do
