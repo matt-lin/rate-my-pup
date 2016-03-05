@@ -329,6 +329,7 @@ DEPENDENCIES
   omniauth-facebook!
   omniauth-twitter!
   pg
+  phantomjs
   poltergeist
   rails (= 3.2.16)
   rake
