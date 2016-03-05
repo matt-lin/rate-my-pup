@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/cjzcpsyx/rate-my-pup.svg?branch=master)](https://travis-ci.org/cjzcpsyx/rate-my-pup) [![Code Climate](https://codeclimate.com/github/cjzcpsyx/rate-my-pup/badges/gpa.svg)](https://codeclimate.com/github/cjzcpsyx/rate-my-pup) [![Test Coverage](https://codeclimate.com/repos/56ccef28c952c622b800c8b7/badges/9791477f21d4677868a0/coverage.svg)](https://codeclimate.com/repos/56ccef28c952c622b800c8b7/coverage)
+[![Build Status](https://travis-ci.org/cjzcpsyx/rate-my-pup.svg?branch=master)](https://travis-ci.org/cjzcpsyx/rate-my-pup) [![Code Climate](https://codeclimate.com/github/cjzcpsyx/rate-my-pup/badges/gpa.svg)](https://codeclimate.com/github/cjzcpsyx/rate-my-pup) [![Test Coverage](https://codeclimate.com/github/cjzcpsyx/rate-my-pup/badges/coverage.svg)](https://codeclimate.com/github/cjzcpsyx/rate-my-pup/coverage)
 
 This project is based on previous existed CS169 project-ratemypup
 
