@@ -6,6 +6,7 @@ rvm:
 bundler_args: --without production
 script:
 - RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec cucumber
 - CODECLIMATE_REPO_TOKEN=e47363a705f45d6d9fcb8ac01305cbe571b03af4268d94a3cf8b08d58f49ec71 bundle exec rake
 addons:
   code_climate:
