@@ -6,9 +6,9 @@ rvm:
 bundler_args: --without production
 script:
 - RAILS_ENV=test bundle exec rake db:migrate --trace
-- CODECLIMATE_REPO_TOKEN=2b9c549b8f94c0e42f6161f7577038885aa7b21f4a38fc8525a828a96abd6769 bundle exec rake
+- CODECLIMATE_REPO_TOKEN=e47363a705f45d6d9fcb8ac01305cbe571b03af4268d94a3cf8b08d58f49ec71 bundle exec rake
 addons:
   code_climate:
-    repo_token: 2b9c549b8f94c0e42f6161f7577038885aa7b21f4a38fc8525a828a96abd6769
+    repo_token: e47363a705f45d6d9fcb8ac01305cbe571b03af4268d94a3cf8b08d58f49ec71
 notifications:
   slack: cs169-team:efQmw1c7Yvi5Zp1slBG9IkTg
