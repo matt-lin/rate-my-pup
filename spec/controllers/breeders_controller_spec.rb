@@ -30,7 +30,7 @@ describe BreedersController do
       Breeder.should_receive(:find_or_create)
           .with(@params[:name], @params[:city], @params[:state])
           .and_return([@breeder_build, "Erik"])
-      post :create, {:breeder => @params}, {:pup => {}}
+      post :create, {:breeder => @params, :pup => {}}
       response.should redirect_to create_pup_path(:pup => {:breeder_id => @breeder_build.id})
     end
 
