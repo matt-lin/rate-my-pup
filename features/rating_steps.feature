@@ -34,7 +34,7 @@ Background: User already logged in
     And I fill in "months" with "1"
     And I press "next_button"
     Then I should be on the "Dog Breed" page
-    And I should see "Please select a breed for your breed."
+    And I should see "Please select a breed for your dog."
   
   Scenario: step2->0(sad), submit form with invalid years and months
     Given I am on the "Dog How Long" page
@@ -71,5 +71,5 @@ Background: User already logged in
     Given I am on the "Dog Breeder" page
     And I press "next_button"
     Then I should be on the "Dog Breeder" page
-    And I should see "Enter either breeder's name or the kennel name"
+    And I should see "Enter either your breeder's name or your kennel's name"
     
