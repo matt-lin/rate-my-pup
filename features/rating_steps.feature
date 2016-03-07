@@ -5,33 +5,70 @@ Feature: Split rating process into a few steps
   I want to provide information interactively
   
 Background: User already logged in
-  Given I am on the RateMyPup home page
-  And I am logged in
+  Given I am logged in
+
+  Scenario: step0->1, direct to dog name page
+    Given I am on the RateMyPup home page
+    When I follow "Rate your Pup"
+    Then I should be on the "Dog Name" page
+    And I should see "What's your dog's name?"
+
+  Scenario: step1->2(happy), submit form with valid dog name
+    Given I am on "Dog Name" page
+    When I fill in "dog_name" with "Doggie"
+    And I press "next_button"
+    Then I should be on "Dog How Long" page
+    And I should see "How long have you owned your dog?"
+
+  Scenario: step1->1(sad), submit form with invalid dog name
+    Given I am on "Dog Name" page
+    When I fill in "dog_name" with ""
+    And I press "next_button"
+    Then I should be on "Dog Name" page
+    And I should see "Please input a name"
+
+  Scenario: step2->3(happy), submit with valid years and months
+    Given I am on the "Dog How Long" page
+    When I fill in "years" with "1"
+    And I fill in "months" with "1"
+    And I press "next_button"
+    Then I should be on the "Dog Breed" page
+    And I should see "Please select a breed for your breed."
   
-  Scenario: step1: whether owned a puppy over 6 months
-    When I follow "Rate your Pup"
-    Then I should see "Have you own your puppy longer than 6 months?"
+  Scenario: step2->0(sad), submit form with invalid years and months
+    Given I am on the "Dog How Long" page
+    When I fill in "years" with "0"
+    And I fill in "months" with "4"
+    And I press "next_button"
+    Then I should be on the RateMyPup home page
+    And I should see "Sorry, to keep the information in our database as accurate as possible, we are collecting data only for dogs that have been in the current home for at least six months. Please come back and evaluate your dog later."
     
-  Scenario: if owned a puppy over 6 months, I should on step2: a purebred or not
-    When I follow "Rate your Pup"
-    And I follow "Yes"
-    Then I should see "Is your puppy a purebred or a mix of two known breeds?"
-  
-  Scenario: if owned a puppy less than 6 months, we do not collect that rating
-    When I follow "Rate your Pup"
-    And I follow "No"
-    Then I should see "We do not collect data for puppies owned less than 6 months"
-    
-  Scenario: if a purebred
-    When I follow "Rate your Pup"
-    And I follow "Yes"
-    And I follow "Yes"
+  Scenario: step3->4(happy), submit with valid breed input
+    Given I am on the "Dog Breed" page
+    When I select "Affenpinscher" from "breed_selection"
+    And I press "next_button"
+    Then I should be on the "Dog Breeder" page
+    And I should see "Breeder Information"
+
+  Scenario: step3->0(sad), submit with invalid breed input
+    Given I am on the "Dog Breed" page
+    When I select "I don't know" from "breed_selection"
+    And I press "next_button"
+    Then I should be on the RateMyPup home page
+    And I should see "Sorry, to keep the information in our database as accurate as possible, we are only collecting data for dogs that are members of a recognized AKC breed."
+
+  Scenario: step4->new(happy), submit with either breeder name or kennel name
+    Given I am on the "Dog Breeder" page
+    When I fill in "breeder_name" with "Redeerb"
+    And I fill in "city" with "Berkeley"
+    And I fill in "state" with "CA"
+    And I press "next_button"
     Then I should be on the "Create New Pup" page
+    And I should see "Rate a New Pup"
     
-  Scenario: if not a purebred
-    When I follow "Rate your Pup"
-    And I follow "Yes"
-    And I follow "Not"
-    Then I should on the RateMyPup home page
-    And I should see "We do not collect data for mixed breed puppies"
+  Scenario: step4->4(sad), submit with empty breeder name and kennel name
+    Given I am on the "Dog Breeder" page
+    And I press "next_button"
+    Then I should be on the "Dog Breeder" page
+    And I should see "Enter either breeder's name or the kennel name"
     
