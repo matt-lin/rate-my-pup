@@ -1,6 +1,7 @@
 class PupsController < ApplicationController
 
   before_filter :breeder_exists, :only => :create
+  before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed]
@@ -21,11 +22,15 @@ class PupsController < ApplicationController
   end
 
   def new
-    if not user_signed_in?
-      redirect_to '/users/sign_in'
+    pup_name = params[:pup][:pup_name]
+    if pup_name.nil? || pup_name.empty?
+      flash[:notice] = ""
+      session[:step1] = false
+      redirect_to dog_name_path
+    else
+      session[:pup_name] = pup_name
+      session[:step1] = true
     end
-    @all_breeds = Pup.all_breeds
-    @all_breeds_none = Pup.all_breeds_none
   end
 
   def main
@@ -78,15 +83,53 @@ class PupsController < ApplicationController
   end
 
   def dog_how_long
-
+    pup_name = params[:pup][:pup_name]
+    if pup_name.nil? || pup_name.empty?
+      flash[:notice] = "Please enter a name for your dog"
+      session[:step1] = false
+      redirect_to dog_name_path
+    else
+      session[:pup_name] = pup_name
+      session[:step1] = true
+    end
   end
 
   def dog_breed
     @all_breeds = Pup.all_breeds
     @all_breeds_none = Pup.all_breeds_none
+    years = params[:pup][:years]
+    months = params[:pup][:months]
+    if !session[:step1]
+      redirect_to root_path
+    end
+    if years.nil? || months.nil? || years.empty? || months.empty?
+      flash[:notice] = "Please enter how long you have owned your dog."
+      session[:step2] = false
+      redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup][:pup_name]})
+    elsif is_valid_year_month?(years, months)
+      session[:step2] = false
+      flash[:notice] = "Sorry, to keep the information in our database as accurate as possible, we are collecting data only for dogs that have been in the current home for at least six months. Please come back and evaluate your dog later."
+      redirect_to root_path
+    else
+      session[:years] = years 
+      session[:months] = months
+      session[:step2] = true
+    end
   end
 
   def dog_breeder
-
+    # byebug
+    
+  end
+  
+  private
+  def check_sign_in
+    unless user_signed_in?
+      redirect_to '/users/sign_in'
+    end
+  end
+  
+  def is_valid_year_month?(years, months)
+      return years * 12 + months >= 6
   end
 end
