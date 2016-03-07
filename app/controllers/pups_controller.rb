@@ -82,7 +82,8 @@ class PupsController < ApplicationController
   end
 
   def dog_breed
-
+    @all_breeds = Pup.all_breeds
+    @all_breeds_none = Pup.all_breeds_none
   end
 
   def dog_breeder
