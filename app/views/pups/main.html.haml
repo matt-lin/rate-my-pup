@@ -2,6 +2,9 @@
     %h3{:class => "warning"}=flash[:message] if flash[:message]
 
     %div{:class => "container-fluid", :id => "pup"}
+
+        - flash.each do |key, value|
+            %p{:class => "unfilled_fields"}= value
         
         //TOP PART (Tagline, Buttons)
         %div{:class => "row top"}

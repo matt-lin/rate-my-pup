@@ -102,24 +102,37 @@ class PupsController < ApplicationController
     if !session[:step1]
       redirect_to root_path
     end
-    if years.nil? || months.nil? || years.empty? || months.empty?
+    if years.nil? || months.nil? || (years.empty? && months.empty?)
       flash[:notice] = "Please enter how long you have owned your dog."
       session[:step2] = false
-      redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup][:pup_name]})
+      redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]})
     elsif is_valid_year_month?(years, months)
-      session[:step2] = false
-      flash[:notice] = "Sorry, to keep the information in our database as accurate as possible, we are collecting data only for dogs that have been in the current home for at least six months. Please come back and evaluate your dog later."
-      redirect_to root_path
-    else
       session[:years] = years 
       session[:months] = months
       session[:step2] = true
+    else
+      session[:step2] = false
+      flash[:notice] = "Sorry, to keep the information in our database as accurate as possible, we are collecting data only for dogs that have been in the current home for at least six months. Please come back and evaluate your dog later."
+      redirect_to root_path
     end
   end
 
   def dog_breeder
-    # byebug
-    
+    multiple_breeds = params[:multiple_breeds]
+    breed1 = params[:pup][:breed1]
+    breed2 = params[:pup][:breed2]
+    if !session[:step1] || !session[:step2]
+      redirect_to root_path
+    end
+    if is_valid_breed?(breed1, breed2)
+      session[:breed1] = breed1
+      session[:breed2] = breed2
+      session[:step3] = true
+    else
+      session[:step3] = false
+      flash[:notice] = ""
+      redirect_to root_path
+    end
   end
   
   private
@@ -130,6 +143,6 @@ class PupsController < ApplicationController
   end
   
   def is_valid_year_month?(years, months)
-      return years * 12 + months >= 6
+    return years.to_i * 12 + months.to_i >= 6
   end
 end
