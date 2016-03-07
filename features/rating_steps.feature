@@ -5,7 +5,8 @@ Feature: Split rating process into a few steps
   I want to provide information interactively
   
 Background: User already logged in
-  Given I am logged in
+  Given I am on the RateMyPup home page
+  And I am logged in
 
   Scenario: step0->1, direct to dog name page
     Given I am on the RateMyPup home page
