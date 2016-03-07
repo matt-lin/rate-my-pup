@@ -8,7 +8,12 @@ Ratemypup::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   match '/pups/create' => 'pups#create', :as => :create_pup
-  resources :pups
+  resources :pups do
+    post 'dog_name' => 'pups#dog_name', :as => :dog_name
+    post 'dog_how_long' => 'pups#dog_how_long', :as => :dog_how_long
+    post 'dog_breed' => 'pups#dog_breed', :as => :dog_breed
+    post 'dog_breeder' => 'pups#dog_breeder', :as => :dog_breeder
+  end
   resources :breeders
 
   get '/breed' => 'pups#breed', :as => :breed

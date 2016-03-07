@@ -19,7 +19,12 @@ module NavigationHelpers
     when /^the Login page$/ then '/users/sign_in'
     when /^the "Add breeder" page$/ then '/breeders/new'
     when /^the Breed page$/ then '/breed'
-    # Add more mappings here.
+    when /^the "Dog Name" page$/ then '/pups/dog_name'
+    when /^the "Dog How Long" page$/ then '/pups/dog_how_long'
+    when /^the "Dog Breed" page$/ then 'pups/dog_breed'
+    when /^the "Dog Breeder" page$/ then 'pups/dog_breeder'
+
+      # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i

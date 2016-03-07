@@ -18,14 +18,14 @@ Background: User already logged in
     Given I am on "Dog Name" page
     When I fill in "dog_name" with "Doggie"
     And I press "next_button"
-    Then I should be on "Dog How Long" page
+    Then I should be on the "Dog How Long" page
     And I should see "How long have you owned your dog?"
 
   Scenario: step1->1(sad), submit form with invalid dog name
     Given I am on "Dog Name" page
     When I fill in "dog_name" with ""
     And I press "next_button"
-    Then I should be on "Dog Name" page
+    Then I should be on the "Dog Name" page
     And I should see "Please input a name"
 
   Scenario: step2->3(happy), submit with valid years and months

@@ -73,4 +73,19 @@ class PupsController < ApplicationController
     redirect_to pups_path
   end
 
+  def dog_name
+
+  end
+
+  def dog_how_long
+
+  end
+
+  def dog_breed
+
+  end
+
+  def dog_breeder
+
+  end
 end
