@@ -22,8 +22,8 @@ class PupsController < ApplicationController
   end
 
   def new
-    byebug
     breeder_name = params[:potato][:poops]
+    breeder = params[:breeder]
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
     end
@@ -52,10 +52,9 @@ class PupsController < ApplicationController
   def create
     param = params[:pup]
     param[:pup_name] = session[:pup_name]
-    param[:breed1] = session[:breed1]
-    param[:breed2] = session[:breed2]
+    param[:breed_1] = session[:breed1]
+    param[:breed_2] = session[:breed2]
     param[:breeder_id] = session[:breeder_id]
-    byebug
     @pup = Pup.new(param)
     if @pup.save
       flash[:notice] = "#{@pup.pup_name} was successfully added"
@@ -130,8 +129,8 @@ class PupsController < ApplicationController
 
   def dog_breeder
     multiple_breeds = params[:multiple_breeds]
-    breed1 = params[:pup][:breed1]
-    breed2 = params[:pup][:breed2]
+    breed1 = params[:pup][:breed_1]
+    breed2 = params[:pup][:breed_2]
     if !session[:step1] || !session[:step2]
       redirect_to root_path and return
     end
