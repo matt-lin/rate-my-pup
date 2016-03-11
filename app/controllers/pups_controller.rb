@@ -124,6 +124,7 @@ class PupsController < ApplicationController
     if !session[:step1] || !session[:step2]
       redirect_to root_path
     end
+
     if is_valid_breed?(breed1, breed2)
       session[:breed1] = breed1
       session[:breed2] = breed2
@@ -134,7 +135,18 @@ class PupsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
+  def is_valid_breed?(breed1, breed2)
+    # code here
+    if breed1.nil?
+      return Pup.all_breeds.include?(breed2)
+    elsif breed2.nil?
+      return Pup.all_breeds.include?(breed1)
+    else
+      return (Pup.all_breeds.include?(breed1) and Pup.all_breeds.include?(breed2))
+    end
+  end
+
   private
   def check_sign_in
     unless user_signed_in?
