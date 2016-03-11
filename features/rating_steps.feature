@@ -71,5 +71,5 @@ Background: User already logged in
     Given I am on the "Dog Breeder" page
     And I press "next_button"
     Then I should be on the "Dog Breeder" page
-    And I should see "Enter either your breeder's name or your kennel's name"
+    And I should see "Enter your breeder's name"
     
