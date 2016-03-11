@@ -19,7 +19,7 @@ Feature: Improve "flow" of site
 
     Scenario: The hashtags should be present on the page
       Given I am logged in
-      And I am on the "Create New Pup" page
+      And I am on the "Create New Pup Test" page
       And I should see all of:
         | "#EasyToObedienceTrain"                     |
         | "#HardToObedienceTrain"                     |

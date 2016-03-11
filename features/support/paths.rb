@@ -14,7 +14,8 @@ module NavigationHelpers
     case page_name
 
     when /^the RateMyPup home page$/ then '/'
-    when /^the "Create New Pup" page$/ then new_pup_path(:potato=>{:poops=>"Alex McGourty"}, :breeder=>{:name=>"",:city=>"",:state=>""})
+    when /^the "Create New Pup Test" page$/ then new_pup_path(:potato=>{:poops=>"Alex McGourty"}, :breeder=>{:name=>"",:city=>"",:state=>""})
+    when /^the "Create New Pup" page$/ then new_pup_path
     when /^the "Pups" page$/ then '/pups'
     when /^the Login page$/ then '/users/sign_in'
     when /^the "Add breeder" page$/ then '/breeders/new'
@@ -23,7 +24,7 @@ module NavigationHelpers
     when /^the "Dog Name" page$/ then dog_name_path
     when /^the "Dog How Long Test" page$/ then dog_how_long_path(:pup=>{:pup_name=>"Doggie"})
     when /^the "Dog How Long" page$/ then dog_how_long_path
-    when /^the "Dog Breed Test" page$/ then dog_breed_path(:pup=>{:year=>"1",:month=>"1"})
+    when /^the "Dog Breed Test" page$/ then dog_breed_path(:pup=>{:years=>"1",:months=>"1"})
     when /^the "Dog Breed" page$/ then dog_breed_path
     when /^the "Dog Breeder Test" page$/ then dog_breeder_path(:multiple_breeds=>"Purebred",:pup=>{:breed_1=>"Affenpinscher",:breed_2=>"None"})
     when /^the "Dog Breeder" page$/ then dog_breeder_path

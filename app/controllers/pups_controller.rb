@@ -29,7 +29,7 @@ class PupsController < ApplicationController
     if breeder_name.nil? || breeder_name.empty?
       flash[:notice] = "Enter your breeder's name"
       session[:step4] = false
-      redirect_to dog_breeder_path(:pup => {:breed_1 => session[:breed1], :breed2 => session[:breed2]}) and return
+      redirect_to dog_breeder_path(:multiple_breeds=>session[:multiple_breeds],:pup => {:breed_1 => session[:breed1], :breed2 => session[:breed2]}) and return
     else
       session[:breeder_name] = breeder_name
       session[:breeder_id] = params[:breeder_id]

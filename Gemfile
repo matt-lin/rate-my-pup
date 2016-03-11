@@ -33,6 +33,7 @@ group :development, :test do
 	gem 'poltergeist'
 	gem 'test-unit', '~> 3.0'
 	gem 'phantomjs', :require => 'phantomjs/poltergeist'
+	gem 'rack_session_access'
 end
 
 group :production do

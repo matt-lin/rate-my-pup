@@ -45,28 +45,32 @@ Background: User already logged in
     And I should see "Sorry, to keep the information in our database as accurate as possible, we are collecting data only for dogs that have been in the current home for at least six months. Please come back and evaluate your dog later."
     
   Scenario: step3->4(happy), submit with valid breed input
-    Given I am on the "Dog Breed Test" page
-    When I select "Affenpinscher" from "pup_breed_1"
+    Given I finished previous steps
+    And I am on the "Dog Breed Test" page
+    When I choose "multiple_breeds_Purebred"
+    And I select "Affenpinscher" from "pup_breed_1"
     And I press "next_button"
     Then I should be on the "Dog Breeder" page
-    And I should see "Breeder Information"
 
   Scenario: step3->0(sad), submit with invalid breed input
-    Given I am on the "Dog Breed Test" page
+    Given I finished previous steps
+    And I am on the "Dog Breed Test" page
     When I choose "multiple_breeds_Mixed_Breed"
     And I press "next_button"
     Then I should be on the RateMyPup home page
     And I should see "Sorry, to keep the information in our database as accurate as possible, we are only collecting data for dogs that are members of a recognized AKC breed."
 
   Scenario: step4->new(happy), submit with either breeder name or kennel name
-    Given I am on the "Dog Breeder Test" page
+    Given I finished previous steps
+    And I am on the "Dog Breeder Test" page
     When I fill in "breeder_form" with "BreedMaster"
     And I press "next_button"
     Then I should be on the "Create New Pup" page
     And I should see "Rate a New Pup"
     
   Scenario: step4->4(sad), submit with empty breeder name and kennel name
-    Given I am on the "Dog Breeder Test" page
+    Given I finished previous steps
+    And I am on the "Dog Breeder Test" page
     And I press "next_button"
     Then I should be on the "Dog Breeder" page
     And I should see "Enter your breeder's name"
