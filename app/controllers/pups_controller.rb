@@ -22,6 +22,7 @@ class PupsController < ApplicationController
   end
 
   def new
+    byebug
     breeder_name = params[:potato][:poops]
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
@@ -32,6 +33,7 @@ class PupsController < ApplicationController
       redirect_to dog_breeder_path(:pup => {:breed_1 => session[:breed1], :breed2 => session[:breed2]}) and return
     else
       session[:breeder_name] = breeder_name
+      session[:breeder_id] = params[:breeder_id]
       session[:step4] = true
     end
   end
@@ -48,10 +50,13 @@ class PupsController < ApplicationController
   end
 
   def create
-    byebug
     param = params[:pup]
-    
-    @pup = Pup.new(params[:pup])
+    param[:pup_name] = session[:pup_name]
+    param[:breed1] = session[:breed1]
+    param[:breed2] = session[:breed2]
+    param[:breeder_id] = session[:breeder_id]
+    byebug
+    @pup = Pup.new(param)
     if @pup.save
       flash[:notice] = "#{@pup.pup_name} was successfully added"
       redirect_to breed_path(:pup => {:breed_1 => @pup.breed_1, :breed_2 => @pup.breed_2})
