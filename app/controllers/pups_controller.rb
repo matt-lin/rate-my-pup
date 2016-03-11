@@ -22,15 +22,7 @@ class PupsController < ApplicationController
   end
 
   def new
-    pup_name = params[:pup][:pup_name]
-    if pup_name.nil? || pup_name.empty?
-      flash[:notice] = ""
-      session[:step1] = false
-      redirect_to dog_name_path
-    else
-      session[:pup_name] = pup_name
-      session[:step1] = true
-    end
+    breeder_name = params[:breeder_name]
   end
 
   def main
@@ -130,7 +122,7 @@ class PupsController < ApplicationController
       session[:step3] = true
     else
       session[:step3] = false
-      flash[:notice] = ""
+      flash[:notice] = "Sorry, to keep the information in our database as accurate as possible, we are only collecting data for dogs that are members of a recognized AKC breed."
       redirect_to root_path
     end
   end
