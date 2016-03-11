@@ -35,7 +35,6 @@ Given /^I am on (.+)/ do |page_name|
 end
 
 When /^I select "(.*?)" from "(.*?)"/ do |arg1, arg2|
-  byebug
   page.select arg1, :from => arg2
 end
 
