@@ -201,3 +201,14 @@ end
 When(/^I hover over "(.*?)"$/) do |element_name|
   page.evaluate_script("$('#{element_name}').trigger('mouseover')")
 end
+
+When(/^I choose "([^"]*)"$/) do |check_box_id|
+  choose(check_box_id)
+end
+
+Given(/^I finished previous steps$/) do
+  page.set_rack_session(step1: true)
+  page.set_rack_session(step2: true)
+  page.set_rack_session(step3: true)
+  page.set_rack_session(step4: true)
+end
