@@ -20,7 +20,6 @@ Feature: Improve "flow" of site
     Scenario: The hashtags should be present on the page
       Given I am logged in
       And I am on the "Create New Pup" page
-      Then I should see "What do you feel are the most important positive or negative aspects of your dog?"
       And I should see all of:
         | "#EasyToObedienceTrain"                     |
         | "#HardToObedienceTrain"                     |

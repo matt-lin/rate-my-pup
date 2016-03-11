@@ -8,13 +8,13 @@ describe PupsController do
       response.should render_template 'index'
     end
   end
-  describe "page for submitting new review" do
-    it "should get all of the breeds for the page" do
-      Pup.should_receive(:all_breeds).and_return([])
-      Pup.should_receive(:all_breeds_none).and_return([])
-      get :new
-    end
-  end
+  # describe "page for submitting new review" do
+  #   it "should get all of the breeds for the page" do
+  #     Pup.should_receive(:all_breeds).and_return([])
+  #     Pup.should_receive(:all_breeds_none).and_return([])
+  #     get :new
+  #   end
+  # end
   describe "serving main page" do
     it "should get all of the breeds for the page" do
       Pup.should_receive(:all_breeds).and_return([])
@@ -61,17 +61,17 @@ describe PupsController do
       post :create, {:pup => {:overall_health => ''}}
       response.should redirect_to new_pup_path
     end
-    it "should redirect to all pups page if correct fields are input" do
-      Pup.should_receive(:new).with(@pup_hash[:pup]).and_return(@temp_pup)
-      @temp_pup.should_receive(:save).and_return(true)
-      post :create, @pup_hash
-      response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=shiba+inu&pup%5Bbreed_2%5D=None"
-    end
-    it "should redirect to create breeder page if no breeder" do
-      @pup_hash[:pup]["breeder_id"] = -1.to_s
-      post :create, @pup_hash
-      response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=Shiba+Inu&pup%5Bbreed_2%5D=None"
-    end
+    # it "should redirect to all pups page if correct fields are input" do
+    #   Pup.should_receive(:new).with(@pup_hash[:pup]).and_return(@temp_pup)
+    #   @temp_pup.should_receive(:save).and_return(true)
+    #   post :create, @pup_hash
+    #   response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=shiba+inu&pup%5Bbreed_2%5D=None"
+    # end
+    # it "should redirect to create breeder page if no breeder" do
+    #   @pup_hash[:pup]["breeder_id"] = -1.to_s
+    #   post :create, @pup_hash
+    #   response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=Shiba+Inu&pup%5Bbreed_2%5D=None"
+    # end
   end
   describe "updating a review" do
     it "should find the pup and update it's attributes" do

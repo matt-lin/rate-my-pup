@@ -8,7 +8,7 @@
   = form_tag dog_breeder_path, :class => "form-horizontal", :method=>'get' do
 
     /BASIC INFO GROUP/
-    =label :pup, "Is your dog a purebred or a mix of two known breeds?"
+    =label :pup, "Please select a breed for your dog."
     = render 'breed_checkbox'
 
     %div{:class => "form-group col-sm-2"}

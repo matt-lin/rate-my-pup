@@ -24,5 +24,5 @@ Scenario: Hover over buttons should show hidden div
 Scenario: Direct to rate your pup 
     Given I am on the RateMyPup home page
     When I follow "Rate your Pup"
-    Then I should be on the "Create New Pup" page
+    Then I should be on the "Dog Name" page
 

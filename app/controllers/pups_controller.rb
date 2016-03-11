@@ -23,7 +23,6 @@ class PupsController < ApplicationController
 
   def new
     breeder_name = params[:potato][:poops]
-    breeder = params[:breeder]
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
     end
@@ -95,7 +94,7 @@ class PupsController < ApplicationController
   def dog_how_long
     pup_name = params[:pup][:pup_name]
     if pup_name.nil? || pup_name.empty?
-      flash[:notice] = "Please enter a name for your dog"
+      flash[:notice] = "Please input a name"
       session[:step1] = false
       redirect_to dog_name_path and return
     else

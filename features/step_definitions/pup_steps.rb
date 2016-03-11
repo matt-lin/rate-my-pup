@@ -35,6 +35,7 @@ Given /^I am on (.+)/ do |page_name|
 end
 
 When /^I select "(.*?)" from "(.*?)"/ do |arg1, arg2|
+  byebug
   page.select arg1, :from => arg2
 end
 
@@ -200,4 +201,8 @@ end
 
 When(/^I hover over "(.*?)"$/) do |element_name|
   page.evaluate_script("$('#{element_name}').trigger('mouseover')")
+end
+
+When(/^I choose "([^"]*)"$/) do |check_box_id|
+  choose(check_box_id)
 end
