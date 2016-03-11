@@ -72,6 +72,88 @@ describe PupsController do
     #   post :create, @pup_hash
     #   response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=Shiba+Inu&pup%5Bbreed_2%5D=None"
     # end
+    it "should go to dog_how_long if name is provided" do
+      get :dog_how_long, {:pup=>{:pup_name=>"Doggie"}}
+      expect(response).to render_template(:dog_how_long)
+      expect(session[:pup_name]).to eq("Doggie")
+      expect(session[:step1]).to be_true
+    end
+    it "should redirect to do_name if name is not provided" do
+      get :dog_how_long, {:pup=>{:pup_name=>""}}
+      expect(response).to redirect_to dog_name_path
+      expect(session[:step1]).to be_false
+    end
+    it "should go to dog_breed if years and months provided and valid" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      get :dog_breed, {:pup=>{:years=>"1",:months=>"1"}}
+      expect(response).to render_template(:dog_breed)
+      expect(session[:step2]).to be_true
+    end
+    it "should redirect to root if years and months not valid" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      get :dog_breed, {:pup=>{:years=>"",:months=>"3"}}
+      expect(response).to redirect_to root_path
+      expect(flash[:notice]).to eq("Sorry, to keep the information in our database as accurate as possible, we are collecting data only for dogs that have been in the current home for at least six months. Please come back and evaluate your dog later.")
+      expect(session[:step2]).to be_false
+    end
+    it "should redirect to dog_how_long if years and months not provided" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      get :dog_breed, {:pup=>{:years=>"",:months=>""}}
+      expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>session[:pup_name]})
+      expect(session[:step2]).to be_false
+    end
+    it "should go to dog_breeder if Purebred selected" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      get :dog_breeder, {:multiple_breeds=>"Purebred",:pup=>{:breed_1=>"Affenpinscher",:breed_2=>"None"}}
+      expect(response).to render_template(:dog_breeder)
+      expect(session[:step3]).to be_true
+      expect(session[:breed1]).to eq("Affenpinscher")
+      expect(session[:breed2]).to eq("None")
+    end
+    it "should redirect to root if not purebred" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      get :dog_breeder, {:multiple_breeds=>"Mixed Breed",:pup=>{:breed_1=>"Affenpinscher",:breed_2=>"Affenpinscher"}}
+      expect(response).to redirect_to root_path
+      expect(flash[:notice]).to eq("Sorry, to keep the information in our database as accurate as possible, we are only collecting data for dogs that are members of a recognized AKC breed.")
+      expect(session[:step3]).to be_false
+    end
+    it "should go to new rating page if breeder name provided" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed1] = "Affenpinscher"
+      session[:breed2] = "None"
+      session[:multiple_breeds] = "Purebred"
+      get :new, {:potato=>{:poops=>"BreedMaster"}}
+      expect(response).to render_template(:new)
+    end
+    it "should redirect to dog_breeder if no breeder provided" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed1] = "Affenpinscher"
+      session[:breed2] = "None"
+      session[:multiple_breeds] = "Purebred"
+      get :new, {:potato=>{:poops=>""}}
+      expect(response).to redirect_to dog_breeder_path(:multiple_breeds=>session[:multiple_breeds],:pup => {:breed_1 => session[:breed1], :breed2 => session[:breed2]})
+    end
   end
   describe "updating a review" do
     it "should find the pup and update it's attributes" do
