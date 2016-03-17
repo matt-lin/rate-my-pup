@@ -1,6 +1,6 @@
 %div{:class => "container"}
   %div{:class => "header"}
-    %h1 How Long?
+    %h1 Rate a New Pup
 
   - flash.each do |key, value|
     %p{:class => "unfilled_fields"}= value
@@ -12,8 +12,8 @@
       %h3 How long have you owned your dog?
     %br
     %div{:class => "form-group great text-center", :class => "sub-title"}
-      = render 'text_input', title: "Years", var: 'years', placeholder: "Years", explanation: "How many years have you owned your dog?"
-      = render 'text_input', title: "Months", var: 'months', placeholder: "Months", explanation: ""
+      = render 'text_input', title: "Years", var: 'years', placeholder: "Years", explanation: "Enter the number of years you have owned your dog."
+      = render 'text_input', title: "Months", var: 'months', placeholder: "Months", explanation: "And/or enter the number of months you have owned your dog."
 
     %br
 
