@@ -6,6 +6,9 @@
 		%div{:id => 'secondary-radio-button'}
 			= radio_button_tag 'multiple_breeds', 'Mixed Breed'
 			= label :pup, 'Mixed Breed'	
+		%div{:id => 'tertiary-radio-button'}
+			= radio_button_tag 'multiple_breeds', 'I do not know'
+			= label :pup, 'I do not know'
 	%div{:id => "primary-breed"}
 		= render 'select_input', title: "Primary Breed", list: @all_breeds, var: :breed_1
 	%div{:id => "secondary-breed"}
