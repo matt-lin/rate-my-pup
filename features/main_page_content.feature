@@ -1,9 +1,8 @@
 @javascript
 Feature: see content on the main page 
-
     As a user of RateMyPup
     So that I can use the site 
-    I want to be able to see information about it 
+    I want to be able to see information about these
 
 Background:
     Given I am on the RateMyPup home page
@@ -23,6 +22,6 @@ Scenario: Hover over buttons should show hidden div
 
 Scenario: Direct to rate your pup 
     Given I am on the RateMyPup home page
-    When I follow "Rate your Pup"
+    When I follow "Rate your Dog"
     Then I should be on the "Dog Name" page
 

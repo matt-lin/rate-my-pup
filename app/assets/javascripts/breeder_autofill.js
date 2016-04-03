@@ -88,12 +88,6 @@ var BreederAutofill = {
             var autofill = $(html);
             $('#autofills').append(autofill);
 
-            // bind autofill on scroll over option
-            autofill.mouseover(function() {
-                var text = $(this).text();
-                $('#breeder_form').val(text);
-            });
-
             // on click, fill form name value and form id value
             function autofill_return(id) {
                 return function () {

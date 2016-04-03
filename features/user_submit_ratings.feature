@@ -19,5 +19,5 @@ Feature: only users with a user profile should be able to submit a rating
 
     Given I am on the RateMyPup home page
     Then I should see "Login"
-    And I follow "Rate your Pup"
+    And I follow "Rate your Dog"
     Then I should be on the Login page

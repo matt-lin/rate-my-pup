@@ -26,7 +26,7 @@ module NavigationHelpers
     when /^the "Dog How Long" page$/ then dog_how_long_path
     when /^the "Dog Breed Test" page$/ then dog_breed_path(:pup=>{:years=>"1",:months=>"1"})
     when /^the "Dog Breed" page$/ then dog_breed_path
-    when /^the "Dog Breeder Test" page$/ then dog_breeder_path(:multiple_breeds=>"Purebred",:pup=>{:breed_1=>"Affenpinscher",:breed_2=>"None"})
+    when /^the "Dog Breeder Test" page$/ then dog_breeder_path(:button_clicked => "Next", :potato => {:poops => "Affenpinscher"})
     when /^the "Dog Breeder" page$/ then dog_breeder_path
 
       # Add more mappings here.
