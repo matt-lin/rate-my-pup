@@ -1,9 +1,8 @@
 @javascript
 Feature: see content on the main page 
-
     As a user of RateMyPup
     So that I can use the site 
-    I want to be able to see information about it 
+    I want to be able to see information about these
 
 Background:
     Given I am on the RateMyPup home page
