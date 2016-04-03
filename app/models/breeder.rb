@@ -66,11 +66,11 @@ class Breeder < ActiveRecord::Base
     #only keep non-nil values
     non_nil_params = params.select{ |e| e[1] }
     # create string to take in sanitized values, default include name as query param
-    (["name LIKE ?"] + non_nil_params.map { |param| "#{param[0]} LIKE ?"}).join(" AND ")
+    (["name LIKE ? OR name LIKE ?"] + non_nil_params.map { |param| "#{param[0]} LIKE ?"}).join(" AND ")
   end
 
   private
   def Breeder.generate_query_values(name, city, state)
-    ["%#{name}%"] + [city, state].select{ |param| param }.map{ |param| "#{param}%" }
+    ["#{name}%"] + ["% #{name}%"] + [city, state].select{ |param| param }.map{ |param| "#{param}%" }
   end
 end

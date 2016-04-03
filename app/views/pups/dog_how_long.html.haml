@@ -1,6 +1,6 @@
 %div{:class => "container"}
   %div{:class => "header"}
-    %h1 Rate a New Pup
+    %h1 Rate a New Dog
 
   - flash.each do |key, value|
     %p{:class => "unfilled_fields"}= value
@@ -13,9 +13,11 @@
     %br
     %div{:class => "form-group great text-center", :class => "sub-title"}
       = render 'text_input', title: "Years", var: 'years', placeholder: "Years", explanation: "Enter the number of years you have owned your dog."
+      %br
       = render 'text_input', title: "Months", var: 'months', placeholder: "Months", explanation: "And/or enter the number of months you have owned your dog."
 
     %br
+    %br
 
-    %div{:class => "form-group col-sm-2"}
+    %div{:class => "form-group col-sm-5"}
       = submit_tag 'Next', :id => 'next_button', :class => "form-control", :confirm => ""

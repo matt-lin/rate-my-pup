@@ -23,17 +23,20 @@ class PupsController < ApplicationController
 
   def new
     breeder_name = params[:potato][:poops]
+    button_clicked = params[:button_clicked]
+    # button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
     end
-    if breeder_name.nil? || breeder_name.empty?
+    if button_clicked != "Next"
+      session[:breeder_name] = "unknown"
+      session[:breeder_id] = 0
+    elsif breeder_name.nil? || breeder_name.empty?
       flash[:notice] = "Enter your breeder's name"
-      session[:step4] = false
-      redirect_to dog_breeder_path(:multiple_breeds=>session[:multiple_breeds],:pup => {:breed_1 => session[:breed1], :breed2 => session[:breed2]}) and return
+      redirect_to dog_breeder_path(:button_clicked => "Next", :potato => {:poops => session[:breed]}) and return
     else
       session[:breeder_name] = breeder_name
       session[:breeder_id] = params[:breeder_id]
-      session[:step4] = true
     end
   end
 
@@ -51,13 +54,13 @@ class PupsController < ApplicationController
   def create
     param = params[:pup]
     param[:pup_name] = session[:pup_name]
-    param[:breed_1] = session[:breed1]
-    param[:breed_2] = session[:breed2]
+    param[:breed_1] = session[:breed]
+    param[:breed_2] = 'None'
     param[:breeder_id] = session[:breeder_id]
     @pup = Pup.new(param)
     if @pup.save
       flash[:notice] = "#{@pup.pup_name} was successfully added"
-      redirect_to breed_path(:pup => {:breed_1 => @pup.breed_1, :breed_2 => @pup.breed_2})
+      redirect_to root_path
     else 
       flash.keep[:notice] = "Please make sure all fields are complete!"
       redirect_to new_pup_path
@@ -67,6 +70,8 @@ class PupsController < ApplicationController
   def breed
     breed_1, breed_2 = params[:pup][:breed_1], params[:pup][:breed_2]
     @pups = Pup.find_by_breeds(breed_1, breed_2)
+    # if not Pup.legal_dog(breed_1)
+    puts @pups.length
     if @pups.length == 0
       flash[:message] = "Sorry, there are no dogs of the breed #{breed_1}"
       flash[:message] += " and #{breed_2}" if breed_2 != 'None'
@@ -104,8 +109,6 @@ class PupsController < ApplicationController
   end
 
   def dog_breed
-    @all_breeds = Pup.all_breeds
-    @all_breeds_none = Pup.all_breeds_none
     years = params[:pup][:years]
     months = params[:pup][:months]
     if !session[:step1]
@@ -116,44 +119,42 @@ class PupsController < ApplicationController
       session[:step2] = false
       redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
     elsif is_valid_year_month?(years, months)
-      session[:years] = years 
+      session[:years] = years
       session[:months] = months
       session[:step2] = true
     else
-      session[:step2] = false
-      flash[:notice] = "Sorry, to keep the information in our database as accurate as possible, we are collecting data only for dogs that have been in the current home for at least six months. Please come back and evaluate your dog later."
-      redirect_to root_path and return
+      start_over
+      flash[:notice] = "To keep our database as accurate as possible, 
+we are collecting information only for dogs that have been residing 
+in their current home for six months or more. Please come back to our 
+site and rate your dog (or insert the dog's name) after s/he has lived 
+with you for a minimum of six months. Thank you."
+      redirect_to root_path
     end
   end
 
   def dog_breeder
-    multiple_breeds = params[:multiple_breeds]
-    breed1 = params[:pup][:breed_1]
-    breed2 = params[:pup][:breed_2]
+    breed = params[:potato][:poops]
+    button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2]
       redirect_to root_path and return
     end
-    if multiple_breeds == "Purebred"
-      session[:breed1] = breed1
-      session[:breed2] = breed2
-      session[:multiple_breeds] = multiple_breeds
+    if button_clicked == "Next"
+      if !Pup.is_valid_breed(breed)
+        flash[:notice] = "Please select a listed breed."
+        redirect_to dog_breed_path(:pup => {:years => session[:years], :months => session[:months]}) and return
+      end
+      session[:breed] = breed
       session[:step3] = true
     else
-      session[:step3] = false
-      flash[:notice] = "Sorry, to keep the information in our database as accurate as possible, we are only collecting data for dogs that are members of a recognized AKC breed."
+      start_over
       redirect_to root_path and return
     end
   end
 
-  def is_valid_breed?(breed1, breed2)
-    # code here
-    # if breed1.nil?
-    #   return Pup.all_breeds.include?(breed2)
-    # elsif breed2.nil?
-    #   return Pup.all_breeds.include?(breed1)
-    # else
-    #   return (Pup.all_breeds.include?(breed1) and Pup.all_breeds.include?(breed2))
-    # end
+  def search_breed
+    name = params[:name]
+    render :json => Pup.find_breed_by_name(name)
   end
 
   private
@@ -166,4 +167,15 @@ class PupsController < ApplicationController
   def is_valid_year_month?(years, months)
     return years.to_i * 12 + months.to_i >= 6
   end
+  
+  def start_over
+    session[:step1] = false
+    session[:step2] = false
+    session[:step3] = false
+    session[:pup_name] = nil
+    session[:breed] = nil
+    session[:years] = nil
+    session[:months] = nil
+  end
 end
+  

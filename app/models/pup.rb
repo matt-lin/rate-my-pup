@@ -30,8 +30,14 @@ class Pup < ActiveRecord::Base
     breed_2 = breed_2 || 'None'
     Pup.where("breed_1 = ? AND breed_2 = ? OR breed_1 = ? AND breed_2 = ?", breed_1, breed_2, breed_2, breed_1)
   end
+  
+  def Pup.legal_dog(breed_1, breed_2 = 'None')
+    puts self.all_breeds
+    return self.all_breeds.include? breed_1
+  end
 
   def Pup.avg_ratings_by_breeds(breed_1, breed_2 = 'None')
+    puts breed_1, breed_2
     pups_by_breed = Pup.find_by_breeds(breed_1, breed_2)
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0}
@@ -79,10 +85,19 @@ class Pup < ActiveRecord::Base
     "Standard Schnauzer", "Sussex Spaniel", "Swedish Vallhund", "Tibetan Mastiff", "Tibetan Spaniel", "Tibetan Terrier",
     "Toy Fox Terrier", "Treeing Walker Coonhound", "Vizsla", "Weimaraner", "Welsh Springer Spaniel", "Welsh Terrier",
     "West Highland White Terrier", "Whippet", "Wire Fox Terrier", "Wirehaired Pointing Griffon", "Wirehaired Vizsla'",
-    "Xoloitzcuintli", "Yorkshire Terrier"]
+    "Xoloitzcuintli", "Yorkshire Terrier", "Goldendoodle (Golden Retriever x Poodle)", "Labradoodle (Labrador Retriever x Poodle)", 
+    "Puggle (Pug x Beagle)", "Maltipoo (Maltese x Poodle)", "Yorkipoo (Yorkshire Terrier x Poodle)", "Shihpoo (Shih Tzu x Poodle)"]
   end
 
   def self.all_breeds_none
     return ["None"] + self.all_breeds
+  end
+  
+  def self.find_breed_by_name(name)
+    self.all_breeds.select { |e| e.downcase.include? name.downcase }
+  end
+  
+  def self.is_valid_breed(breed)
+    self.all_breeds.include? breed
   end
 end

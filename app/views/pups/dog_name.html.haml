@@ -1,6 +1,6 @@
 %div{:class => "container"}
   %div{:class => "header"}
-    %h1 Rate a New Pup
+    %h1 Rate a New Dog
 
   - flash.each do |key, value|
     %p{:class => "unfilled_fields"}= value
@@ -9,11 +9,11 @@
 
     /BASIC INFO GROUP/
     %div{:class => "sub-header"}
-      %h3 Let's get some basic information about your pup!
+      %h3 Let's get some basic information about your dog!
     %br
     %div{:class => "form-group great text-center", :class => "sub-title"}
       = render 'text_input', title: "What's your dog's name?", var: 'pup_name', placeholder: "Name", explanation: "Name is for our records only, your pup's name will never show up on public ratings pages."
       %br
 
-    %div{:class => "form-group col-sm-2"}
-      = submit_tag 'Next', :id => 'next_button', :class => "form-control", :confirm => ""
+    %div{:class => "form-group col-sm-5"}
+      = submit_tag 'Next', :class => "form-control", :id => 'next_button'

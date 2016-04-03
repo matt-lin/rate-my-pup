@@ -30,6 +30,11 @@
             = text_field :breeder, 'state', :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's State"
         %span{:id => "cancel_form"}
           %a{:class => "cancel"} Cancel
-
+    
+    %br
+    %br
+    %div{:class => "form-group col-sm-5"}
+      = submit_tag 'Next', :name => "button_clicked", :class => "form-control", :id => 'next_button'
     %div{:class => "form-group col-sm-2"}
-      = submit_tag 'Next', :id => 'next_button', :class => "form-control", :confirm => ""
+    %div{:class => "form-group col-sm-5"}
+      = submit_tag 'I Do Not Know', :name => "button_clicked", :class => "form-control", :id => 'back_button'
