@@ -3,6 +3,10 @@ Feature: user should provide a username during signup
 	In order to view comment record of each user
 	I should use a username field associated with each user
 
-	Scenario: should not be able to submit a rating if not logged in as a user
-    Given I am on the Login page
+	Scenario: Add username field in user signup
+    Given I am on the Signup page
     Then I should see "User name"
+    
+  Scenario: Add user agreement in signup page
+    Given I am on the Signup page
+    Then I should see "User Agreement"
