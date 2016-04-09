@@ -25,7 +25,7 @@ Ratemypup::Application.routes.draw do
   get '/breeder/spot' => 'breeders#search_spot', :as => :breeder_search_spot
   
   get '/text/background' => 'texts#background', :as => :text_background
-  get '/text/goal' => 'texts#goal', :as => :text_goal
+  get '/text/goals' => 'texts#goals', :as => :text_goals
   get '/text/how_you_can_help' => 'texts#how_you_can_help', :as => :text_how_you_can_help
   
   # The priority is based upon order of creation:

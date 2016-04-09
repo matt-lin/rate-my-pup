@@ -116,6 +116,21 @@ body {
     background-image: none;
     border-radius: 4px;
 }
+.back-home-button{
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    
+    margin-right: 50px;
+    margin-bottom: 40px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    width: 350px;
+    height: 60px;
+    border-radius: 4px;
+    float: right; 
+}
 
 .main-button:hover {
     color: #333;
@@ -125,7 +140,7 @@ body {
 
 .main-button-small-text {
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .main-button-large-text {
