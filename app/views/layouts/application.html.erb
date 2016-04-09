@@ -24,6 +24,16 @@
               </li>
           </ul>
             <ul class="nav navbar-nav navbar-right">
+              <li> 
+                <%= link_to "Background", text_background_path %>
+              </li>
+              <li> 
+                <%= link_to "Goals", text_goal_path %>
+              </li>
+              <li> 
+                <%= link_to "How You Can Help", text_how_you_can_help_path %>
+              </li>
+              
               <% if user_signed_in? %>
 
                   <li>
