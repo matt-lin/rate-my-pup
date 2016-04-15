@@ -26,11 +26,15 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div>
+    <a href='/welcome'>User Agreement</a>
   </div>
   <div>
-    User Agreement
+    <%= f.check_box :agreement %> I agree
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
