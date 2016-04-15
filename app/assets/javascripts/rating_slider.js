@@ -29,8 +29,8 @@ var RatingPaws = {
         return function() {
             var current_val = Number.parseInt($("#" + label).val()) - 1;
             var loc_val = RatingPaws.pos.indexOf(loc);
-            var start = loc_val <= current_val ? loc_val : current_val;
-            for (var i = start; RatingPaws.pos.indexOf(loc) >= i; i++) {
+            // var start = loc_val <= current_val ? loc_val : current_val;
+            for (var i = 0; RatingPaws.pos.indexOf(loc) >= i; i++) {
                 $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.selectedColor);
             }
             for (; i < RatingPaws.pos.length; i++) {
