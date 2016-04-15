@@ -1,15 +1,19 @@
 %div{:class =>"price-slider row"}
-    %div{:class=>"col-sm-6"}
+    %div{:class=>"col-sm-5"}
         %h4{:class => "great"}=label :pup, var, title
         %span #{description}
-        %span #{des1}
-        %span #{des5}
-    %br
-    %br
-    %div{:class=>"col-sm-6 pull-right paw"}
+    %div{:class=>"col-sm-2"}
+        %br
+        %br
+        %br
+        %h5 #{des1}
+    %div{:class=>"col-sm-3 paw"}
+        %br
+        %br
+        %br
         %div{:class => "paw"}
             %div{:class => "pull-left"}
-                %i{:class =>"fa fa-paw fa-2x first", :id => "#{id}-first"}
+                %i{:class =>"fa fa-paw fa-2x", :id => "#{id}-first"}
             %div{:class => "pull-left"}
                 %i{:class =>"fa fa-paw fa-2x", :id => "#{id}-second"}
             %div{:class => "pull-left"}
@@ -18,6 +22,12 @@
                 %i{:class =>"fa fa-paw fa-2x", :id => "#{id}-fourth"}
             %div{:class => "pull-left"}
                 %i{:class => "fa fa-paw fa-2x", :id => "#{id}-fifth"}
-            %div{:class=>"col-sm-1 text-left"}
+            %div{:class=>"text-left"}
                 = text_field :pup, var, :class => "read", :id => id, :value => "0", :readonly => true
-            
+    %div{:class=>"col-sm-2"}
+        %br
+        %br
+        %br
+        %h5 #{des5}
+    
+                        
