@@ -59,7 +59,7 @@ class PupsController < ApplicationController
     param[:breeder_id] = session[:breeder_id]
     @pup = Pup.new(param)
     if @pup.save
-      flash[:notice] = "#{@pup.pup_name} was successfully added"
+      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
       redirect_to root_path
     else 
       flash.keep[:notice] = "Please make sure all fields are complete!"
@@ -160,7 +160,7 @@ with you for a minimum of six months. Thank you."
   private
   def check_sign_in
     unless user_signed_in?
-      redirect_to '/users/sign_in'
+      redirect_to welcome_path
     end
   end
   

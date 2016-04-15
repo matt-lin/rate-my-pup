@@ -27,6 +27,7 @@ Ratemypup::Application.routes.draw do
   get '/text/background' => 'texts#background', :as => :text_background
   get '/text/goals' => 'texts#goals', :as => :text_goals
   get '/text/how_you_can_help' => 'texts#how_you_can_help', :as => :text_how_you_can_help
+  get '/welcome' => 'texts#welcome', :as => :welcome
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
