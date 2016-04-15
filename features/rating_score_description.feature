@@ -13,3 +13,4 @@ Feature: Add description to rating display page for each score
         | "Poor Breeder Responsibility"               |
         | "Excellent Breeder Responsibility"          |
         | "Excellent Social Behavior: Friendly toward all dogs, other pets and people" |
+        | "N/A"|
