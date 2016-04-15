@@ -90,12 +90,12 @@ describe PupsController do
       expect(response).to render_template(:dog_breed)
       expect(session[:step2]).to be_true
     end
-    it "should redirect to root if years and months not valid" do
+    it "should redirect popup a modal if years and months not valid" do
       session[:step1] = true
       session[:pup_name] = "Doggie"
       get :dog_breed, {:pup=>{:years=>"",:months=>"3"}}
-      expect(response).to redirect_to root_path
-      expect(flash[:notice]).to eq("To keep our database as accurate as possible, 
+      expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>"Doggie"})
+      expect(flash[:modal]).to eq("To keep our database as accurate as possible,
 we are collecting information only for dogs that have been residing 
 in their current home for six months or more. Please come back to our 
 site and rate your dog (or insert the dog's name) after s/he has lived 
