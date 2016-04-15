@@ -115,7 +115,7 @@ with you for a minimum of six months. Thank you.")
       session[:step2] = true
       session[:years] = "1" 
       session[:months] = "1"
-      get :dog_breeder, {:button_clicked => "Next", :potato => {:poops => "Affenpinscher"}}
+      get :dog_breeder, {:button_clicked => "Next", :breed => {:name => "Affenpinscher"}}
       expect(response).to render_template(:dog_breeder)
       expect(session[:step3]).to be_true
       expect(session[:breed]).to eq("Affenpinscher")
@@ -126,7 +126,7 @@ with you for a minimum of six months. Thank you.")
       session[:step2] = true
       session[:years] = "1" 
       session[:months] = "1"
-      get :dog_breeder, {:button_clicked => "Breed Not Listed", :potato => {:poops => "Affenpinscher"}}
+      get :dog_breeder, {:button_clicked => "Breed Not Listed", :breed => {:name => "Affenpinscher"}}
       expect(response).to redirect_to root_path
       expect(session[:step3]).to be_false
     end
@@ -140,10 +140,10 @@ with you for a minimum of six months. Thank you.")
       session[:breed1] = "Affenpinscher"
       session[:breed2] = "None"
       session[:multiple_breeds] = "Purebred"
-      get :new, {:potato=>{:poops=>"BreedMaster"}}
+      get :new, {:breeder=>{:name=>"BreedMaster"}}
       expect(response).to render_template(:new)
     end
-    it "should redirect to dog_breeder if no breeder provided" do
+    it "should go to new rating even if no breeder provided" do
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
@@ -151,8 +151,8 @@ with you for a minimum of six months. Thank you.")
       session[:months] = "1"
       session[:step3] = true
       session[:breed] = "Affenpinscher"
-      get :new, {:button_clicked => "Next", :potato=>{:poops=>""}}
-      expect(response).to redirect_to dog_breeder_path(:button_clicked => "Next", :potato=>{:poops=> session[:breed]})
+      get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
+      expect(response).to render_template(:new)
     end
   end
   describe "updating a review" do
@@ -180,7 +180,7 @@ with you for a minimum of six months. Thank you.")
   describe "searching a dog by breed" do
     it "should find dogs with the single breed submitted" do
       fake_dogs = [double('pup1'), double('pup2'), double('pup3')]
-      Pup.should_receive(:find_by_breeds).with('shiba inu', nil).and_return(fake_dogs)
+      Pup.should_receive(:find_by_breeds).with('shiba inu', 'None').and_return(fake_dogs)
       avg_ratings = {
         'breeder_responsibility'=> 1,
         'overall_health' => 1,
@@ -189,27 +189,13 @@ with you for a minimum of six months. Thank you.")
         'energy_level' => 1,
         'simpatico_rating' => 1
       }
-      Pup.should_receive(:avg_ratings_by_breeds).with('shiba inu', nil).and_return(avg_ratings)
-      get :breed, {:pup => {:breed_1 => 'shiba inu'}}
-    end
-    it "should find dogs with two breeds submitted" do
-      fake_dogs = [double('pup1'), double('pup2'), double('pup3')]
-      Pup.should_receive(:find_by_breeds).with('shiba inu', 'poodle').and_return(fake_dogs)
-      avg_ratings = {
-          'breeder_responsibility'=> 1,
-          'overall_health' => 1,
-          'trainability' => 1,
-          'social_behavior' => 1,
-          'energy_level' => 1,
-          'simpatico_rating' => 1
-      }
-      Pup.should_receive(:avg_ratings_by_breeds).with('shiba inu', 'poodle').and_return(avg_ratings)
-      get :breed, {:pup => {:breed_1 => 'shiba inu', :breed_2 => 'poodle'}}
+      Pup.should_receive(:avg_ratings_by_breeds).with('shiba inu', 'None').and_return(avg_ratings)
+      get :breed, {:breed => {:name => 'shiba inu'}}
     end
     it "should redirect to the main page when there are no results" do
-      Pup.stub(:find_by_breeds).with('shiba inu', 'poodle').and_return([])
+      Pup.stub(:find_by_breeds).with('shiba inu', 'None').and_return([])
       Pup.should_receive(:avg_ratings_by_breeds).never
-      get :breed, {:pup => {:breed_1 => 'shiba inu', :breed_2 => 'poodle'}}
+      get :breed, {:breed => {:name => 'shiba inu'}}
       response.should redirect_to root_path
     end
   end

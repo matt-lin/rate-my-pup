@@ -33,7 +33,7 @@
                             =label :pup, "What kind of pup are you looking for?"
                             = form_tag breed_path, :method => :get, :class => "form-horizontal" do
                                 %div{:class => "form-group great text-center", :class => "sub-title"}
-                                    = text_field :potato, 'poops', :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
+                                    = text_field :breed, :name, :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
                                     %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
                                 %div{:class => "form-group", :class => "button-positioning"}
                                     = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"
@@ -60,8 +60,6 @@
 
                                     %div{:class => "col-md-12"}
                                         %input{:type => 'text', :id => 'breeder_find', :class => "form-control", :placeholder => "Breeder Name"}
-                                    %div{:class => "col-md-12"}
-                                        %hr
 
                         %ul{:id => 'autofills', :class => "list-group"}
 
