@@ -18,6 +18,7 @@ module NavigationHelpers
     when /^the "Create New Pup" page$/ then new_pup_path
     when /^the "Pups" page$/ then '/pups'
     when /^the Login page$/ then '/users/sign_in'
+    when /^the Signup page$/ then '/users/sign_up'
     when /^the "Add breeder" page$/ then '/breeders/new'
     when /^the Breed page$/ then '/breed'
     # Add more mappings here

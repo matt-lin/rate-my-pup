@@ -5,7 +5,7 @@ Feature: user should provide a username during signup
 
 	Scenario: Add username field in user signup
     Given I am on the Signup page
-    Then I should see "User name"
+    Then I should see "Username"
     
   Scenario: Add user agreement in signup page
     Given I am on the Signup page

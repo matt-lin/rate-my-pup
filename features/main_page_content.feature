@@ -10,7 +10,6 @@ Background:
 
 Scenario: information content on main page 
     Given I am on the RateMyPup home page
-    Then I should see "Our Mission"
     And I should see "Contact"
 
 Scenario: Hover over buttons should show hidden div 
@@ -25,15 +24,8 @@ Scenario: Direct to rate your pup
     When I follow "Rate your Dog"
     Then I should be on the "Dog Name" page
 
-Scenario: Home page articles
-    Given I am on the RateMyPup home page
-    Then I should see "How You Can Help Improve the Dogs in Our Lives, and the Lives of Dogs"
-    And I should see "SimpaticoPup Background"
-    And I should see "SimpaticoPup Goals"
-    And I should see "SimpaticoPup's Mission"
-
 Scenario: Add nav tabs in navbar
     Given I am on the RateMyPup home page
     Then I should see "Background"
-    And I should see "Our Goals"
-    And I should see "Our Mission"
+    And I should see "Goals"
+    And I should see "How You Can Help"
