@@ -32,7 +32,7 @@ body {
 
 .warning {
     font-size: 20px;
-    color: red;
+    color: black;
     text-align: center;
     font-weight: 300;
 }
@@ -87,6 +87,7 @@ body {
 }
 
 #rate-btn {
+    background-color: red !important;
     margin-top: 110px;
 }
 
@@ -107,8 +108,8 @@ body {
     margin-bottom: 8px;
     display: inline-block;
     padding: 6px 12px;
-    width: 240px;
-    height: 120px;
+    width: 400px;
+    height: 247px;
     line-height: 1.42857143;
     text-align: center;
     white-space: nowrap;
@@ -139,17 +140,27 @@ body {
 }
 
 .main-button-small-text {
-    font-size: 20px;
-    margin-top: 15px;
+    font-size: 25px;
+    margin-top: 50px;
 }
 
 .main-button-large-text {
-    font-size: 40px;
+    font-size: 45px;
 }
 
+.titleline {
+    margin: 200px;
+    text-align: center;
+}
 .tagline {
     margin: 100px;
     text-align: center;
+}
+.missiontitle {
+    margin: 0px;
+    text-align: left;
+    /*font-size: 24px; */
+    /*font-weight: bold;*/
 }
 
 #cancel-a, #cancel-b, #cancel-c {
@@ -234,9 +245,12 @@ body {
 }
 
 .mission-text {
-    text-indent: 30px;
     padding: 0px 40px 0px 40px;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-weight: normal; 
+    font-size: 25px;
+    /*color:#337ab7;*/
 }
 
 h3.mission-text {
@@ -247,7 +261,7 @@ h3.mission-text {
 /*CONTACT INFO CSS*/
 
 .contact {
-    background: gray;
+    background: #337ab7;
     opacity: 0.95;
     width: 100%;
     text-align: center;
@@ -258,6 +272,13 @@ h3.mission-text {
 #contact-link {
     color: white;
     text-decoration: underline;
+}
+
+.contact-link {
+    color: #f5f5f5;
+}
+
+.custom-navbar {
 }
 
 .contact-text-sm {
