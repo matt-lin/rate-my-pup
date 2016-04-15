@@ -5,7 +5,7 @@ var RatingPaws = {
     selectedColor: "#3399FF",
     setupCategory: function(label) {
         for (var i = 0; i < RatingPaws.pos.length; i++) {
-            $("#"+label).val(1);
+            $("#"+label).val("N/A");
             $("#"+label+"-"+RatingPaws.pos[i]).on(
                 "mouseover", RatingPaws.changeColors(label, RatingPaws.pos[i])
             );
