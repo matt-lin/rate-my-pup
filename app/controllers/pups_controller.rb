@@ -118,12 +118,16 @@ class PupsController < ApplicationController
       flash[:notice] = "Please enter how long you have owned your dog."
       session[:step2] = false
       redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
+    elsif (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
+      flash[:notice] = "Please enter a valida integer number for year/month."
+      session[:step2] = false
+      redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
     elsif is_valid_year_month?(years, months)
       session[:years] = years
       session[:months] = months
       session[:step2] = true
     else
-      tmp_session = {:pup_name => session[:pup_name], :years => session[:years], :month => session[:month]}
+      tmp_session = {:pup_name => session[:pup_name]}
       start_over
       flash[:modal] = "To keep our database as accurate as possible,
 we are collecting information only for dogs that have been residing 
@@ -177,6 +181,13 @@ with you for a minimum of six months. Thank you."
     session[:breed] = nil
     session[:years] = nil
     session[:months] = nil
+  end
+
+  def is_num?(str)
+    Integer(str)
+    return true
+  rescue ArgumentError, TypeError
+    return false
   end
 end
   

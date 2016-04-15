@@ -41,7 +41,7 @@ Background: User already logged in
     When I fill in "pup_years" with "0"
     And I fill in "pup_months" with "4"
     And I press "next_button"
-    Then I should be on the RateMyPup home page
+    Then I should see "Go Back to Homepage"
     And I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more."
 
   Scenario: step3->4(happy), submit with valid breed input
