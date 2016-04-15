@@ -123,13 +123,14 @@ class PupsController < ApplicationController
       session[:months] = months
       session[:step2] = true
     else
+      tmp_session = {:pup_name => session[:pup_name], :years => session[:years], :month => session[:month]}
       start_over
-      flash[:notice] = "To keep our database as accurate as possible, 
+      flash[:modal] = "To keep our database as accurate as possible,
 we are collecting information only for dogs that have been residing 
 in their current home for six months or more. Please come back to our 
 site and rate your dog (or insert the dog's name) after s/he has lived 
 with you for a minimum of six months. Thank you."
-      redirect_to root_path
+      redirect_to dog_how_long_path(:pup => tmp_session) and return
     end
   end
 

@@ -1,0 +1,12 @@
+%div{:class=>"modal fade", :id=>"popup", :tabindex=>"-1", :role=>"dialog"}
+  %div{:class=>"modal-dialog", :role=>"document"}
+    %div{:class=>"modal-content"}
+      %div{:class=>"modal-header"}
+        %div{:class=>"modal-title"}
+          %h3
+            = info[:header]
+        %div{:class=>"modal-body"}
+          %p
+            = info[:content]
+        %div{:class=>"modal-footer"}
+          =link_to "Go Back to Homepage", root_path, :class=>"btn btn-default"
