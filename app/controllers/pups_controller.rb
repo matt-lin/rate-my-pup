@@ -7,7 +7,6 @@ class PupsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed]
 
   def add_breeder_first
-    print params
   end
 
   def breeder_exists
