@@ -32,9 +32,12 @@
                         %div{:class => "panel-body"}
                             =label :pup, "What kind of pup are you looking for?"
                             = form_tag breed_path, :method => :get, :class => "form-horizontal" do
-                                = render 'breed_checkbox'
+                                %div{:class => "form-group great text-center", :class => "sub-title"}
+                                    = text_field :potato, 'poops', :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
+                                    %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
                                 %div{:class => "form-group", :class => "button-positioning"}
                                     = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"
+    
 
                 %div{:class => "col-lg-4 box-b text-center"}
                     %a{:class => "main-button-link button-b"}
@@ -56,14 +59,10 @@
                                 %div{:class => "form-group", :class => "homepage-div"}
 
                                     %div{:class => "col-md-12"}
-                                        %input{:type => 'text', :id => 'breeder_find', :class => "form-control", :placeholder => "Name"}
+                                        %input{:type => 'text', :id => 'breeder_find', :class => "form-control", :placeholder => "Breeder Name"}
                                     %div{:class => "col-md-12"}
                                         %hr
 
-                                    %div{:class => "col-md-6"}
-                                        %input{:type => 'text', :id => 'breeder_city', :class => "form-control", :placeholder => "City"}
-                                    %div{:class => "col-md-6"}
-                                        %input{:type => 'text', :id => 'breeder_state', :class => "form-control", :placeholder => "State"}
                         %ul{:id => 'autofills', :class => "list-group"}
 
                 %div{:class => "col-lg-4 box-c text-center"}

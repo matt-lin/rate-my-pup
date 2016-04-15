@@ -31,8 +31,8 @@ class PupsController < ApplicationController
     if button_clicked != "Next"
       session[:breeder_name] = "unknown"
       session[:breeder_id] = 0
-    elsif breeder_name.nil? || breeder_name.empty?
-      flash[:notice] = "Enter your breeder's name"
+    elsif !breeder_name.empty? && !Breeder.is_valid_breeder(breeder_name)
+      flash[:notice] = "Invalid breeder name"
       redirect_to dog_breeder_path(:button_clicked => "Next", :potato => {:poops => session[:breed]}) and return
     else
       session[:breeder_name] = breeder_name
@@ -68,7 +68,7 @@ class PupsController < ApplicationController
   end
 
   def breed
-    breed_1, breed_2 = params[:pup][:breed_1], params[:pup][:breed_2]
+    breed_1, breed_2 = params[:potato][:poops], 'None'
     @pups = Pup.find_by_breeds(breed_1, breed_2)
     # if not Pup.legal_dog(breed_1)
     puts @pups.length
@@ -141,7 +141,7 @@ with you for a minimum of six months. Thank you."
     end
     if button_clicked == "Next"
       if !Pup.is_valid_breed(breed)
-        flash[:notice] = "Please select a listed breed."
+        flash[:notice] = "Please select a breed in the list."
         redirect_to dog_breed_path(:pup => {:years => session[:years], :months => session[:months]}) and return
       end
       session[:breed] = breed

@@ -23,13 +23,13 @@ Background: reviews have been added to the database
     And I click ".button-b"
 
 Scenario: search for single breed of dog
-    When I select "Shiba Inu" from "pup_breed_1"
+    When I fill in "breed_find" with "Shiba Inu"
     And I press "Find a Breed"
     Then I should see "4.0"
     And I should see "Such review. Wow."
 
 Scenario: search for secondary breed of dog
-    When I select "Poodle" from "pup_breed_1"
+    When I fill in "breed_find" with "Poodle"
     And I press "Find a Breed"
     Then I should see "3.5"
     And I should see "4.5"
@@ -38,6 +38,6 @@ Scenario: search for secondary breed of dog
     And I should not see "Very aloof."
 
 Scenario: see correct number of ratings
-  When I select "Poodle" from "pup_breed_1"
+    When I fill in "breed_find" with "Poodle"
   And I press "Find a Breed"
   Then I should see "There are 2 ratings"

@@ -36,6 +36,11 @@ class Breeder < ActiveRecord::Base
     query_values = Breeder.generate_query_values(name, city, state)
     limit == 0 ? breeders.where(query_str, *query_values) : breeders.where(query_str, *query_values).limit(limit)
   end
+  
+  def Breeder.is_valid_breeder(name)
+    breeder = Breeder.where("name = ?", name)
+    return breeder.any?
+  end
 
   def Breeder.intersect_by_substring_and_breed(query_values, limit=0)
     breeders_by_breed = Breeder.find_breeders_by_breed(query_values[:breed_1], query_values[:breed_2])
