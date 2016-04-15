@@ -68,4 +68,16 @@ describe BreedersController do
       response.should render_template 'index'
     end
   end
+
+  describe "search spot" do
+    before :each do
+      @breeder1 = FactoryGirl.create(:breeder, :name => "LA breeder", :location => "90001")
+      @breeder2 = FactoryGirl.create(:breeder, :name => "Berkeley breeder", :location => "94704")
+    end
+
+    it "should find breeders in the same city" do
+      get :search_spot, {:city=>"Berkeley", :state=>"CA"}
+      response.should include(@breeder2)
+    end
+  end
 end
