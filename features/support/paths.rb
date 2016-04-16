@@ -29,6 +29,7 @@ module NavigationHelpers
     when /^the "Dog Breed" page$/ then dog_breed_path
     when /^the "Dog Breeder Test" page$/ then dog_breeder_path(:button_clicked => "Next", :potato => {:poops => "Affenpinscher"})
     when /^the "Dog Breeder" page$/ then dog_breeder_path
+    when /^the Welcome page$/ then "/welcome"
 
       # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
