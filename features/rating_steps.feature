@@ -7,6 +7,10 @@ Feature: Split rating process into a few steps
 Background: User already logged in
   Given I am on the RateMyPup home page
   And I am logged in
+  And the following breeders exist:
+      | name            | city     | state |
+      | Carl            | Berkeley | CA    |
+      | Alex            | Berkeley | CA    |
 
   Scenario: step0->1, direct to dog name page
     Given I am on the RateMyPup home page
@@ -57,12 +61,12 @@ Background: User already logged in
     And I fill in "breed_find" with "Affenpinsche"
     And I press "next_button"
     Then I should be on the "Dog Breed" page
-    And I should see "Please select a listed breed."
+    And I should see "Please select a breed in the list."
 
   Scenario: step4->new(happy), submit with either breeder name or kennel name
     Given I finished previous steps
     And I am on the "Dog Breeder Test" page
-    When I fill in "breeder_form" with "BreedMaster"
+    When I fill in "breeder_form" with "Alex"
     And I press "next_button"
     Then I should be on the "Create New Pup" page
     And I should see "Rate a New Pup"
@@ -71,6 +75,5 @@ Background: User already logged in
     Given I finished previous steps
     And I am on the "Dog Breeder Test" page
     And I press "next_button"
-    Then I should be on the "Dog Breeder" page
-    And I should see "Enter your breeder's name"
+    Then I should be on the "Create New Pup" page
     

@@ -21,7 +21,7 @@ class PupsController < ApplicationController
   end
 
   def new
-    breeder_name = params[:potato][:poops]
+    breeder_name = params[:breeder][:name]
     button_clicked = params[:button_clicked]
     # button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2] || !session[:step3]
@@ -30,9 +30,9 @@ class PupsController < ApplicationController
     if button_clicked != "Next"
       session[:breeder_name] = "unknown"
       session[:breeder_id] = 0
-    elsif breeder_name.nil? || breeder_name.empty?
-      flash[:notice] = "Enter your breeder's name"
-      redirect_to dog_breeder_path(:button_clicked => "Next", :potato => {:poops => session[:breed]}) and return
+    elsif !breeder_name.empty? && !Breeder.is_valid_breeder(breeder_name)
+      flash[:notice] = "Invalid breeder name"
+      redirect_to dog_breeder_path(:button_clicked => "Next", :breed => {:name => session[:breed]}) and return
     else
       session[:breeder_name] = breeder_name
       session[:breeder_id] = params[:breeder_id]
@@ -67,7 +67,7 @@ class PupsController < ApplicationController
   end
 
   def breed
-    breed_1, breed_2 = params[:pup][:breed_1], params[:pup][:breed_2]
+    breed_1, breed_2 = params[:breed][:name], 'None'
     @pups = Pup.find_by_breeds(breed_1, breed_2)
     # if not Pup.legal_dog(breed_1)
     puts @pups.length
@@ -138,14 +138,14 @@ with you for a minimum of six months. Thank you."
   end
 
   def dog_breeder
-    breed = params[:potato][:poops]
+    breed = params[:breed][:name]
     button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2]
       redirect_to root_path and return
     end
     if button_clicked == "Next"
       if !Pup.is_valid_breed(breed)
-        flash[:notice] = "Please select a listed breed."
+        flash[:notice] = "Please select a breed in the list."
         redirect_to dog_breed_path(:pup => {:years => session[:years], :months => session[:months]}) and return
       end
       session[:breed] = breed
