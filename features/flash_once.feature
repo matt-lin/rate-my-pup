@@ -1,4 +1,4 @@
-Feature: Flash message should only show once
+Feature: Flash warning/error should only show once
   As a user, when I rate my dog(in step dog_how_long and dog_breed)
   I should only see the result errors/warnings as a pop up
   And I should not see the errors/warnings as a repeated flash message
