@@ -118,7 +118,7 @@ class PupsController < ApplicationController
       session[:step2] = false
       redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
     elsif (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
-      flash[:notice] = "Please enter a valida integer number for year/month."
+      flash[:notice] = "Please enter a valid integer number for year/month."
       session[:step2] = false
       redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
     elsif is_valid_year_month?(years, months)
