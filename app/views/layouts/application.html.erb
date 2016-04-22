@@ -4,7 +4,7 @@
 <!--Devise flash notices-->
 
 <head>
-  <title>Ratemypup</title>
+  <title>SimpaticoPup</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -24,6 +24,9 @@
               </li>
           </ul>
             <ul class="nav navbar-nav navbar-right">
+              <li> 
+                <%= link_to "Our Mission", text_mission_path %>
+              </li>
               <li> 
                 <%= link_to "Background", text_background_path %>
               </li>
