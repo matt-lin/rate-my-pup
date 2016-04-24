@@ -55,6 +55,14 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
+Then /^I should( not)? see "(.*)" twice/ do |not_see, text|
+  if not_see != nil
+		assert !page.has_content?(text, count: 2)
+  else
+		assert page.has_content?(text, count: 2)
+	end	
+end
+
 Then /^I should see todays date/ do
   assert page.has_no_content?(Date.today)
 end

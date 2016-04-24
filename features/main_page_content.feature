@@ -29,3 +29,7 @@ Scenario: Add nav tabs in navbar
     Then I should see "Background"
     And I should see "Goals"
     And I should see "How You Can Help"
+    
+Scenario: search by breed button should have correct text
+  Given I am on the RateMyPup home page
+  Then I should see "Find Ratings for a Breed"

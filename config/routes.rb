@@ -24,10 +24,11 @@ Ratemypup::Application.routes.draw do
   get '/breeder/match' => 'breeders#search_breeder', :as => :breeder_substring_match
   get '/breeder/spot' => 'breeders#search_spot', :as => :breeder_search_spot
   
+  get '/text/mission' => 'texts#mission', :as => :text_mission
   get '/text/background' => 'texts#background', :as => :text_background
   get '/text/goals' => 'texts#goals', :as => :text_goals
   get '/text/how_you_can_help' => 'texts#how_you_can_help', :as => :text_how_you_can_help
-  get 'welcome' => 'texts#goals'
+  get '/welcome' => 'texts#welcome', :as => :welcome
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
