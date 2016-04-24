@@ -6,9 +6,6 @@
     %h1 Rate a New Pup
 
   %br
-
-  - flash.each do |key, value|
-    %p{:class => "unfilled_fields"}= value
   
   / http://bootsnipp.com/user/snippets/0M39d
   = form_tag pups_path, :class => "form-horizontal" do
