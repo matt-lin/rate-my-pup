@@ -102,9 +102,25 @@ body {
 
 .main-button {
     color: #337ab7;
-    /*background-color: #ccc;*/
-    background: url(/assets/pup3b.jpeg) no-repeat; 
-    background-size: cover;
+    background-color: #fff;
+    
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    padding: 6px 12px;
+    width: 50%;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 4px;
+}
+.ad-box {
+    color: #337ab7;
+    background-color: #fff;
+    
     border: 1px solid #ccc;
     margin-top: 8px;
     margin-bottom: 8px;
@@ -141,12 +157,12 @@ body {
 }
 
 .main-button-small-text {
-    font-size: 25px;
-    margin-top: 50px;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 .main-button-large-text {
-    font-size: 45px;
+    font-size: 28px;
 }
 
 .titleline {
