@@ -3,14 +3,11 @@
   %div{:class => "header"}
     %h1 Rate a New Pup
 
-  - flash.each do |key, value|
-    %p{:class => "unfilled_fields"}= value
-
   = form_tag new_pup_path, :class => "form-horizontal", :method=>'get' do
     %div{:class => "form-group", :class => "sub-title"}
       = label :pup, "Breeder/Kennel Information"
       %div{:class => 'collapse in', :id => 'breeder_form_collapse'}
-        = text_field :potato, 'poops', :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name"
+        = text_field :breeder, :name, :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name"
         = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
         / if invisible_id = -1 we want to display a message that tells them that they'll be redirected to a create breeder page after completion of the form
         %div{:id => 'autofills', :class => "form-group col-md-12"}
@@ -35,6 +32,3 @@
     %br
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Next', :name => "button_clicked", :class => "form-control", :id => 'next_button'
-    %div{:class => "form-group col-sm-2"}
-    %div{:class => "form-group col-sm-5"}
-      = submit_tag 'I Do Not Know', :name => "button_clicked", :class => "form-control", :id => 'back_button'

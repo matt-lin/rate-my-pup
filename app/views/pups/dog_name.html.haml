@@ -2,9 +2,6 @@
   %div{:class => "header"}
     %h1 Rate a New Dog
 
-  - flash.each do |key, value|
-    %p{:class => "unfilled_fields"}= value
-
   = form_tag dog_how_long_path, :class => "form-horizontal", :method=>'get' do
 
     /BASIC INFO GROUP/

@@ -2,9 +2,6 @@
   %div{:class => "header"}
     %h1 Rate a New Pup
 
-  - flash.each do |key, value|
-    %p{:class => "unfilled_fields"}= value
-
   = form_tag dog_breeder_path, :class => "form-horizontal", :method=>'get' do
 
     /BASIC INFO GROUP/
@@ -16,7 +13,7 @@
    
     // = render 'breed_checkbox'
     %div{:class => "form-group great text-center", :class => "sub-title"}
-      = text_field :potato, 'poops', :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
+      = text_field :breed, :name, :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
       %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
     
     %br
