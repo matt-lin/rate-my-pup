@@ -32,12 +32,10 @@ class Pup < ActiveRecord::Base
   end
   
   def Pup.legal_dog(breed_1, breed_2 = 'None')
-    puts self.all_breeds
     return self.all_breeds.include? breed_1
   end
 
   def Pup.avg_ratings_by_breeds(breed_1, breed_2 = 'None')
-    puts breed_1, breed_2
     pups_by_breed = Pup.find_by_breeds(breed_1, breed_2)
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0}

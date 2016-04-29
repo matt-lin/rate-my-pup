@@ -70,7 +70,6 @@ class PupsController < ApplicationController
     breed_1, breed_2 = params[:breed][:name], 'None'
     @pups = Pup.find_by_breeds(breed_1, breed_2)
     # if not Pup.legal_dog(breed_1)
-    puts @pups.length
     if @pups.length == 0
       flash[:message] = "Sorry, there are no dogs of the breed #{breed_1}"
       flash[:message] += " and #{breed_2}" if breed_2 != 'None'

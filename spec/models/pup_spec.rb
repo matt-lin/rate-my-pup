@@ -78,4 +78,12 @@ describe Pup do
       pup.safe_hashtag_string.should == ['#lolright', '#okilydokily', '#i\'mdone']
     end
   end
+  describe "check whether a breed is legal one" do
+    it "should return true on legal breed type" do
+      Pup.legal_dog("Affenpinscher").should be_true
+    end
+    it "should return false on illegal breed type" do
+      Pup.legal_dog("make_up_breed").should be_false
+    end
+  end
 end
