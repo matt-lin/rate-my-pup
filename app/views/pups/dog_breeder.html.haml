@@ -10,7 +10,7 @@
     %div{:class => "form-group", :class => "sub-title"}
       = label :pup, "Breeder/Kennel Information"
       %div{:class => 'collapse in', :id => 'breeder_form_collapse'}
-        = text_field :potato, 'poops', :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name"
+        = text_field :potato, 'poops', :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name (leave it empty if you don't know)"
         = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
         / if invisible_id = -1 we want to display a message that tells them that they'll be redirected to a create breeder page after completion of the form
         %div{:id => 'autofills', :class => "form-group col-md-12"}

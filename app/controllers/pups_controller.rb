@@ -68,8 +68,10 @@ class PupsController < ApplicationController
   end
 
   def breed
+    p "herehere"
     breed_1, breed_2 = params[:pup][:breed_1], params[:pup][:breed_2]
-    @pups = Pup.find_by_breeds(breed_1, breed_2)
+    p breed_1, breed_2
+    @pups = Pup.find_by_breeds(breed_1)
     # if not Pup.legal_dog(breed_1)
     puts @pups.length
     if @pups.length == 0
