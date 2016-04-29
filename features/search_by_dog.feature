@@ -39,5 +39,5 @@ Scenario: search for secondary breed of dog
 
 Scenario: see correct number of ratings
     When I fill in "breed_find" with "Poodle"
-  And I press "Find a Breed"
-  Then I should see "There are 2 ratings"
+    And I press "Find a Breed"
+    Then I should see "There are 2 ratings"
