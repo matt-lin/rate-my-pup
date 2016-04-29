@@ -7,7 +7,6 @@ class PupsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed]
 
   def add_breeder_first
-    print params
   end
 
   def breeder_exists
@@ -22,7 +21,7 @@ class PupsController < ApplicationController
   end
 
   def new
-    breeder_name = params[:potato][:poops]
+    breeder_name = params[:breeder][:name]
     button_clicked = params[:button_clicked]
     # button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2] || !session[:step3]
@@ -31,9 +30,9 @@ class PupsController < ApplicationController
     if button_clicked != "Next"
       session[:breeder_name] = "unknown"
       session[:breeder_id] = 0
-    elsif breeder_name.nil? || breeder_name.empty?
-      flash[:notice] = "Enter your breeder's name"
-      redirect_to dog_breeder_path(:button_clicked => "Next", :potato => {:poops => session[:breed]}) and return
+    elsif !breeder_name.empty? && !Breeder.is_valid_breeder(breeder_name)
+      flash[:notice] = "Invalid breeder name"
+      redirect_to dog_breeder_path(:button_clicked => "Next", :breed => {:name => session[:breed]}) and return
     else
       session[:breeder_name] = breeder_name
       session[:breeder_id] = params[:breeder_id]
@@ -59,21 +58,18 @@ class PupsController < ApplicationController
     param[:breeder_id] = session[:breeder_id]
     @pup = Pup.new(param)
     if @pup.save
-      flash[:notice] = "#{@pup.pup_name} was successfully added"
+      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
       redirect_to root_path
     else 
-      flash.keep[:notice] = "Please make sure all fields are complete!"
+      flash[:notice] = "Please make sure all fields are complete!"
       redirect_to new_pup_path
     end
   end
 
   def breed
-    p "herehere"
-    breed_1, breed_2 = params[:pup][:breed_1], params[:pup][:breed_2]
-    p breed_1, breed_2
-    @pups = Pup.find_by_breeds(breed_1)
+    breed_1, breed_2 = params[:breed][:name], 'None'
+    @pups = Pup.find_by_breeds(breed_1, breed_2)
     # if not Pup.legal_dog(breed_1)
-    puts @pups.length
     if @pups.length == 0
       flash[:message] = "Sorry, there are no dogs of the breed #{breed_1}"
       flash[:message] += " and #{breed_2}" if breed_2 != 'None'
@@ -120,30 +116,35 @@ class PupsController < ApplicationController
       flash[:notice] = "Please enter how long you have owned your dog."
       session[:step2] = false
       redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
+    elsif (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
+      flash[:notice] = "Please enter a valid integer number for year/month."
+      session[:step2] = false
+      redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
     elsif is_valid_year_month?(years, months)
       session[:years] = years
       session[:months] = months
       session[:step2] = true
     else
+      tmp_session = {:pup_name => session[:pup_name]}
       start_over
-      flash[:notice] = "To keep our database as accurate as possible, 
+      flash[:modal] = "To keep our database as accurate as possible,
 we are collecting information only for dogs that have been residing 
 in their current home for six months or more. Please come back to our 
 site and rate your dog (or insert the dog's name) after s/he has lived 
 with you for a minimum of six months. Thank you."
-      redirect_to root_path
+      redirect_to dog_how_long_path(:pup => tmp_session) and return
     end
   end
 
   def dog_breeder
-    breed = params[:potato][:poops]
+    breed = params[:breed][:name]
     button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2]
       redirect_to root_path and return
     end
     if button_clicked == "Next"
       if !Pup.is_valid_breed(breed)
-        flash[:notice] = "Please select a listed breed."
+        flash[:notice] = "Please select a breed in the list."
         redirect_to dog_breed_path(:pup => {:years => session[:years], :months => session[:months]}) and return
       end
       session[:breed] = breed
@@ -162,7 +163,7 @@ with you for a minimum of six months. Thank you."
   private
   def check_sign_in
     unless user_signed_in?
-      redirect_to '/users/sign_in'
+      redirect_to welcome_path
     end
   end
   
@@ -178,6 +179,13 @@ with you for a minimum of six months. Thank you."
     session[:breed] = nil
     session[:years] = nil
     session[:months] = nil
+  end
+
+  def is_num?(str)
+    Integer(str)
+    return true
+  rescue ArgumentError, TypeError
+    return false
   end
 end
   

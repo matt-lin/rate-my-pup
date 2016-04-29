@@ -29,7 +29,3 @@ Feature: select dog breed using when using rating
     Then I should see "Juju"
     And I should not see "Carl"
 
-  Scenario: don't know the breeder
-    When I press "back_button"
-    Then I should be on the "Create New Pup" page
-    

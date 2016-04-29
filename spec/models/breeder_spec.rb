@@ -84,4 +84,27 @@ describe Breeder do
       breeder.removed_reviews.should == (initial + 1)
     end
   end
+  describe "validate a breeder" do
+    before :each do
+      breeder = FactoryGirl.create(:breeder, :name=>"John")
+    end
+    it "should return true if breeder name is valid" do
+      Breeder.is_valid_breeder("John").should be_true
+    end
+    it "should return false if breeder name is invalid" do
+      Breeder.is_valid_breeder("Triss").should be_false
+    end
+  end
+  describe "show a breeder's address" do
+    before :each do
+      @breeder_with_address = FactoryGirl.create(:breeder, :name=>"John", :city=>"Berkeley", :state=>"CA")
+      @breeder_without_address = FactoryGirl.create(:breeder, :name=>"Tiss", :city=>nil, :state=>nil)
+    end
+    it "shuold show correct address if city and state info exist" do
+      @breeder_with_address.address.should eq(@breeder_with_address.city + ", " + @breeder_with_address.state)
+    end
+    it "shuold show empty string if city and state info not exist" do
+      @breeder_without_address.address.should eq("")
+    end
+  end
 end
