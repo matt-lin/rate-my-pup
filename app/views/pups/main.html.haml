@@ -58,11 +58,10 @@
                         %div{:class => "panel-body"}
                             = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
                                 %div{:class => "form-group", :class => "homepage-div"}
-
-                                    %div{:class => "col-md-12"}
-                                        %input{:type => 'text', :id => 'breeder_find', :class => "form-control", :placeholder => "Breeder Name"}
-
-                        %ul{:id => 'autofills', :class => "list-group"}
+                                    = text_field :breeder, :name, :class => "form-control", :id => "breeder_find", :placeholder => "Breeder Name"
+                                    %div{:id => 'breeder_find_autofills', :class => "list-group"}
+                                    %div{:class => "form-group", :class => "button-positioning"}
+                                        = submit_tag 'Find a Breeder', :id => 'Find Breed', :class => "form-control"
 
                 %div{:class => "col-lg-4 box-c text-center"}
                     %a{:class => "main-button-link button-c"}

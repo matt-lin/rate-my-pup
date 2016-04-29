@@ -4,7 +4,7 @@ class PupsController < ApplicationController
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
-  before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed]
+  before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
 
   def add_breeder_first
   end
@@ -21,22 +21,27 @@ class PupsController < ApplicationController
   end
 
   def new
-    breeder_name = params[:breeder][:name]
-    button_clicked = params[:button_clicked]
-    # button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
     end
-    if button_clicked != "Next"
-      session[:breeder_name] = "unknown"
-      session[:breeder_id] = 0
-    elsif !breeder_name.empty? && !Breeder.is_valid_breeder(breeder_name)
-      flash[:notice] = "Invalid breeder name"
-      redirect_to dog_breeder_path(:button_clicked => "Next", :breed => {:name => session[:breed]}) and return
-    else
-      session[:breeder_name] = breeder_name
-      session[:breeder_id] = params[:breeder_id]
+    if params[:breeder] && params[:breeder][:new] == "new"
+      redirect_to create_breeder_path(:name => params[:new_breeder][:name], :city => params[:new_breeder][:city], :state => params[:new_breeder][:state]) and return
     end
+    button_clicked = params[:button_clicked]
+    if button_clicked == "Create" && params[:breeder_id]
+      session[:breeder_id] = params[:breeder_id]
+      return
+    end
+    if button_clicked == "Next"
+      breeder_str = params[:breeder][:name]
+      breeder = Breeder.find_by_formatted_string(breeder_str)
+      if breeder
+        session[:breeder_id] = breeder.id
+        return
+      end
+    end
+    flash[:notice] = "Invalid breeder name"
+    redirect_to dog_breeder_path(:button_clicked => "Next", :breed => {:name => session[:breed]}) and return
   end
 
   def main

@@ -10,14 +10,15 @@ class BreedersController < ApplicationController
   end
 
   def search_breeder
-    name, city, state, limit= params[:name], params[:city], params[:state], params[:limit].to_i
-    render :json => Breeder.find_by_substring(name, city, state, limit)
+    name, limit= params[:name], params[:limit].to_i
+    render :json => Breeder.find_by_substring(name, limit)
   end
 
   def search_name
-    @breeder = Breeder.find_by_name(params[:breeders][:breeder_name])
+    search_str = params[:breeder][:name]
+    @breeder = Breeder.find_by_formatted_string(search_str)
     if !@breeder
-      flash[:message] = "Sorry there are not reviews for #{params[:breeders][:breeder_name]}"
+      flash[:message] = "Sorry there is no breeder matched #{search_str}"
       redirect_to root_path and return
     end
     @avg_ratings = @breeder.avg_pup_rating
@@ -31,11 +32,10 @@ class BreedersController < ApplicationController
   end
 
   def create
-    name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
-    breeder, message = Breeder.find_or_create(name, city, state)
-    if params[:pup]
-      params[:pup][:breeder_id] = breeder.id
-      redirect_to create_pup_path(:pup => params[:pup])
+    name, city, state = params[:name], params[:city], params[:state]
+    breeder, message = Breeder.create!(:name => name, :city => city, :state => state)
+    if breeder
+      redirect_to new_pup_path(:button_clicked => "Create", :breeder_id => breeder.id)
     else
       flash[:message] = message
       redirect_to root_path

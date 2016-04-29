@@ -19,11 +19,10 @@ var BreederAutofill = {
         $('#breeder_state').keyup(function() {
             BreederAutofill.breeder_ajax_address()
         });
-
         $('#cancel_form').click(function () {
             $('#breeder_form_collapse').collapse('show');
             $('#breeder_well').collapse('hide');
-        })
+        });
     }
 
     // ajax call to breeder/match/
@@ -57,26 +56,23 @@ var BreederAutofill = {
     // class .autofill_link links to each breeder's average ratings page
     ,breeders_add_find: function (data, requestStatus, xhrObject) {
 
-        $('#autofills').empty();
+        $('#breeder_find_autofills').empty();
         for (num in data) {
             var id = data[num].id;
             var name = data[num].name;
             var city = data[num].city;
             var state = data[num].state;
-            var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeder/search_name?&breeders%5Bbreeder_name=' + name + '">' + name + ' - ' + city + ", " + state + '</a></li>';
+            var html = '<div class="autofills"><a class="autofill_link">' + name + ' - ' + city + ", " + state + '</a></div>';
             var autofill = $(html);
-            $('#autofills').append(autofill);
+            $('#breeder_find_autofills').append(autofill);
 
             // bind autofill on scroll over option
-            autofill.mouseover(function() {
+            autofill.click(function() {
                 var text = $(this).text();
                 $('#breeder_find').val(text);
+                $('#breeder_find_autofills').empty();
             });
         }
-
-        var html = '<li class="autofills list-group-item"><a class="autofill_link" href="breeders/new">' + "Don't see it? Add a new breeder" + '</a></li>';
-        var autofill = $(html);
-        $('#autofills').append(autofill);
     }
 
     ,breeders_add_form: function (data, requestStatus, xhrObject) {
@@ -84,8 +80,11 @@ var BreederAutofill = {
         for (num in data) {
             var id = data[num].id;
             var name = data[num].name;
-            var html = '<div class="autofills"><a class="autofill_link">' + name + '</a></div>';
+            var city = data[num].city;
+            var state = data[num].state;
+            var html = '<div class="autofills"><a class="autofill_link">' + name + ' - ' + city + ", " + state + '</a></div>';
             var autofill = $(html);
+            console.log(autofill);
             $('#autofills').append(autofill);
 
             // on click, fill form name value and form id value
@@ -109,11 +108,10 @@ var BreederAutofill = {
         new_breeder.click(function () {
             var text = $(this).text();
             $('#autofills').empty();
-            $('#invisible_id').val(-1);
+            $('#invisible_field').val('new');
             $('#breeder_form_collapse').collapse('hide');
             $('#breeder_well').collapse('show');
         });
-
     }
 
     ,breeder_ajax_address: function (success_type) {
