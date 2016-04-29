@@ -7,7 +7,6 @@
     /BASIC INFO GROUP/
     %div{:class => "sub-header"}
       %h2 Please indicate your dog's breed.
-      %h5 We are only collecting information for dogs that are purebred members of an American Kennel Club (AKC) breed, or are among the most popular hybrid crosses of two AKC breeds. If your dog is of unknown ancestry or is a breed or cross that is not listed in our database, we appreciate your willingness to contribute information about your dog but do not have a meaningful way of organizing data for your dog at this time.
     %br
       
    
@@ -21,5 +20,12 @@
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Next', :name => "button_clicked", :class => "form-control", :id => 'next_button'
     %div{:class => "form-group col-sm-2"}
-    %div{:class => "form-group col-sm-5"}
-      = submit_tag 'Breed Not Listed', :name => "button_clicked", :class => "form-control", :id => 'back_button'
+    -#%div{:class => "form-group col-sm-5"}
+    -#  = submit_tag 'Breed Not Listed', :name => "button_clicked", :class => "form-control", :id => 'back_button'
+
+= render 'popup', :info => {:header=>"Please select a breed in the list.", :close=>"", :content=>"We are only collecting information for dogs that are purebred members of an American Kennel Club (AKC) breed, or are among the most popular hybrid crosses of two AKC breeds. If your dog is of unknown ancestry or is a breed or cross that is not listed in our database, we appreciate your willingness to contribute information about your dog but do not have a meaningful way of organizing data for your dog at this time."}
+- if flash[:modal]
+  :javascript
+    $(document).ready(function() {
+      $('#popup').modal({});
+    })
