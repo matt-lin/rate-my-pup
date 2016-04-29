@@ -38,17 +38,17 @@ describe PupsController do
       @breeder = FactoryGirl.create(:breeder)
       @pup_hash = {:pup =>
          {
-          :breeder_id.to_s => @breeder.id.to_s,
-          :breeder_responsibility.to_s => 4.to_s,
-          :pup_name.to_s => "Doge",
-          :breed_1.to_s => "Shiba Inu",
-          :breed_2.to_s => "None",
-          :overall_health.to_s => 1.to_s,
-          :trainability.to_s => 1.to_s,
-          :social_behavior.to_s => 1.to_s,
-          :energy_level.to_s => 5.to_s,
-          :simpatico_rating.to_s => 5.to_s,
-          :comments.to_s => "DOPE CITY"
+          :breeder_id => @breeder.id,
+          :breeder_responsibility => "1",
+          :pup_name => "Doge",
+          :breed_1 => "Shiba Inu",
+          :breed_2 => "None",
+          :overall_health => "1",
+          :trainability => "1",
+          :social_behavior => "1",
+          :energy_level => "1",
+          :simpatico_rating => "1",
+          :comments => "DOPE CITY"
         },
          :breeder => {
              :name => @breeder.name,
@@ -56,22 +56,62 @@ describe PupsController do
              :state => @breeder.state
          }
       }
+      @breeder_nonexist_hash = {:pup =>
+         {
+          :breeder_id => -1,
+          :breeder_responsibility => "1",
+          :pup_name => "Doge",
+          :breed_1 => "Shiba Inu",
+          :breed_2 => "None",
+          :overall_health => "1",
+          :trainability => "1",
+          :social_behavior => "1",
+          :energy_level => "1",
+          :simpatico_rating => "1",
+          :comments => "DOPE CITY"
+        },
+         :breeder => {
+             :name => "John",
+             :city => "Seattle",
+             :state => "WA"
+         }
+      }
     end
     it "should redirect to new pup page if fields are incomplete" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
       post :create, {:pup => {:overall_health => ''}}
       response.should redirect_to new_pup_path
+      flash[:notice].should eq("Please make sure all fields are complete!")
     end
-    # it "should redirect to all pups page if correct fields are input" do
-    #   Pup.should_receive(:new).with(@pup_hash[:pup]).and_return(@temp_pup)
-    #   @temp_pup.should_receive(:save).and_return(true)
-    #   post :create, @pup_hash
-    #   response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=shiba+inu&pup%5Bbreed_2%5D=None"
-    # end
-    # it "should redirect to create breeder page if no breeder" do
-    #   @pup_hash[:pup]["breeder_id"] = -1.to_s
-    #   post :create, @pup_hash
-    #   response.should redirect_to "http://test.host/breed?pup%5Bbreed_1%5D=Shiba+Inu&pup%5Bbreed_2%5D=None"
-    # end
+    it "should redirect to root page if correct fields are provided" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      post :create, @pup_hash
+      response.should redirect_to root_path
+      flash[:notice].should eq("Thank You! Doggie was successfully added to our database.")
+    end
+    it "should auto create one according to input breeder info if breeder not exist" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      post :create, @breeder_nonexist_hash
+      response.should redirect_to root_path
+    end
     it "should go to dog_how_long if name is provided" do
       get :dog_how_long, {:pup=>{:pup_name=>"Doggie"}}
       expect(response).to render_template(:dog_how_long)
@@ -109,6 +149,11 @@ with you for a minimum of six months. Thank you.")
       expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>session[:pup_name]})
       expect(session[:step2]).to be_false
     end
+    it "should redirect to root page if any previous step not finished(step breed)" do
+      session[:step1] = false
+      get :dog_breed, {:pup=>{:years=>"1",:months=>"1"}}
+      expect(response).to redirect_to root_path
+    end
     it "should go to dog_breeder if Purebred " do
       session[:step1] = true
       session[:pup_name] = "Doggie"
@@ -129,6 +174,11 @@ with you for a minimum of six months. Thank you.")
       get :dog_breeder, {:button_clicked => "Breed Not Listed", :breed => {:name => "Affenpinscher"}}
       expect(response).to redirect_to root_path
       expect(session[:step3]).to be_false
+    end
+    it "should redirect to root page if any previous step not finished(step breeder)" do
+      session[:step1] = false
+      get :dog_breeder, {:button_clicked => "Next", :breed => {:name => "Affenpinscher"}}
+      expect(response).to redirect_to root_path
     end
     it "should go to new rating page if breeder name provided" do
       session[:step1] = true
@@ -153,6 +203,11 @@ with you for a minimum of six months. Thank you.")
       session[:breed] = "Affenpinscher"
       get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
       expect(response).to render_template(:new)
+    end
+    it "should redirect to root page if any previous step not finished(step new)" do
+      session[:step1] = false
+      get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
+      expect(response).to redirect_to root_path
     end
   end
   describe "updating a review" do
