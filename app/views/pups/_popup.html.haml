@@ -9,4 +9,6 @@
           %p
             = info[:content]
         %div{:class=>"modal-footer"}
-          =link_to "Go Back to Homepage", root_path, :class=>"btn btn-default"
+          -if info[:close]
+            %button{:class=>"btn btn-default", :data=>{:dismiss=>"modal"}} Close
+          =link_to "Go Back to Homepage", root_path, :class=>"btn btn-primary"

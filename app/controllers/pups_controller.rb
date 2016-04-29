@@ -144,7 +144,7 @@ with you for a minimum of six months. Thank you."
     end
     if button_clicked == "Next"
       if !Pup.is_valid_breed(breed)
-        flash[:notice] = "Please select a breed in the list."
+        flash[:modal] = "Please select a breed in the list."
         redirect_to dog_breed_path(:pup => {:years => session[:years], :months => session[:months]}) and return
       end
       session[:breed] = breed
