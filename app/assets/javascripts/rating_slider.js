@@ -20,7 +20,6 @@ var RatingPaws = {
     setValue: function(label, loc) {
         return function() {
             var val = RatingPaws.pos.indexOf(loc) + 1;
-            //console.log(val);
             $('#'+label).val(RatingPaws.pos.indexOf(loc) + 1);
             RatingPaws.changeColors(label, loc, RatingPaws.selectedColor, true)();
         }

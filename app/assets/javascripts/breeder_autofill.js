@@ -84,7 +84,6 @@ var BreederAutofill = {
             var state = data[num].state;
             var html = '<div class="autofills"><a class="autofill_link">' + name + ' - ' + city + ", " + state + '</a></div>';
             var autofill = $(html);
-            console.log(autofill);
             $('#autofills').append(autofill);
 
             // on click, fill form name value and form id value

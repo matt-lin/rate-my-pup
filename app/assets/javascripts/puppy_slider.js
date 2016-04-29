@@ -9,7 +9,6 @@
 //         PupSlider.puppy_change(7);
 //         /*var pup_num = 2;
 //         var interval = setInterval(function() {
-//             console.log("hey!");
 //             PupSlider.puppy_change((pup_num++ + 1) % 7 + 1);
 //         }, 5000);
 //         */
