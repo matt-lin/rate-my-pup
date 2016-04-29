@@ -87,8 +87,9 @@ describe PupsController do
       session[:breed] = "Affenpinscher"
       post :create, {:pup => {:overall_health => ''}}
       response.should redirect_to new_pup_path
+      flash[:notice].should eq("Please make sure all fields are complete!")
     end
-    it "should redirect to root page if correct fields are input" do
+    it "should redirect to root page if correct fields are provided" do
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
@@ -98,6 +99,7 @@ describe PupsController do
       session[:breed] = "Affenpinscher"
       post :create, @pup_hash
       response.should redirect_to root_path
+      flash[:notice].should eq("Thank You! Doggie was successfully added to our database.")
     end
     it "should auto create one according to input breeder info if breeder not exist" do
       session[:step1] = true
@@ -147,6 +149,11 @@ with you for a minimum of six months. Thank you.")
       expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>session[:pup_name]})
       expect(session[:step2]).to be_false
     end
+    it "should redirect to root page if any previous step not finished(step breed)" do
+      session[:step1] = false
+      get :dog_breed, {:pup=>{:years=>"1",:months=>"1"}}
+      expect(response).to redirect_to root_path
+    end
     it "should go to dog_breeder if Purebred " do
       session[:step1] = true
       session[:pup_name] = "Doggie"
@@ -167,6 +174,11 @@ with you for a minimum of six months. Thank you.")
       get :dog_breeder, {:button_clicked => "Breed Not Listed", :breed => {:name => "Affenpinscher"}}
       expect(response).to redirect_to root_path
       expect(session[:step3]).to be_false
+    end
+    it "should redirect to root page if any previous step not finished(step breeder)" do
+      session[:step1] = false
+      get :dog_breeder, {:button_clicked => "Next", :breed => {:name => "Affenpinscher"}}
+      expect(response).to redirect_to root_path
     end
     it "should go to new rating page if breeder name provided" do
       session[:step1] = true
@@ -191,6 +203,11 @@ with you for a minimum of six months. Thank you.")
       session[:breed] = "Affenpinscher"
       get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
       expect(response).to render_template(:new)
+    end
+    it "should redirect to root page if any previous step not finished(step new)" do
+      session[:step1] = false
+      get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
+      expect(response).to redirect_to root_path
     end
   end
   describe "updating a review" do
