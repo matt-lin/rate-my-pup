@@ -2,13 +2,13 @@
     %section{:class => "find_pup"}
         //TOP PART (Tagline, Buttons)
         %div{:class => "row top"}
-            %div{:class => "row tagline"}
+            %div{:class => "row tagline col-lg-12"}
                 %h1{:id => "titleline"}
                     Improve the dogs of our lives, and lives of our dogs
                 %h2{:id => "tagline-text"} 
                     Find a pup from a <strong>reliable</strong> source
                     //First Row 
-            %div{:class => "row"}
+            %div{:class => "row col-lg-12"}
                 %div{:class => "col-lg-4 box-a text-center"}
                     %a{:class => "main-button-link button-a", :href => "/pups/dog_name"}
                         %div{:class => "main-button"}
@@ -16,7 +16,7 @@
                                 Rate your
                             %div{:class => "main-button-large-text"}
                                 Dog
-                %div{:class => "col-lg-4 box-b hidden"}
+                %div{:class => "col-lg-4 box-b box-move hidden"}
                     %div{:class => "panel panel-default"}
                         %div{:class => "panel-heading"}
                             %h3{:class => "panel-title"}
@@ -28,11 +28,9 @@
                             = form_tag breed_path, :method => :get, :class => "form-horizontal" do
                                 %div{:class => "form-group great text-center", :class => "sub-title"}
                                     = text_field :breed, :name, :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
-                                    %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
+                                %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
                                 %div{:class => "form-group", :class => "button-positioning"}
-                                    = submit_tag 'Find a Breed', :id => 'Find Breed', :class => "form-control"
-    
-
+                                    = submit_tag 'Find a Breed', :id => 'Find a Breed', :class => "form-control"
                 %div{:class => "col-lg-4 box-b text-center"}
                     %a{:class => "main-button-link button-b"}
                         %div{:class => "main-button"}
@@ -40,7 +38,7 @@
                                 Find Ratings for a
                             %div{:class => "main-button-large-text"}
                                 Breed
-                %div{:class => "col-lg-4 box-c hidden"}
+                %div{:class => "col-lg-4 box-c box-move hidden"}
                     %div{:class => "panel panel-default"}
                         %div{:class => "panel-heading"}
                             %h3{:class => "panel-title"}
@@ -51,10 +49,9 @@
                             = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
                                 %div{:class => "form-group", :class => "homepage-div"}
                                     = text_field :breeder, :name, :class => "form-control", :id => "breeder_find", :placeholder => "Breeder Name"
-                                    %div{:id => 'breeder_find_autofills', :class => "list-group"}
+                                %div{:id => 'breeder_find_autofills', :class => "list-group"}
                                 %div{:class => "form-group", :class => "button-positioning"}
-                                    = submit_tag 'Find a Breeder', :id => 'Find Breeder', :class => "form-control"
-
+                                    = submit_tag 'Find a Breeder', :id => 'Find a Breed', :class => "form-control"
                 %div{:class => "col-lg-4 box-c text-center"}
                     %a{:class => "main-button-link button-c"}
                         %div{:class => "main-button"}
@@ -63,19 +60,20 @@
                             %div{:class => "main-button-large-text"}
                                 Breeder
     %section{:class => "comment-of-the-day"}
-        %div{:class => "row"}
+        %div{:class => "row col-lg-12"}
             %header{:class => "span24"}
                 %h2 Comment of the Day
                 %h3 My affenpinscher is very easy to train! 
                 %h3 ---- Stella 
                 //Second Row
     %section{:class => "ads"}
-        %div{:class => "col-lg-4 box-a text-center"}
-            %div{:class => "ad-box-a"}
-        %div{:class => "col-lg-4 box-a text-center"}
-            %div{:class => "ad-box-b"}
-        %div{:class => "col-lg-4 box-a text-center"}
-            %div{:class => "ad-box-c"}
+        %div{:class=>"row col-lg-12"}
+            %div{:class => "col-lg-4 box-a text-center"}
+                %div{:class => "ad-box-a"}
+            %div{:class => "col-lg-4 box-a text-center"}
+                %div{:class => "ad-box-b"}
+            %div{:class => "col-lg-4 box-a text-center"}
+                %div{:class => "ad-box-c"}
             
     //CONTACT INFO
     %div{:class => "row navbar-fixed-bottom"}
