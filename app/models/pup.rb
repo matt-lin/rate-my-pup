@@ -50,7 +50,7 @@ class Pup < ActiveRecord::Base
       end
     end
     results_hash.each do |k,v|
-      results_hash[k] = v/results_num[k] if results_num[k] > 0
+      results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
     end
     results_hash
   end
