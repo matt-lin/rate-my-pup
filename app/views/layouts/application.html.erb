@@ -4,6 +4,7 @@
 <!--Devise flash notices-->
 
 <head>
+  <link rel="icon" href="/assets/icon.png">
   <title>SimpaticoPup</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -35,6 +36,9 @@
               </li>
               <li> 
                 <%= link_to "How You Can Help", text_how_you_can_help_path %>
+              </li>
+              <li> 
+                <%= link_to "Forum", root_path %>
               </li>
               
               <% if user_signed_in? %>
