@@ -46,7 +46,7 @@ Background: User already logged in
     And I fill in "pup_months" with "4"
     And I press "next_button"
     Then I should see "Go Back to Homepage"
-    And I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
+    And I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog (or insert the dog's name) after s/he has lived with you for a minimum of six months. Thank you."
 
   Scenario: step3->4(happy), submit with valid breed input
     Given I finished previous steps
@@ -62,19 +62,19 @@ Background: User already logged in
     And I press "next_button"
     Then I should be on the "Dog Breed" page
     And I should see "Please select a breed in the list."
-    And I shuold see "Close"
+    And I should see "Close"
 
   Scenario: step4->new(happy), submit with either breeder name or kennel name
     Given I finished previous steps
     And I am on the "Dog Breeder Test" page
-    When I fill in "breeder_form" with "Alex"
+    When I fill in "breeder_form" with "Alex - Berkeley, CA"
     And I press "next_button"
     Then I should be on the "Create New Pup" page
     And I should see "Rate a New Pup"
     
   Scenario: step4->4(sad), submit with empty breeder name and kennel name
-    Given I finished previous steps
-    And I am on the "Dog Breeder Test" page
-    And I press "next_button"
-    Then I should be on the "Create New Pup" page
+    # Given I finished previous steps
+    # And I am on the "Dog Breeder Test" page
+    # And I press "next_button"
+    # Then I should be on the "Create New Pup" page
     

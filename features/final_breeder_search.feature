@@ -32,7 +32,6 @@ Feature: Allow searching by only city, state, or breed
   Scenario: searching for a breeder with only city and state
     When I enter "", "Waco", "TX" into breeder search
     Then I should see "George W. Bush"
-    And I should see "Don't see it? Add a new breeder"
 
   Scenario: search for a breeder with only state
     When I enter "", "", "CA" into breeder search

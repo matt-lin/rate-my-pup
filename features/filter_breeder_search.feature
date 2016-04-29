@@ -22,7 +22,6 @@ Feature: Filter autofill response by breeder city and state
     When I enter "George", "Waco", "TX" into breeder search
     Then I should see "George W. Bush"
     And I should not see "Alex"
-    And I should see "Don't see it? Add a new breeder"
 
   Scenario: search for a breeder without city and state
     When I enter "George", "", "" into breeder search

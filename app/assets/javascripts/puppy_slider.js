@@ -1,6 +1,6 @@
-/**
- * Created by mcgourtyalex on 4/20/15.
- */
+// /**
+//  * Created by mcgourtyalex on 4/20/15.
+//  */
 
 // var PupSlider = {
 

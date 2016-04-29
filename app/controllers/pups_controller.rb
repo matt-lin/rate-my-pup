@@ -66,7 +66,7 @@ class PupsController < ApplicationController
       flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
       redirect_to root_path
     else 
-      flash.keep[:notice] = "Please make sure all fields are complete!"
+      flash[:notice] = "Please make sure all fields are complete!"
       redirect_to new_pup_path
     end
   end
@@ -75,7 +75,6 @@ class PupsController < ApplicationController
     breed_1, breed_2 = params[:breed][:name], 'None'
     @pups = Pup.find_by_breeds(breed_1, breed_2)
     # if not Pup.legal_dog(breed_1)
-    puts @pups.length
     if @pups.length == 0
       flash[:message] = "Sorry, there are no dogs of the breed #{breed_1}"
       flash[:message] += " and #{breed_2}" if breed_2 != 'None'
@@ -150,7 +149,7 @@ with you for a minimum of six months. Thank you."
     end
     if button_clicked == "Next"
       if !Pup.is_valid_breed(breed)
-        flash[:notice] = "Please select a breed in the list."
+        flash[:modal] = "Please select a breed in the list."
         redirect_to dog_breed_path(:pup => {:years => session[:years], :months => session[:months]}) and return
       end
       session[:breed] = breed

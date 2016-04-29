@@ -18,6 +18,6 @@ Background: User already logged in
     And I should see "Afghan Hound"
     And I should not see "Akita"
     
-  Scenario: don't know the breed or not finding the breed
-    When I press "back_button"
-    Then I should be on the RateMyPup home page
+  # Scenario: don't know the breed or not finding the breed
+  #   When I press "back_button"
+  #   Then I should be on the RateMyPup home page

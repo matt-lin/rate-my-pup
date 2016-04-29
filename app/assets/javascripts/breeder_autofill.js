@@ -22,6 +22,7 @@ var BreederAutofill = {
         $('#cancel_form').click(function () {
             $('#breeder_form_collapse').collapse('show');
             $('#breeder_well').collapse('hide');
+            $('#invisible_field').val('');
         });
     }
 
