@@ -18,7 +18,7 @@ class BreedersController < ApplicationController
     search_str = params[:breeder][:name]
     @breeder = Breeder.find_by_formatted_string(search_str)
     if !@breeder
-      flash[:message] = "Sorry there is no breeder matched #{search_str}"
+      flash[:notice] = "Sorry there is no breeder matched #{search_str}"
       redirect_to root_path and return
     end
     @avg_ratings = @breeder.avg_pup_rating

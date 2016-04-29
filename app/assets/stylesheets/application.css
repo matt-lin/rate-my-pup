@@ -25,11 +25,6 @@ body {
     background-attachment: fixed;
 }
 
-.top {
-    margin-bottom: 240px;
-
-}
-
 .warning {
     font-size: 20px;
     color: black;
@@ -108,7 +103,10 @@ body {
     background-size: cover;
     height: 600px;
     text-align: center;
-    color: #f4f7f8;
+    color: #000000;
+}
+.box-move {
+    margin-top: -100px;
 }
 .comment-of-the-day{
     position: relative;
