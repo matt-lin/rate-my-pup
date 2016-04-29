@@ -84,7 +84,9 @@ var BreederAutofill = {
         for (num in data) {
             var id = data[num].id;
             var name = data[num].name;
-            var html = '<div class="autofills"><a class="autofill_link">' + name + '</a></div>';
+            var city = data[num].city;
+            var state = data[num].state;
+            var html = '<div class="autofills"><a class="autofill_link">' + name + ' - ' + city + ", " + state + '</a></div>';
             var autofill = $(html);
             $('#autofills').append(autofill);
 
