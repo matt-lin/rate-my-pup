@@ -39,12 +39,19 @@ class Pup < ActiveRecord::Base
     pups_by_breed = Pup.find_by_breeds(breed_1, breed_2)
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0}
+    results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
+                    :energy_level => 0, :simpatico_rating => 0}
     pups_by_breed.each do |pup|
       results_hash.each do |rating, value|
-        results_hash[rating] += pup.send(rating)
+        unless pup.send(rating) == 0
+          results_hash[rating] += pup.send(rating)
+          results_num[rating] += 1
+        end
       end
     end
-    results_hash.each { |k,v| results_hash[k] = v/pups_by_breed.length.to_f } if pups_by_breed.length > 0
+    results_hash.each do |k,v|
+      results_hash[k] = v/results_num[k] if results_num[k] > 0
+    end
     results_hash
   end
 
