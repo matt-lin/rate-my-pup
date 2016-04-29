@@ -7,8 +7,11 @@
             %small #{description} 
     %div{:class=>"row"}
         %div{:class=>"col-sm-1 text-center"}
-            %span{:class=>"fa"} 
-                %strong #{rating}
+            %span{:class=>"fa"}
+                - if rating == 0
+                    %strong N/A
+                - else
+                    %strong #{rating}
         %div{:class=>"col-sm-11"}
             %div{:class=>"progress"}
                 - if width >= 66

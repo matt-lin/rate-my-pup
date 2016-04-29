@@ -105,6 +105,11 @@
   border: 2px solid #ff3333;
 }
 
+.score.na {
+  color: #c1c1c1;
+  border: 2px solid #c1c1c1;
+}
+
 .no-hashtags {
   font-size: 14px;
   font-weight: 300;
