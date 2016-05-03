@@ -71,7 +71,7 @@ class PupsController < ApplicationController
     @pups = Pup.find_by_breeds(breed_1, breed_2)
     # if not Pup.legal_dog(breed_1)
     if @pups.length == 0
-      flash[:notice] = "Sorry, there are no dogs of the breed #{breed_1}"
+      flash[:notice] = "Sorry, we currently have no ratings for #{breed_1}"
       flash[:notice] += " and #{breed_2}" if breed_2 != 'None'
       redirect_to root_path and return
     end
