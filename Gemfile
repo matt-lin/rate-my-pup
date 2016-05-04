@@ -18,6 +18,7 @@ gem 'figaro'
 gem "font-awesome-rails"
 gem 'geocoder'
 gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
+gem 'test-unit', '~> 3.0'
 
 group :development, :test do
   gem 'sqlite3'
@@ -31,7 +32,6 @@ group :development, :test do
   gem 'codeclimate-test-reporter'
 	gem 'reek'
 	gem 'poltergeist'
-	gem 'test-unit', '~> 3.0'
 	gem 'phantomjs', :require => 'phantomjs/poltergeist'
 	gem 'rack_session_access'
 end
