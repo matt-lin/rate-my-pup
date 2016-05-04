@@ -4,7 +4,7 @@
 
 var MainButtons = {
 
-    // setup sets a callback for #breeder_find keyup
+    // setup sets a callback for #breeder_find keyup   
     setup: function() {
         $('.button-a').hover( function() {
             $('#tagline-text').html("Contribute information about <strong>your</strong> dog to our database");
