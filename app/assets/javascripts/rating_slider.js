@@ -21,11 +21,11 @@ var RatingPaws = {
     },
     setValue: function(label, loc) {
         return function() {
-<<<<<<< HEAD
-            var val = RatingPaws.pos.indexOf(loc) + 1;
-            $('#'+label).val(RatingPaws.pos.indexOf(loc) + 1);
-            RatingPaws.changeColors(label, loc, RatingPaws.selectedColor, true)();
-=======
+// <<<<<<< HEAD
+//             var val = RatingPaws.pos.indexOf(loc) + 1;
+//             $('#'+label).val(RatingPaws.pos.indexOf(loc) + 1);
+//             RatingPaws.changeColors(label, loc, RatingPaws.selectedColor, true)();
+// =======
             var val = RatingPaws.pos.indexOf(loc);
             //console.log(val);
             if (val == 5) {
@@ -35,7 +35,7 @@ var RatingPaws = {
                 $('#'+label).val(RatingPaws.pos.indexOf(loc) + 1);
                 RatingPaws.changeColors(label, loc, RatingPaws.selectedColor, true)();
             }
->>>>>>> master
+// >>>>>>> master
         }
     },
     changeColors: function(label, loc) {
