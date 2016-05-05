@@ -16,16 +16,7 @@ describe Breeder do
       @breeder.avg_pup_rating.should == results_hash
     end
   end
-  describe "find or create breeder by name nad location" do
-    it "should not create new breeder" do
-      breeder = FactoryGirl.create(:breeder, :name => "Mcgoo")
-      Breeder.find_or_create("Mcgoo", "Berkeley", "CA").should == breeder
-    end
-    it "should create new breeder" do
-      breeder = Breeder.find_or_create("Jmac", "Berkeley", "CA")
-      Breeder.where(:name => "Jmac").first.should == breeder
-    end
-  end
+  
   describe "find all matching breeders" do
     before :each do
       @breeders = (1..10).map { |i| FactoryGirl.create(:breeder) }
@@ -34,16 +25,16 @@ describe Breeder do
     end
     describe "find by city, state, name" do
       it "should find all the breeders input into database" do
-        Breeder.find_by_substring("Ted", "Berkeley", "CA").should == @breeders + @other_breeders
+        Breeder.find_by_substring("Ted").should == @breeders + @other_breeders
       end
       it "should only return 5 breeders input" do
-        breeders = Breeder.find_by_substring("Ted", "Berkeley", "CA")
+        breeders = Breeder.find_by_substring("Ted")
         breeders.each do |breeder|
           assert(@breeders.include?(breeder) || @other_breeders.include?(breeder), "Breeder not in those created")
         end
       end
       it "should only find the 'Teddy' breeders" do
-        Breeder.find_by_substring("Teddy", "Berkeley", "CA").each do |breeder|
+        Breeder.find_by_substring("Teddy").each do |breeder|
           assert(@breeders.include?(breeder), "Breeder not in the 'Teddy' breeders array")
         end
       end

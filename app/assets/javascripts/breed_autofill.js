@@ -48,7 +48,6 @@ var BreedAutofill = {
                 var text = $(this).text();
                 $('#breed_find').val(text);
                 $('#breed_autofills').empty();
-                console.log(text);
             });
         }
     }

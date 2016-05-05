@@ -8,7 +8,7 @@
       = label :pup, "Breeder/Kennel Information"
       %div{:class => 'collapse in', :id => 'breeder_form_collapse'}
         = text_field :breeder, :name, :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name"
-        = text_field :pup, 'breeder_id', :class => "form-control", :id =>"invisible_id", :type => 'hidden'
+        = text_field :breeder, :new, :class => "form-control", :id =>"invisible_field", :type => 'hidden'
         / if invisible_id = -1 we want to display a message that tells them that they'll be redirected to a create breeder page after completion of the form
         %div{:id => 'autofills', :class => "form-group col-md-12"}
       / = label :pup, 'What kennel did your pup come from?'
@@ -17,14 +17,14 @@
       %div{:class => 'collapse', :id => 'breeder_well'}
         %div{:class => 'well well-lg'}
           %div{:class => "form-group"}
-            = label :breeder, :name, 'Name'
-            = text_field :breeder, 'name', :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's Name"
+            = label :name, 'Name'
+            = text_field :new_breeder, :name, :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's Name"
           %div{:class => "form-group"}
-            = label :breeder, :city, 'City'
-            = text_field :breeder, 'city', :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's City"
+            = label :city, 'City'
+            = text_field :new_breeder, :city, :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's City"
           %div{:class => "form-group"}
-            = label :breeder, :state, 'State'
-            = text_field :breeder, 'state', :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's State"
+            = label :state, 'State'
+            = text_field :new_breeder, :state, :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's State"
         %span{:id => "cancel_form"}
           %a{:class => "cancel"} Cancel
     

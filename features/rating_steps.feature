@@ -67,14 +67,14 @@ Background: User already logged in
   Scenario: step4->new(happy), submit with either breeder name or kennel name
     Given I finished previous steps
     And I am on the "Dog Breeder Test" page
-    When I fill in "breeder_form" with "Alex"
+    When I fill in "breeder_form" with "Alex - Berkeley, CA"
     And I press "next_button"
     Then I should be on the "Create New Pup" page
     And I should see "Rate Your Dog"
     
   Scenario: step4->4(sad), submit with empty breeder name and kennel name
-    Given I finished previous steps
-    And I am on the "Dog Breeder Test" page
-    And I press "next_button"
-    Then I should be on the "Create New Pup" page
+    # Given I finished previous steps
+    # And I am on the "Dog Breeder Test" page
+    # And I press "next_button"
+    # Then I should be on the "Create New Pup" page
     

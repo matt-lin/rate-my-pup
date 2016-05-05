@@ -27,13 +27,13 @@ class Breeder < ActiveRecord::Base
     save!
   end
 
-  def Breeder.find_by_substring(name, city, state, limit = 0, breeders = nil)
+  def Breeder.find_by_substring(name, limit = 0, breeders = nil)
     # Want to limit the number of AND statements in query so as
     # to limit load on the database
     # #breeders input allows for chaining of where clauses
     breeders = breeders || Breeder
-    query_str = Breeder.generate_query_string([["city", city], ["state", state]])
-    query_values = Breeder.generate_query_values(name, city, state)
+    query_str ="name LIKE ? OR name LIKE ?"
+    query_values = ["#{name}%"] + ["% #{name}%"]
     limit == 0 ? breeders.where(query_str, *query_values) : breeders.where(query_str, *query_values).limit(limit)
   end
   
@@ -46,8 +46,6 @@ class Breeder < ActiveRecord::Base
     breeders_by_breed = Breeder.find_breeders_by_breed(query_values[:breed_1], query_values[:breed_2])
     results = Breeder.find_by_substring(
         query_values[:name],
-        query_values[:city],
-        query_values[:state],
         breeders_by_breed
     )
     # if no limit provided, default to all results
@@ -60,10 +58,12 @@ class Breeder < ActiveRecord::Base
     by_breed = Pup.find_by_breeds(breed_1, breed_2).select(:breeder_id)
     breeders.where(id: by_breed)
   end
-
-  def Breeder.find_or_create(name, city, state)
-    Breeder.where("name = ? AND city = ? AND state = ?", name, city, state).first ||
-        Breeder.create!(:name => name, :city => city, :state => state)
+  
+  def Breeder.find_by_formatted_string(search_str)
+    m = /^([a-zA-Z ]+) - ([a-zA-Z]+), ([A-Z]{2})$/.match(search_str)
+    if m
+      Breeder.where("name = ? AND city = ? AND state = ?", m[1], m[2], m[3]).first
+    end
   end
 
   private
@@ -72,10 +72,5 @@ class Breeder < ActiveRecord::Base
     non_nil_params = params.select{ |e| e[1] }
     # create string to take in sanitized values, default include name as query param
     (["name LIKE ? OR name LIKE ?"] + non_nil_params.map { |param| "#{param[0]} LIKE ?"}).join(" AND ")
-  end
-
-  private
-  def Breeder.generate_query_values(name, city, state)
-    ["#{name}%"] + ["% #{name}%"] + [city, state].select{ |param| param }.map{ |param| "#{param}%" }
   end
 end
