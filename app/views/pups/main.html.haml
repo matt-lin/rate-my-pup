@@ -4,7 +4,7 @@
         %div{:class => "row top"}
             %div{:class => "row tagline col-lg-12"}
                 %h1{:id => "titleline"}
-                    Improve the dogs of our lives, and lives of our dogs
+                    Information to improve the dogs in our lives, and the lives of dogs
                 %h2{:id => "tagline-text"} 
                     Find a pup from a <strong>reliable</strong> source
                     //First Row 
@@ -24,7 +24,7 @@
                                 %span{:id => "cancel-b"}
                                     %a{:class => "cancel"} &#10006;
                         %div{:class => "panel-body"}
-                            =label :pup, "What kind of pup are you looking for?"
+                            =label :pup, "Please indecate the breed you are looking for"
                             = form_tag breed_path, :method => :get, :class => "form-horizontal" do
                                 %div{:class => "form-group great text-center", :class => "sub-title"}
                                     = text_field :breed, :name, :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
@@ -42,7 +42,7 @@
                     %div{:class => "panel panel-default"}
                         %div{:class => "panel-heading"}
                             %h3{:class => "panel-title"}
-                                Find a breeder or kennel by name or city and state:
+                                Find a breeder or kennel by name:
                                 %span{:id => "cancel-c"}
                                     %a{:class => "cancel"} &#10006;
                         %div{:class => "panel-body"}
@@ -63,8 +63,8 @@
         %div{:class => "row col-lg-12"}
             %header{:class => "span24"}
                 %h2 Comment of the Day
-                %h3 My affenpinscher is very easy to train! 
-                %h3 ---- Stella 
+                %h3 "My affenpinscher is very easy to train!"
+                %h3 ---- Pup Gizmo
                 //Second Row
     %section{:class => "ads"}
         %div{:class=>"row col-lg-12"}

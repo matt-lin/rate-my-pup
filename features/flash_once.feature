@@ -16,8 +16,8 @@ Background: User already logged in
     Given I am on the "Dog How Long Test" page
     When I fill in "pup_years" with "0"
     And I fill in "pup_months" with "1"
-    Then I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog (or insert the dog's name) after s/he has lived with you for a minimum of six months. Thank you."
-    And I should not see twice "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog (or insert the dog's name) after s/he has lived with you for a minimum of six months. Thank you."
+    Then I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
+    And I should not see twice "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
     
   Scenario: show error/warning once on dog_breed
     Given I finished previous steps

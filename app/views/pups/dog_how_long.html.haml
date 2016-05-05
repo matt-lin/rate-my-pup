@@ -1,6 +1,6 @@
 %div{:class => "container"}
   %div{:class => "header"}
-    %h1 Rate a New Dog
+    %h1 Rate Your Dog
 
   = form_tag dog_breed_path, :class => "form-horizontal", :method=>'get' do
 
@@ -19,7 +19,7 @@
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Next', :id => 'next_button', :class => "form-control", :confirm => ""
 
-= render 'popup', :info => {:header=>"We are sorry", :content=>"To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog (or insert the dog's name) after s/he has lived with you for a minimum of six months. Thank you."}
+= render 'popup', :info => {:header=>"We are sorry", :content=>"To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."}
 
 - if flash[:modal]
   :javascript
