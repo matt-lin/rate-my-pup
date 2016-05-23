@@ -138,7 +138,7 @@ describe PupsController do
       expect(flash[:modal]).to eq("To keep our database as accurate as possible,
 we are collecting information only for dogs that have been residing 
 in their current home for six months or more. Please come back to our 
-site and rate your dog (or insert the dog's name) after s/he has lived 
+site and rate your dog after s/he has lived 
 with you for a minimum of six months. Thank you.")
       expect(session[:step2]).to be_false
     end
