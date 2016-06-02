@@ -1,7 +1,11 @@
 class TextsController < ApplicationController
     
     def mission
-        @text = Text.find_by_title("Our Mission")
+        @mission_text = Text.find_by_title("Our Mission")
+    end 
+    
+    def background
+        @background_text = Text.find_by_title("Background")
     end 
     
 end
