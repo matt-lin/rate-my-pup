@@ -79,10 +79,8 @@ ActiveRecord::Schema.define(:version => 20160415025411) do
   end
 
   create_table "texts", :force => true do |t|
-    # t.string  "section_title", :default => ""
-    # t.integer "section_order", :default => 0
-    t.string  "title",         :default => ""
-    t.text    "body",          :default => ""
+    t.string "title", :default => ""
+    t.text   "body",  :default => ""
   end
 
   create_table "users", :force => true do |t|
@@ -104,6 +102,5 @@ ActiveRecord::Schema.define(:version => 20160415025411) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end
