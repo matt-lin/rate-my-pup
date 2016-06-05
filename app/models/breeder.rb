@@ -60,7 +60,7 @@ class Breeder < ActiveRecord::Base
   end
   
   def Breeder.find_by_formatted_string(search_str)
-    m = /^([a-zA-Z ]+) - ([a-zA-Z]+.*), ([A-Z]{2})$/.match(search_str)
+    m = /^([a-zA-Z ]+) - ([a-zA-Z ]+), [a-zA-Z ]+)$/.match(search_str)
     if m
       Breeder.where("name = ? AND city = ? AND state = ?", m[1], m[2], m[3]).first
     end
