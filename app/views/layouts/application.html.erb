@@ -26,16 +26,16 @@
           </ul>
             <ul class="nav navbar-nav navbar-right">
               <li> 
-                <%= link_to "Mission", text_mission_path %>
+                <%= link_to @mission, text_mission_path %>
               </li>
               <li> 
-                <%= link_to "Background", text_background_path %>
+                <%= link_to @background, text_background_path %>
               </li>
               <li> 
-                <%= link_to "Goals", text_goals_path %>
+                <%= link_to @goals, text_goals_path %>
               </li>
               <li> 
-                <%= link_to "How You Can Help", text_how_you_can_help_path %>
+                <%= link_to @how_you_can_help, text_how_you_can_help_path %>
               </li>
               <li> 
                 <%= link_to "Forum", root_path %>
