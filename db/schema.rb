@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160415025411) do
+ActiveRecord::Schema.define(:version => 20160607232140) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -58,11 +58,15 @@ ActiveRecord::Schema.define(:version => 20160415025411) do
     t.integer "removed_reviews", :default => 0
   end
 
+  create_table "breeds", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "pups", :force => true do |t|
     t.string   "pup_name"
     t.string   "owner_name"
-    t.string   "breed_1"
-    t.string   "breed_2"
     t.integer  "breeder_responsibility"
     t.integer  "overall_health"
     t.integer  "trainability"
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20160415025411) do
     t.integer  "simpatico_rating"
     t.text     "comments"
     t.integer  "breeder_id"
+    t.integer  "breed_id"
     t.string   "hashtag_1"
     t.string   "hashtag_2"
     t.string   "hashtag_3"

@@ -6,8 +6,6 @@ class PupsController < ApplicationController
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
 
-  def add_breeder_first
-  end
 
   def breeder_exists
     if params[:pup][:breeder_id].to_i == -1
@@ -16,10 +14,17 @@ class PupsController < ApplicationController
     end
   end
 
-  def index
-    @pups = Pup.all
+
+
+  # The Root Path
+  def main
+    start_over
+    @texts = Text.all
   end
 
+
+
+  # The true rating page
   def new
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
@@ -40,16 +45,17 @@ class PupsController < ApplicationController
         return
       end
     end
-    flash[:notice] = "Invalid breeder name"
+    flash[:notice] = "Invalid breeder/kennel name. If you don't want to provide breeder/kennel name, please leave it blank."
     redirect_to dog_breeder_path(:button_clicked => "Next", :breed => {:name => session[:breed]}) and return
   end
 
-  def main
-    @all_breeds = Pup.all_breeds
-    @all_breeds_none = Pup.all_breeds_none
-    @all_breeders = Breeder.all.map {|breeder| breeder.name}
-    @texts = Text.all
+
+
+  # Rails default methods
+  def index
+    @pups = Pup.all
   end
+
 
   def show
     @pup = Pup.find params[:id]
@@ -71,18 +77,6 @@ class PupsController < ApplicationController
     end
   end
 
-  def breed
-    breed_1, breed_2 = params[:breed][:name], 'None'
-    @pups = Pup.find_by_breeds(breed_1, breed_2)
-    # if not Pup.legal_dog(breed_1)
-    if @pups.length == 0
-      flash[:notice] = "Sorry, we currently have no ratings for #{breed_1}"
-      flash[:notice] += " and #{breed_2}" if breed_2 != 'None'
-      redirect_to root_path and return
-    end
-    @avg_ratings = Pup.avg_ratings_by_breeds(breed_1, breed_2)
-  end
-
   def update
     @pup = Pup.find params[:id]
     @pup.update_attributes(params[:pup])
@@ -95,12 +89,17 @@ class PupsController < ApplicationController
     redirect_to pups_path
   end
 
-  def dog_name
 
+
+  #################### Start Questionnaire ####################
+
+  # step 0
+  def dog_name
   end
 
+  # step 1
   def dog_how_long
-    pup_name = params[:pup][:pup_name]
+    pup_name = params[:pup][:name]
     if pup_name.nil? || pup_name.empty?
       flash[:notice] = "Please input a name"
       session[:step1] = false
@@ -111,59 +110,80 @@ class PupsController < ApplicationController
     end
   end
 
+  #step2
   def dog_breed
     years = params[:pup][:years]
     months = params[:pup][:months]
+    tmp_session = {:name => session[:pup_name]}
     if !session[:step1]
       redirect_to root_path and return
     end
     if years.nil? || months.nil? || (years.empty? && months.empty?)
       flash[:notice] = "Please enter how long you have owned your dog."
-      session[:step2] = false
-      redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
     elsif (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
       flash[:notice] = "Please enter a valid integer number for year/month."
-      session[:step2] = false
-      redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]}) and return
     elsif is_valid_year_month?(years, months)
       session[:years] = years
       session[:months] = months
       session[:step2] = true
+      return
     else
-      tmp_session = {:pup_name => session[:pup_name]}
-      start_over
-      flash[:modal] = "To keep our database as accurate as possible,
-we are collecting information only for dogs that have been residing 
-in their current home for six months or more. Please come back to our 
-site and rate your dog after s/he has lived 
-with you for a minimum of six months. Thank you."
-      redirect_to dog_how_long_path(:pup => tmp_session) and return
+      flash[:modal] = "modal"
     end
+    session[:step2] = false
+    redirect_to dog_how_long_path(:pup => tmp_session) and return
   end
 
+  #step3
   def dog_breeder
     breed = params[:breed][:name]
-    button_clicked = params[:button_clicked]
     if !session[:step1] || !session[:step2]
       redirect_to root_path and return
     end
-    if button_clicked == "Next"
-      if !Pup.is_valid_breed(breed)
-        flash[:modal] = "Please select a breed in the list."
-        redirect_to dog_breed_path(:pup => {:years => session[:years], :months => session[:months]}) and return
-      end
+    if Pup.is_valid_breed breed
       session[:breed] = breed
       session[:step3] = true
+      @states = ['AL - Alabama', 'AK - Alaska', 'AZ - Arizona', 'AR - Arkansas',
+                 'CA - California', 'CO - Colorado', 'CT - Connecticut', 'DE - Delaware',
+                 'FL - Florida', 'GA - Georgia', 'HI -  Hawaii', 'ID -  Idaho',
+                 'IL - Illinois', 'IN - Indiana', 'IA - Iowa', 'KS - Kansas',
+                 'KY - Kentucky', 'LA - Louisiana', 'ME - Maine', 'MD - Maryland',
+                 'MA - Massachusetts', 'MI - Michigan', 'MN - Minnesota', 'MS - Mississippi',
+                 'MO - Missouri', 'MT - Montana', 'NE - Nebraska', 'NV - Nevada',
+                 'NH - New Hampshire', 'NJ - New Jersey', 'NM - New Mexico', 'NY - New York',
+                 'NC - North Carolina', 'ND - North Dakota', 'OH - Ohio', 'OK - Oklahoma',
+                 'OR - Oregon', 'PA - Pennsylvania', 'RI - Rhode Island', 'SC -South Carolina',
+                 'SD - South Dakota', 'TN - Tennessee', 'TX - Texas', 'UT - Utah',
+                 'VT - Vermont', 'VA - Virginia', 'WA - Washington', 'WV - West Virginia',
+                 'WI - Wisconsin', 'WY -  Wyoming']
     else
-      start_over
-      redirect_to root_path and return
+      session[:step3] = false
+      flash[:modal] = "modal"
     end
   end
 
+  #################### End Questionnaire ####################
+
+
+
+  # search for breeds when doing auto-fill
   def search_breed
     name = params[:name]
-    render :json => Pup.find_breed_by_name(name)
+    render :json => Breed.find_breed_by_substr(name)
   end
+
+  # search pups by breed name
+  def breed
+    name = params[:breed][:name]
+    if !Breed.is_valid_breed(name)
+      flash[:notice] = "Please enter a vild breed name."
+      redirect_to root_path
+    end
+    @pups = Pup.find_by_breed(name)
+    @avg_ratings = Pup.avg_ratings_by_breed(name)
+  end
+
+
 
   private
   def check_sign_in
@@ -175,7 +195,14 @@ with you for a minimum of six months. Thank you."
   def is_valid_year_month?(years, months)
     return years.to_i * 12 + months.to_i >= 6
   end
-  
+
+  def is_num?(str)
+    Integer(str)
+    return true
+  rescue ArgumentError, TypeError
+    return false
+  end
+
   def start_over
     session[:step1] = false
     session[:step2] = false
@@ -184,13 +211,6 @@ with you for a minimum of six months. Thank you."
     session[:breed] = nil
     session[:years] = nil
     session[:months] = nil
-  end
-
-  def is_num?(str)
-    Integer(str)
-    return true
-  rescue ArgumentError, TypeError
-    return false
   end
 end
   

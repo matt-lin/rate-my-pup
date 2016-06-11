@@ -5,15 +5,12 @@
 
   = form_tag new_pup_path, :class => "form-horizontal", :method=>'get' do
     %div{:class => "form-group", :class => "sub-title"}
-      = label :pup, "Breeder/Kennel Information"
+      = label :pup, "Breeder/Kennel Information (Optional)"
       %div{:class => 'collapse in', :id => 'breeder_form_collapse'}
         = text_field :breeder, :name, :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name"
         = text_field :breeder, :new, :class => "form-control", :id =>"invisible_field", :type => 'hidden'
-        / if invisible_id = -1 we want to display a message that tells them that they'll be redirected to a create breeder page after completion of the form
         %div{:id => 'autofills', :class => "form-group col-md-12"}
-      / = label :pup, 'What kennel did your pup come from?'
-      / = text_field :kennel, 'kennel', :class => "form-control", :id => "kennel_form", :placeholder => "Kennel Name"
-      %br
+        %br
       %div{:class => 'collapse', :id => 'breeder_well'}
         %div{:class => 'well well-lg'}
           %div{:class => "form-group"}
@@ -24,7 +21,8 @@
             = text_field :new_breeder, :city, :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's City"
           %div{:class => "form-group"}
             = label :state, 'State'
-            = text_field :new_breeder, :state, :class => "form-control breeder_fields", :placeholder => "Enter Breeder/Kennel's State"
+            %br
+            = select :new_breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] })
         %span{:id => "cancel_form"}
           %a{:class => "cancel"} Cancel
     
@@ -32,3 +30,11 @@
     %br
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Next', :name => "button_clicked", :class => "form-control", :id => 'next_button'
+
+
+-#= render 'dog_breeder_popup', :info => {:header => "Please select a breed in the list.", :close => "", :content => "If "}
+-#- if flash[:modal]
+-#  :javascript
+-#    $(document).ready(function() {
+-#      $('#popup').modal({backdrop:'static', keyboard:false});
+-#    })

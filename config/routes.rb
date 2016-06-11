@@ -23,7 +23,6 @@ Ratemypup::Application.routes.draw do
   get '/breed/match' => 'pups#search_breed', :as => :breed_search
   get '/breeder/search_name' => 'breeders#search_name', :as => :breeder_search
   get '/breeder/match' => 'breeders#search_breeder', :as => :breeder_substring_match
-  get '/breeder/spot' => 'breeders#search_spot', :as => :breeder_search_spot
   
   get '/text/mission' => 'texts#mission', :as => :text_mission
   get '/text/background' => 'texts#background', :as => :text_background

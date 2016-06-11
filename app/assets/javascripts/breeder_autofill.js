@@ -32,17 +32,11 @@ var BreederAutofill = {
 
         // grab prefix from either find or form text
         var prefix = success_type == 'find' ? $("#breeder_find").val() : $('#breeder_form').val();
-        //var city = success_type == 'find'? $("#breeder_city").val() : "";
-        //var state = success_type == 'find' ? $("#breeder_state").val() : "";
-        //var breed_1 = success_type == 'find' ? $("#breeder_breed_1").val() : null;
         $.ajax({
             type: 'GET',
             url: '/breeder/match',
             data: {
                 "name": prefix,
-                // "city": city,
-                // "state": state,
-                // "breed_1": breed_1,
                 "limit": 10
             },
             timeout: 5000,
@@ -112,24 +106,6 @@ var BreederAutofill = {
             $('#breeder_form_collapse').collapse('hide');
             $('#breeder_well').collapse('show');
         });
-    }
-
-    ,breeder_ajax_address: function (success_type) {
-
-        var city = $("#breeder_city").val();
-        var state = $("#breeder_state").val();
-
-        $.ajax({
-            type: 'GET',
-            url: '/breeder/spot',
-            data: {
-                "city": city,
-                "state": state
-            },
-            timeout: 5000,
-            // callback designated by selection of find or form
-            success: BreederAutofill.breeders_add_find
-        })
     }
 };
 

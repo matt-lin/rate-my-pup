@@ -25,12 +25,6 @@ class BreedersController < ApplicationController
     @pups = @breeder.pups
   end
 
-  def search_spot
-    city, state = params[:city], params[:state]
-    closest = Breeder.near(city + ", " + state)
-    render :json => closest.limit(10)
-  end
-
   def create
     name, city, state = params[:name], params[:city], params[:state]
     breeder, message = Breeder.create!(:name => name, :city => city, :state => state)

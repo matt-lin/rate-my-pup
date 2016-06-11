@@ -19,6 +19,7 @@ var BreedAutofill = {
 
         // grab prefix from either find or form text
         var prefix = $("#breed_find").val();
+        console.log(prefix);
         $.ajax({
             type: 'GET',
             url: '/breed/match',
