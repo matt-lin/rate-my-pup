@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160607232140) do
+ActiveRecord::Schema.define(:version => 20160612012259) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(:version => 20160607232140) do
     t.string  "name"
     t.string  "location"
     t.string  "website"
-    t.string  "kennel"
     t.string  "city"
     t.string  "state"
     t.float   "latitude"
@@ -64,16 +63,21 @@ ActiveRecord::Schema.define(:version => 20160607232140) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "pup_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "pups", :force => true do |t|
     t.string   "pup_name"
-    t.string   "owner_name"
     t.integer  "breeder_responsibility"
     t.integer  "overall_health"
     t.integer  "trainability"
     t.integer  "social_behavior"
     t.integer  "energy_level"
     t.integer  "simpatico_rating"
-    t.text     "comments"
     t.integer  "breeder_id"
     t.integer  "breed_id"
     t.string   "hashtag_1"

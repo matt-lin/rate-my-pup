@@ -46,7 +46,7 @@ class PupsController < ApplicationController
       end
     end
     flash[:notice] = "Invalid breeder/kennel name. If you don't want to provide breeder/kennel name, please leave it blank."
-    redirect_to dog_breeder_path(:button_clicked => "Next", :breed => {:name => session[:breed]}) and return
+    redirect_to dog_breeder_path(:breed => {:name => session[:breed]}) and return
   end
 
 
@@ -62,17 +62,29 @@ class PupsController < ApplicationController
   end
 
   def create
-    param = params[:pup]
-    param[:pup_name] = session[:pup_name]
-    param[:breed_1] = session[:breed]
-    param[:breed_2] = 'None'
-    param[:breeder_id] = session[:breeder_id]
-    @pup = Pup.new(param)
+    new_pup = {}
+    new_pup[:pup_name] = session[:pup_name]
+    new_pup[:breeder_responsibility] = params[:pup][:breeder_responsibility]
+    new_pup[:overall_health] = params[:pup][:overall_health]
+    new_pup[:trainability] = params[:pup][:trainability]
+    new_pup[:social_behavior] = params[:pup][:social_behavior]
+    new_pup[:energy_level] = params[:pup][:energy_level]
+    new_pup[:simpatico_rating] = params[:pup][:simpatico_rating]
+    new_pup[:hashtag_1] = params[:pup][:hashtag_1]
+    new_pup[:hashtag_2] = params[:pup][:hashtag_2]
+    new_pup[:hashtag_3] = params[:pup][:hashtag_3]
+    new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
+    new_pup[:breeder_id] = session[:breeder_id]
+    new_comment = {:content => params[:pup][:comments]}
+    @pup = Pup.new(new_pup)
     if @pup.save
       flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
+      new_comment[:pup_id] = @pup.id
+      Comment.create!(new_comment)
       redirect_to root_path
     else 
       flash[:notice] = "Please make sure all fields are complete!"
+      new_params =
       redirect_to new_pup_path
     end
   end
@@ -140,26 +152,28 @@ class PupsController < ApplicationController
     if !session[:step1] || !session[:step2]
       redirect_to root_path and return
     end
-    if Pup.is_valid_breed breed
-      session[:breed] = breed
-      session[:step3] = true
-      @states = ['AL - Alabama', 'AK - Alaska', 'AZ - Arizona', 'AR - Arkansas',
-                 'CA - California', 'CO - Colorado', 'CT - Connecticut', 'DE - Delaware',
-                 'FL - Florida', 'GA - Georgia', 'HI -  Hawaii', 'ID -  Idaho',
-                 'IL - Illinois', 'IN - Indiana', 'IA - Iowa', 'KS - Kansas',
-                 'KY - Kentucky', 'LA - Louisiana', 'ME - Maine', 'MD - Maryland',
-                 'MA - Massachusetts', 'MI - Michigan', 'MN - Minnesota', 'MS - Mississippi',
-                 'MO - Missouri', 'MT - Montana', 'NE - Nebraska', 'NV - Nevada',
-                 'NH - New Hampshire', 'NJ - New Jersey', 'NM - New Mexico', 'NY - New York',
-                 'NC - North Carolina', 'ND - North Dakota', 'OH - Ohio', 'OK - Oklahoma',
-                 'OR - Oregon', 'PA - Pennsylvania', 'RI - Rhode Island', 'SC -South Carolina',
-                 'SD - South Dakota', 'TN - Tennessee', 'TX - Texas', 'UT - Utah',
-                 'VT - Vermont', 'VA - Virginia', 'WA - Washington', 'WV - West Virginia',
-                 'WI - Wisconsin', 'WY -  Wyoming']
-    else
+    if !Breed.is_valid_breed breed
       session[:step3] = false
       flash[:modal] = "modal"
+      temp_session = {:years => session[:years], :months => session[:months]}
+      redirect_to dog_breed_path(:pup => temp_session) and return
     end
+    session[:breed] = breed
+    session[:step3] = true
+    @states = ['AL - Alabama', 'AK - Alaska', 'AZ - Arizona', 'AR - Arkansas',
+               'CA - California', 'CO - Colorado', 'CT - Connecticut', 'DE - Delaware',
+               'FL - Florida', 'GA - Georgia', 'HI -  Hawaii', 'ID -  Idaho',
+               'IL - Illinois', 'IN - Indiana', 'IA - Iowa', 'KS - Kansas',
+               'KY - Kentucky', 'LA - Louisiana', 'ME - Maine', 'MD - Maryland',
+               'MA - Massachusetts', 'MI - Michigan', 'MN - Minnesota', 'MS - Mississippi',
+               'MO - Missouri', 'MT - Montana', 'NE - Nebraska', 'NV - Nevada',
+               'NH - New Hampshire', 'NJ - New Jersey', 'NM - New Mexico', 'NY - New York',
+               'NC - North Carolina', 'ND - North Dakota', 'OH - Ohio', 'OK - Oklahoma',
+               'OR - Oregon', 'PA - Pennsylvania', 'RI - Rhode Island', 'SC -South Carolina',
+               'SD - South Dakota', 'TN - Tennessee', 'TX - Texas', 'UT - Utah',
+               'VT - Vermont', 'VA - Virginia', 'WA - Washington', 'WV - West Virginia',
+               'WI - Wisconsin', 'WY -  Wyoming']
+
   end
 
   #################### End Questionnaire ####################

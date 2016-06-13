@@ -6,7 +6,6 @@ class CreateBreeders < ActiveRecord::Migration
       p.string 'name'
       p.string 'location'
       p.string 'website'
-      p.string 'kennel'
 
     end
   end

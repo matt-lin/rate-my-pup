@@ -11,6 +11,10 @@ class Breed < ActiveRecord::Base
     Breed.all_breeds.select { |b| b.downcase.include? s.downcase }
   end
 
+  def Breed.find_by_name(breed_name)
+    Breed.where("name = ?", breed_name).first
+  end
+
   private
   def Breed.all_breeds
     return Breed.select('name').map{ |e| e.name }.to_a

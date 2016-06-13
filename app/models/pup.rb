@@ -3,6 +3,8 @@ class Pup < ActiveRecord::Base
   belongs_to :breeder
   belongs_to :breed
 
+  has_one :comment
+
   validates :pup_name, :presence => true
   validates :breeder_responsibility, :presence => true
   validates :overall_health, :presence => true
@@ -10,10 +12,9 @@ class Pup < ActiveRecord::Base
   validates :social_behavior, :presence => true
   validates :energy_level, :presence => true
   validates :simpatico_rating, :presence => true
-  validate :comment_length
 
   attr_accessible :pup_name, :breeder_id, :breed_id, :breeder_responsibility, :overall_health,
-                  :trainability, :social_behavior, :energy_level, :simpatico_rating, :comments, :kennel, :hashtag_1, :hashtag_2, :hashtag_3
+                  :trainability, :social_behavior, :energy_level, :simpatico_rating, :kennel, :hashtag_1, :hashtag_2, :hashtag_3
 
 
   before_destroy { |pup| pup.breeder ? pup.breeder.increment_deleted_reviews : nil }
@@ -21,9 +22,6 @@ class Pup < ActiveRecord::Base
 
 
   # assets
-  def comment_length
-    errors.add(:comment, 'Limit comments to 140 characters') if comments && comments.length > 140
-  end
 
   def safe_hashtag_string
     [hashtag_1, hashtag_2, hashtag_3].select{|hashtag| hashtag}

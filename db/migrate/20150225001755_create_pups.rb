@@ -3,7 +3,6 @@ class CreatePups < ActiveRecord::Migration
       create_table 'pups' do |p|
 
         p.string 'pup_name'
-        p.string 'owner_name'
 
         p.integer 'breeder_responsibility'
         p.integer 'overall_health'
@@ -11,8 +10,6 @@ class CreatePups < ActiveRecord::Migration
         p.integer 'social_behavior'
         p.integer 'energy_level'
         p.integer 'simpatico_rating'
-
-        p.text 'comments'
 
         p.references :breeder
         p.references :breed
