@@ -29,24 +29,18 @@ class PupsController < ApplicationController
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
     end
-    if params[:breeder] && params[:breeder][:new] == "new"
-      redirect_to create_breeder_path(:name => params[:new_breeder][:name], :city => params[:new_breeder][:city], :state => params[:new_breeder][:state]) and return
-    end
-    button_clicked = params[:button_clicked]
-    if button_clicked == "Create" && params[:breeder_id]
-      session[:breeder_id] = params[:breeder_id]
+    breeder_str = params[:breeder][:name]
+    if breeder_str.empty?
+      session[:breeder_id] = 1
       return
     end
-    if button_clicked == "Next"
-      breeder_str = params[:breeder][:name]
-      breeder = Breeder.find_by_formatted_string(breeder_str)
-      if breeder
-        session[:breeder_id] = breeder.id
-        return
-      end
+    breeder = Breeder.find_by_formatted_string(breeder_str)
+    if breeder
+      session[:breeder_id] = breeder.id
+      return
     end
     flash[:notice] = "Invalid breeder/kennel name. If you don't want to provide breeder/kennel name, please leave it blank."
-    redirect_to dog_breeder_path(:breed => {:name => session[:breed]}) and return
+    redirect_to dog_breeder_path and return
   end
 
 
@@ -111,7 +105,11 @@ class PupsController < ApplicationController
 
   # step 1
   def dog_how_long
-    pup_name = params[:pup][:name]
+    if params[:pup]
+      pup_name = params[:pup][:name]
+    else
+      pup_name = session[:pup_name]
+    end
     if pup_name.nil? || pup_name.empty?
       flash[:notice] = "Please input a name"
       session[:step1] = false
@@ -124,12 +122,17 @@ class PupsController < ApplicationController
 
   #step2
   def dog_breed
-    years = params[:pup][:years]
-    months = params[:pup][:months]
-    tmp_session = {:name => session[:pup_name]}
     if !session[:step1]
       redirect_to root_path and return
     end
+    if params[:pup]
+      years = params[:pup][:years]
+      months = params[:pup][:months]
+    else
+      years = session[:years]
+      months = session[:months]
+    end
+    # tmp_session = {:name => session[:pup_name]}
     if years.nil? || months.nil? || (years.empty? && months.empty?)
       flash[:notice] = "Please enter how long you have owned your dog."
     elsif (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
@@ -143,36 +146,27 @@ class PupsController < ApplicationController
       flash[:modal] = "modal"
     end
     session[:step2] = false
-    redirect_to dog_how_long_path(:pup => tmp_session) and return
+    redirect_to dog_how_long_path
   end
 
   #step3
   def dog_breeder
-    breed = params[:breed][:name]
     if !session[:step1] || !session[:step2]
       redirect_to root_path and return
+    end
+    if params[:breed]
+      breed = params[:breed][:name]
+    else
+      breed = session[:breed]
     end
     if !Breed.is_valid_breed breed
       session[:step3] = false
       flash[:modal] = "modal"
       temp_session = {:years => session[:years], :months => session[:months]}
-      redirect_to dog_breed_path(:pup => temp_session) and return
+      redirect_to dog_breed_path and return
     end
     session[:breed] = breed
     session[:step3] = true
-    @states = ['AL - Alabama', 'AK - Alaska', 'AZ - Arizona', 'AR - Arkansas',
-               'CA - California', 'CO - Colorado', 'CT - Connecticut', 'DE - Delaware',
-               'FL - Florida', 'GA - Georgia', 'HI -  Hawaii', 'ID -  Idaho',
-               'IL - Illinois', 'IN - Indiana', 'IA - Iowa', 'KS - Kansas',
-               'KY - Kentucky', 'LA - Louisiana', 'ME - Maine', 'MD - Maryland',
-               'MA - Massachusetts', 'MI - Michigan', 'MN - Minnesota', 'MS - Mississippi',
-               'MO - Missouri', 'MT - Montana', 'NE - Nebraska', 'NV - Nevada',
-               'NH - New Hampshire', 'NJ - New Jersey', 'NM - New Mexico', 'NY - New York',
-               'NC - North Carolina', 'ND - North Dakota', 'OH - Ohio', 'OK - Oklahoma',
-               'OR - Oregon', 'PA - Pennsylvania', 'RI - Rhode Island', 'SC -South Carolina',
-               'SD - South Dakota', 'TN - Tennessee', 'TX - Texas', 'UT - Utah',
-               'VT - Vermont', 'VA - Virginia', 'WA - Washington', 'WV - West Virginia',
-               'WI - Wisconsin', 'WY -  Wyoming']
 
   end
 

@@ -5,15 +5,19 @@
   - flash.each do |key, value|
     %p= value
 
-  = form_tag breeders_path, :class => "form-horizontal" do
+  = form_tag create_breeder_path, :class => "form-horizontal", :autocomplete => "off" do
     %div{:class => "form-group"}
-      = label :breeder, :name, 'Breeder or Kennel Name'
-      = text_field :breeder, 'name', :class => "form-control", :placeholder => "Enter Breeder or Kennel Name"
+      = label :breeder, :name, "Enter Breeder/Kennel's Name"
+      = text_field :breeder, :name, :class => "form-control", :placeholder => "Enter Breeder or Kennel Name"
     %div{:class => "form-group"}
-      = label :breeder, :city, 'Breeder or Kennel City'
-      = text_field :breeder, 'city', :class => "form-control", :placeholder => "Enter Breeder or Kennel City"
+      = label :breeder, :city, "Enter Breeder/Kennel's City"
+      = text_field :breeder, :city, :class => "form-control", :placeholder => "Enter Breeder or Kennel City"
     %div{:class => "form-group"}
-      = label :breeder, :state, 'Breeder or Kennel State'
-      = text_field :breeder, 'state', :class => "form-control", :placeholder => "Enter Breeder or Kennel State"
-    %div{:class => "form-group"}
+      = label :breeder, :state, "Enter Breeder/Kennel's State"
+      %br
+      = select :breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] })
+    %div{:class => "form-group col-sm-5"}
       = submit_tag 'Add Breeder', :id => 'Add Breeder', :class => "form-control"
+    .col-sm-1
+    .col-sm-5
+      = link_to 'Cancel', dog_breeder_path, :class => "form-control cancel"

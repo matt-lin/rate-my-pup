@@ -25,7 +25,7 @@
                                     %a{:class => "cancel"} &#10006;
                         %div{:class => "panel-body"}
                             =label :pup, "Please indecate the breed you are looking for"
-                            = form_tag breed_path, :method => :get, :class => "form-horizontal" do
+                            = form_tag breed_path, :method => :get, :class => "form-horizontal", :autocomplete => "off" do
                                 %div{:class => "form-group great text-center", :class => "sub-title"}
                                     = text_field :breed, :name, :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
                                 %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
@@ -46,7 +46,7 @@
                                 %span{:id => "cancel-c"}
                                     %a{:class => "cancel"} &#10006;
                         %div{:class => "panel-body"}
-                            = form_tag breeder_search_path, :method => :get, :class => "form-horizontal" do
+                            = form_tag breeder_search_path, :method => :get, :class => "form-horizontal", :autocomplete => "off" do
                                 %div{:class => "form-group", :class => "homepage-div"}
                                     = text_field :breeder, :name, :class => "form-control", :id => "breeder_find", :placeholder => "Breeder Name"
                                     %div{:id => 'breeder_find_autofills', :class => "list-group"}

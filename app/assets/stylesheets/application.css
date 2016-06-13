@@ -220,9 +220,13 @@ body {
     /*font-weight: bold;*/
 }
 
-#cancel-a, #cancel-b, #cancel-c {
-    float: right;
-    cursor: pointer;
+/*cancel-a, #cancel-b, #cancel-c {*/
+    /*float: right;*/
+    /*cursor: pointer;*/
+/*}*/
+
+.cancel {
+    text-align: center !important;
 }
 
 .cancel, .cancel:hover {
