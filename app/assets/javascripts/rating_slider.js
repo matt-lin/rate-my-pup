@@ -1,6 +1,6 @@
 var RatingPaws = {
     pos: ["first", "second", "third", "fourth", "fifth", "sixth"],
-    categories: ["breeder-label", "simpatico-label", "health-label", "train-label", "social-label", "energy-label"],
+    categories: ["breeder-label", "simpatico-label", "health-label", "train-label", "social-label", "energy-label", "behavior-label"],
     unselectedColor: "#bbb",
     selectedColor: "#3399FF",
     naColor: "#ff3333",

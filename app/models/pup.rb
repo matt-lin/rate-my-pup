@@ -1,5 +1,6 @@
 class Pup < ActiveRecord::Base
 
+  belongs_to :user
   belongs_to :breeder
   belongs_to :breed
 
@@ -13,8 +14,9 @@ class Pup < ActiveRecord::Base
   validates :energy_level, :presence => true
   validates :simpatico_rating, :presence => true
 
-  attr_accessible :pup_name, :breeder_id, :breed_id, :breeder_responsibility, :overall_health,
-                  :trainability, :social_behavior, :energy_level, :simpatico_rating, :kennel, :hashtag_1, :hashtag_2, :hashtag_3
+  attr_accessible :pup_name, :user_id, :breeder_id, :breed_id, :breeder_responsibility, :overall_health,
+                  :trainability, :social_behavior,:dog_behavior, :energy_level, :simpatico_rating, :kennel,
+                  :hashtag_1, :hashtag_2, :hashtag_3
 
 
   before_destroy { |pup| pup.breeder ? pup.breeder.increment_deleted_reviews : nil }

@@ -39,7 +39,8 @@ class PupsController < ApplicationController
       session[:breeder_id] = breeder.id
       return
     end
-    flash[:notice] = "Invalid breeder/kennel name. If you don't want to provide breeder/kennel name, please leave it blank."
+    flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
+    Please click here to add it to our database."
     redirect_to dog_breeder_path and return
   end
 
@@ -62,6 +63,7 @@ class PupsController < ApplicationController
     new_pup[:overall_health] = params[:pup][:overall_health]
     new_pup[:trainability] = params[:pup][:trainability]
     new_pup[:social_behavior] = params[:pup][:social_behavior]
+    new_pup[:dog_behavior] = params[:pup][:dog_behavior]
     new_pup[:energy_level] = params[:pup][:energy_level]
     new_pup[:simpatico_rating] = params[:pup][:simpatico_rating]
     new_pup[:hashtag_1] = params[:pup][:hashtag_1]
@@ -69,6 +71,7 @@ class PupsController < ApplicationController
     new_pup[:hashtag_3] = params[:pup][:hashtag_3]
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
+    new_pup[:user_id] = current_user.id
     new_comment = {:content => params[:pup][:comments]}
     @pup = Pup.new(new_pup)
     if @pup.save
