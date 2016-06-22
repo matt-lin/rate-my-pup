@@ -1,5 +1,6 @@
 ActiveAdmin.register Pup, as: "Dogs" do
   index do
+    selectable_column
     column :pup_name
     column :owner do |p|
       auto_link p.user

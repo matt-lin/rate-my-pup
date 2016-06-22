@@ -1,24 +1,7 @@
 %div{:class => "container text-container"}
   %div{:class => "header"}
     %h1= @goals_text.title 
-    %p The SimpaticoPup website was created to help improve how companion puppies are produced, and how they find their way to their forever homes. We believe that:
-    %p Responsible dog breeders should be willing and able to demonstrate their commitment to the following standards:
-    %ul
-      %li They are putting top priority on breeding dogs with excellent health and temperament, which have the potential to become excellent companion dogs to their human families.
-      %li Their puppies are raised in a healthy environment, and provided with an early environment that promotes optimal socialization, behavior and development.
-      %li They are willing to provide ongoing help/support to families who purchase their puppies, to facilitate the puppy’s transition into its new home and continued development. Ideally, they should be willing to provide a life-long commitment and safety net to provide for the well-being of the puppies they produce.
-      %li Their breeding dogs are kept in a loving and healthy environment, where their physical, psychological and social needs are all met throughout their lives.
-      %li Their breeding dogs receive adequate medical care, and have been screened for genetic/heritable health problems as recommended by the Canine Health Information Center (CHIC) http://www.caninehealthinfo.org/ 
-    %p Dog lovers who are looking for a new puppy should:
-    %ul  
-      %li Buy a puppy only from a breeder who is willing to demonstrate that they meet all of the standards shown above.
-      %li Carefully choose a puppy that will be suitable for their environment and lifestyle.
-      %li Provide their puppy with a loving and healthy environment, where its physical, social and psychological needs will be met.
-      %li Provide the puppy with adequate ongoing medical care and prevention.
-      %li Continue the puppy’s socialization and training in order for it to develop to its full potential as a companion dog. 
-      %li Provide a life-long commitment to care for the puppy, or re-home it responsibly.
-    %p At SimpaticoPup.com, we believe that no one should EVER pay money for a puppy unless they verify that the breeder standards listed above are being met. Buying a dog from an irresponsible breeder supports the largely unseen and unregulated industry of puppy mills and profit-motivated breeding, in which dogs are often mistreated as livestock or cash commodities. 
-    %p Dog lovers have the power to boycott irresponsible breeders, and to support only responsible breeders. If they do so, the number of irresponsible for-profit breeders will decline, the number of irresponsibly bred dogs that end up dumped into shelters as surplus inventory will decline, the health and temperament of our companion dogs will improve, and our relationships with them will be enriched. 
-  %center
+    = simple_format @goals_text.body
+    %center
     %a{:class => "btn btn-primary", :href => root_path}
       Go Back to Home Page
