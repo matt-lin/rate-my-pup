@@ -22,7 +22,7 @@ class BreedersController < ApplicationController
       redirect_to root_path and return
     end
     @avg_ratings = @breeder.avg_pup_rating
-    @pups = @breeder.pups
+    @pups = @breeder.all_pups
   end
 
   def new

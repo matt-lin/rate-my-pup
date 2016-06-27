@@ -34,15 +34,15 @@ class Pup < ActiveRecord::Base
   # class methods
   def Pup.find_by_breed(breed_name)
     breed_id = Breed.where("name = ?", breed_name)
-    Pup.where("breed_id = ?", breed_id)
+    Pup.where("breed_id = ?", breed_id).order("created_at DESC")
   end
 
   def Pup.avg_ratings_by_breed(breed_name)
     pups_by_breed = Pup.find_by_breed(breed_name)
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
-                    :energy_level => 0, :simpatico_rating => 0}
+                    :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
-                    :energy_level => 0, :simpatico_rating => 0}
+                   :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     pups_by_breed.each do |pup|
       results_hash.each do |rating, value|
         unless pup.send(rating) == 0
