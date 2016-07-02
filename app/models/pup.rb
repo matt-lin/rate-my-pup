@@ -14,7 +14,7 @@ class Pup < ActiveRecord::Base
   validates :energy_level, :presence => true
   validates :simpatico_rating, :presence => true
 
-  attr_accessible :pup_name, :user_id, :breeder_id, :breed_id, :breeder_responsibility, :overall_health,
+  attr_accessible :pup_name, :year, :month, :user_id, :breeder_id, :breed_id, :breeder_responsibility, :overall_health,
                   :trainability, :social_behavior,:dog_behavior, :energy_level, :simpatico_rating, :kennel,
                   :hashtag_1, :hashtag_2, :hashtag_3
 

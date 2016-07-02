@@ -59,6 +59,8 @@ class PupsController < ApplicationController
   def create
     new_pup = {}
     new_pup[:pup_name] = session[:pup_name]
+    new_pup[:year] = session[:years]
+    new_pup[:month] = session[:months]
     new_pup[:breeder_responsibility] = params[:pup][:breeder_responsibility]
     new_pup[:overall_health] = params[:pup][:overall_health]
     new_pup[:trainability] = params[:pup][:trainability]
@@ -81,7 +83,6 @@ class PupsController < ApplicationController
       redirect_to root_path
     else 
       flash[:notice] = "Please make sure all fields are complete!"
-      new_params =
       redirect_to new_pup_path
     end
   end
