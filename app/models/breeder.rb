@@ -34,6 +34,9 @@ class Breeder < ActiveRecord::Base
   def Breeder.find_by_substring(name, limit = 0)
     breeders = Breeder.skip_one
     query_str ="name LIKE ? OR name LIKE ?"
+    if name.length >= 1
+      name = name[0].upcase + name[1..-1]
+    end
     query_values = ["#{name}%"] + ["% #{name}%"]
     limit == 0 ? breeders.where(query_str, *query_values) : breeders.where(query_str, *query_values).limit(limit)
   end
