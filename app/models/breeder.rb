@@ -23,7 +23,11 @@ class Breeder < ActiveRecord::Base
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0, :dog_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0, :breeder_responsibility => 0}
     all_pups.each do |pup|
-      results_hash.each {|rating,v| results_hash[rating] += pup.send(rating)}
+      results_hash.each do |rating, v|
+        unless pup.send(rating) == 0
+          results_hash[rating] += pup.send(rating)
+        end
+      end
     end
     Hash[results_hash.map { |k,v| [k, v.to_f / pups.length.to_f]}]
   end

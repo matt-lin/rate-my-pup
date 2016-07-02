@@ -20,7 +20,7 @@ ActiveAdmin.register Pup, as: "Dogs" do
       auto_link p.breed
     end
     column "Breeder" do |p|
-      link_to p.breeder.name, admin_breeder_path(p)
+      link_to p.breeder.name, admin_breeder_path(p.breeder)
     end
     column "City" do |p|
       auto_link p.breeder.city

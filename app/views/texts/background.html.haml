@@ -1,7 +1,8 @@
 %div{:class => "container text-container"}
   %div{:class => "header"}
     %h1= @background_text.title
-    = simple_format @background_text.body
+    .text-content
+      = simple_format @background_text.body
   %center
     %a{:class => "btn btn-primary", :href => root_path}
       Go Back to Home Page

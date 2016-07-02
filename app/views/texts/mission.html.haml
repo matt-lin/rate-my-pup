@@ -1,7 +1,7 @@
 %div{:class => "container text-container"}
   %div{:class => "header"}
     %h1= @mission_text.title
-    %h3
+    .text-content
       = simple_format @mission_text.body
   %center
     %a{:class => "btn btn-primary", :href => root_path}
