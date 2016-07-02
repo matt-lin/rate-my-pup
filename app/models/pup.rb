@@ -4,7 +4,7 @@ class Pup < ActiveRecord::Base
   belongs_to :breeder
   belongs_to :breed
 
-  has_one :comment
+  has_one :comment, dependent: :destroy
 
   validates :pup_name, :presence => true
   validates :breeder_responsibility, :presence => true

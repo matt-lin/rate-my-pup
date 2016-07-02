@@ -65,8 +65,8 @@
             %div{:class => "row col-lg-12"}
                 %header{:class => "span24"}
                     %h2 Comment of the Day
-                    %h3 "My affenpinscher is very easy to train!"
-                    %h3 ---- Pup Gizmo
+                    %h3= "\"#{@comment_content}\""
+                    %h3= "---- #{@comment_user}"
     //Third Row
     -#%div{:class => "row"}
     -#    %section{:class => "ads"}

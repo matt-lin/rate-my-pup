@@ -2,6 +2,8 @@ class Breeder < ActiveRecord::Base
   has_many :pups
   attr_accessible :name, :city, :state, :website, :removed_reviews
 
+  before_destroy { |breeder| breeder.dismentle_pups }
+
   geocoded_by :address
   # after_validation :geocode
 
@@ -24,6 +26,13 @@ class Breeder < ActiveRecord::Base
       results_hash.each {|rating,v| results_hash[rating] += pup.send(rating)}
     end
     Hash[results_hash.map { |k,v| [k, v.to_f / pups.length.to_f]}]
+  end
+
+  def dismentle_pups
+    pups.each do |p|
+      p.breeder_id = 1
+      p.save!
+    end
   end
 
   def increment_deleted_reviews

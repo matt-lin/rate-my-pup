@@ -1,7 +1,7 @@
 ActiveAdmin.register Breed do
   filter :name
+  actions :all, except: [:destroy]
   index do
-    selectable_column
     column :id
     column :name do |b|
       link_to b.name, admin_breed_path(b)

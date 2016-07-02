@@ -19,7 +19,11 @@ class PupsController < ApplicationController
   # The Root Path
   def main
     start_over
-    @texts = Text.all
+    selected_comment = SelectedComment.find_randomly
+    if selected_comment
+      @comment_content = selected_comment.content
+      @comment_user = selected_comment.user
+    end
   end
 
 
