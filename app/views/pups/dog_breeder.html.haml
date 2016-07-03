@@ -12,12 +12,13 @@
   = form_tag new_pup_path, :class => "form-horizontal", :autocomplete => "off", :method=>'get' do
     %div{:class => "form-group", :class => "sub-title"}
       = label :pup, "Breeder/Kennel Information"
-      %div{:class => "explanation"}
+      %div{:class => "explanation", :style => "font-size: 16px;"}
         Type the name of the dog breeder or kennel from which you acquired your dog below,
         and then click on the correct breeder/kennel from the drop down list.
         If the name does not appear, please add the name of the dog breeder, city and state
         to our database by clicking
-        = link_to  "here", new_breeder_path
+        %strong
+          = link_to  %"here", new_breeder_path
         \. If you do not know the name, city and state of your dog's breeder, simply click "Next".
 
       %div{:class => 'collapse in', :id => 'breeder_form_collapse'}

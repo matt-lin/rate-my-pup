@@ -22,14 +22,19 @@ class Breeder < ActiveRecord::Base
   def avg_pup_rating
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0, :dog_behavior => 0,
                     :energy_level => 0, :simpatico_rating => 0, :breeder_responsibility => 0}
+    results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0, :dog_behavior => 0,
+                   :energy_level => 0, :simpatico_rating => 0, :breeder_responsibility => 0}
     all_pups.each do |pup|
       results_hash.each do |rating, v|
         unless pup.send(rating) == 0
           results_hash[rating] += pup.send(rating)
+          results_num[rating] += 1
         end
       end
     end
-    Hash[results_hash.map { |k,v| [k, v.to_f / pups.length.to_f]}]
+    results_hash.each do |k,v|
+      results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
+    end
   end
 
   def dismentle_pups
