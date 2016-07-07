@@ -33,19 +33,21 @@ class PupsController < ApplicationController
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
     end
-    breeder_str = params[:breeder][:name]
-    if breeder_str.empty?
-      session[:breeder_id] = 1
-      return
+    if !session[:breeder_id]
+      breeder_str = params[:breeder][:name]
+      if breeder_str.empty?
+        session[:breeder_id] = 1
+        return
+      end
+      breeder = Breeder.find_by_formatted_string(breeder_str)
+      if breeder
+        session[:breeder_id] = breeder.id
+        return
+      end
+      flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
+      Please click here to add it to our database."
+      redirect_to dog_breeder_path and return
     end
-    breeder = Breeder.find_by_formatted_string(breeder_str)
-    if breeder
-      session[:breeder_id] = breeder.id
-      return
-    end
-    flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
-    Please click here to add it to our database."
-    redirect_to dog_breeder_path and return
   end
 
 
@@ -61,10 +63,11 @@ class PupsController < ApplicationController
   end
 
   def create
+    # gather pup ifo
     new_pup = {}
     new_pup[:pup_name] = session[:pup_name]
-    new_pup[:year] = session[:years]
-    new_pup[:month] = session[:months]
+    new_pup[:year] = session[:years] || 0
+    new_pup[:month] = session[:months] || 0
     new_pup[:breeder_responsibility] = params[:pup][:breeder_responsibility]
     new_pup[:overall_health] = params[:pup][:overall_health]
     new_pup[:trainability] = params[:pup][:trainability]
@@ -78,17 +81,36 @@ class PupsController < ApplicationController
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
-    new_comment = {:content => params[:pup][:comments]}
     @pup = Pup.new(new_pup)
-    if @pup.save
-      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
-      new_comment[:pup_id] = @pup.id
-      Comment.create!(new_comment)
-      redirect_to root_path
-    else 
-      flash[:notice] = "Please make sure all fields are complete!"
-      redirect_to new_pup_path
+    if !@pup.valid?
+      flash[:notice] = 'Please make sure all fields are complete!'
+      redirect_to new_pup_path and return
     end
+    begin
+      @pup.save!
+    rescue ActiveRecord::RecordInvalid
+      flash[:notice] = 'Fail to save your rating!'
+      redirect_to new_pup_path and return
+    end
+
+    # gather comment info
+    new_comment = {:content => params[:pup][:comments]}
+    new_comment[:pup_id] = @pup.id
+    @Comment = Comment.new(new_comment)
+    if !@Comment.valid?
+        flash[:notice] = 'Please make sure the comment is less than 140 characters.'
+        redirect_to new_pup_path and return
+    end
+    begin
+      @Comment.save!
+    rescue ActiveRecord::RecordInvalid
+      flash[:notice] = 'Fail to save your rating!'
+      redirect_to new_pup_path and return
+    end
+
+    # Successfully save pup & comment
+    flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
+    redirect_to root_path
   end
 
   def update
