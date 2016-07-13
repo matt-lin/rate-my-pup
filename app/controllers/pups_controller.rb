@@ -249,6 +249,7 @@ class PupsController < ApplicationController
     session[:breed] = nil
     session[:years] = nil
     session[:months] = nil
+    session[:breeder_id] = nil
   end
 end
   
