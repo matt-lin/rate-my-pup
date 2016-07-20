@@ -82,31 +82,21 @@ class PupsController < ApplicationController
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
     @pup = Pup.new(new_pup)
+    new_comment = {:content => params[:pup][:comments]}
+    @Comment = Comment.new(new_comment)
+
     if !@pup.valid?
       flash[:notice] = 'Please make sure all fields are complete!'
       redirect_to new_pup_path and return
     end
-    begin
-      @pup.save!
-    rescue ActiveRecord::RecordInvalid
-      flash[:notice] = 'Fail to save your rating!'
-      redirect_to new_pup_path and return
-    end
-
-    # gather comment info
-    new_comment = {:content => params[:pup][:comments]}
-    new_comment[:pup_id] = @pup.id
-    @Comment = Comment.new(new_comment)
     if !@Comment.valid?
         flash[:notice] = 'Please make sure the comment is less than 140 characters.'
         redirect_to new_pup_path and return
     end
-    begin
-      @Comment.save!
-    rescue ActiveRecord::RecordInvalid
-      flash[:notice] = 'Fail to save your rating!'
-      redirect_to new_pup_path and return
-    end
+
+    @pup.save
+    new_comment[:pup_id] = @pup.id
+    @Comment.save
 
     # Successfully save pup & comment
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
