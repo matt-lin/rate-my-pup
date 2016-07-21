@@ -24,7 +24,7 @@
                                 %span{:id => "cancel-b"}
                                     %a{:class => "cancel"} &#10006;
                         %div{:class => "panel-body"}
-                            =label :pup, "Please indecate the breed you are looking for"
+                            =label :pup, "Please indicate the breed you are looking for"
                             = form_tag breed_path, :method => :get, :class => "form-horizontal", :autocomplete => "off" do
                                 %div{:class => "form-group great text-center", :class => "sub-title"}
                                     = text_field :breed, :name, :class => "form-control", :id => "breed_find", :placeholder => "Breed Name"
