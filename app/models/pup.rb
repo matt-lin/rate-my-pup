@@ -7,6 +7,9 @@ class Pup < ActiveRecord::Base
   has_one :comment, dependent: :destroy
 
   validates :pup_name, :presence => true
+  validates :user_id, :presence => true
+  validates :breeder_id, :presence => true
+  validates :breed_id, :presence => true
   validates :breeder_responsibility, :presence => true
   validates :overall_health, :presence => true
   validates :trainability, :presence => true

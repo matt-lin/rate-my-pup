@@ -95,7 +95,7 @@ class PupsController < ApplicationController
     end
 
     @pup.save
-    new_comment[:pup_id] = @pup.id
+    @Comment.pup_id = @pup.id
     @Comment.save
 
     # Successfully save pup & comment

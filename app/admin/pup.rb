@@ -3,7 +3,6 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breeder
   filter :breed
   filter :pup_name
-  filter :created_at
 
   index do
     column :id
@@ -31,6 +30,7 @@ ActiveAdmin.register Pup, as: "Dogs" do
     column :comment do |p|
       p.comment.content
     end
+    column :created_at
 
     # column :breeder_responsibility
     # column :overall_health
@@ -51,5 +51,5 @@ ActiveAdmin.register Pup, as: "Dogs" do
     f.actions
   end
 
-  end
+end
 
