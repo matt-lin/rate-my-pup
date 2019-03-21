@@ -266,9 +266,9 @@ breeds.each do |breed|
   Breed.create!(breed)
 end
 
-pups.each do |pup|
-  Pup.create!(pup)
-end
+#pups.each do |pup|
+#  Pup.create!(pup)
+#end
 
 comments.each do |comment|
   Comment.create!(comment)
